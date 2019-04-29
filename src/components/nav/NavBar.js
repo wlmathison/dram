@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, NavLink, Nav } from "reactstrap"
+import "bootstrap/dist/css/bootstrap.min.css"
 
 export default class NavBar extends Component {
 
@@ -22,7 +23,7 @@ export default class NavBar extends Component {
     render() {
         return (
             <React.Fragment>
-                <Navbar fixed="top">
+                <Navbar>
                     <NavbarBrand>dram</NavbarBrand>
                     <NavbarToggler onClick={this.toggleNav} />
                     <Collapse isOpen={this.isOpen} navbar>
