@@ -1,5 +1,6 @@
 import React, { Component } from "react"
-import { Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, NavLink, Nav } from "reactstrap"
+import { Link } from "react-router-dom"
+import { Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, NavLink, Nav, Button } from "reactstrap"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 export default class NavBar extends Component {
@@ -18,19 +19,23 @@ export default class NavBar extends Component {
     handleLogOut = event => {
         sessionStorage.clear()
         localStorage.clear()
+        this.setState(prevState => ({
+            isOpen: !prevState.isOpen
+        }))
     }
 
     render() {
         return (
             <React.Fragment>
-                <Navbar>
+                <Navbar light expand="md">
                     <NavbarBrand>dram</NavbarBrand>
                     <NavbarToggler onClick={this.toggleNav} />
-                    <Collapse isOpen={this.isOpen} navbar>
-                        <Nav>
-                            <NavItem>
-                                <NavLink to="/whiskies">Whiskies</NavLink>
-                            </NavItem>
+                    <Collapse isOpen={this.state.isOpen} navbar>
+                        <Nav navbar>
+                            <NavLink tag={Link} to="/whiskies" onClick={this.toggleNav}>Whiskies</NavLink>
+                            <NavLink tag={Link} to="/tastings" onClick={this.toggleNav}>Tastings</NavLink>
+                            <NavLink tag={Link} to="/reviews" onClick={this.toggleNav}>Reviews</NavLink>
+                            <Button tag={Link} to="/" onClick={this.handleLogOut} size="sm">Log Out</Button>
                         </Nav>
                     </Collapse>
                 </Navbar>
