@@ -47,8 +47,24 @@ export default class Guest extends Component {
                 email: email,
                 isActive: this.state.isActive,
                 userTypeId: this.state.userTypeId
+            }).then(() => {
+                if (userName === "guest") {
+                    let users = this.props.users.reverse()
+                    let user = users.find(user => {
+                        return user.userName === "guest"
+                    })
+                    sessionStorage.setItem("userId", user.id)
+                    sessionStorage.setItem("userName", user.userName)
+                } else {
+                    let user = this.props.users.find(user => {
+                        return user.userName === this.state.userName && user.password === this.state.password
+                    })
+                    sessionStorage.setItem("userId", user.id)
+                    sessionStorage.setItem("userName", user.userName)
+                }
+            }).then(() => {
+                this.props.history.push("/home")
             })
-            this.props.history.push("/home")
         }
     }
 

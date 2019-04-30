@@ -58,7 +58,6 @@ export default class Register extends Component {
             }).then(() => {
                 this.props.history.push("/home")
             })
-
         }
     }
 
