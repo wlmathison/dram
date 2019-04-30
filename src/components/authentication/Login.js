@@ -10,7 +10,7 @@ export default class Login extends Component {
         password: "",
         rememberMe: false
     }
-
+    // Function to change state when input field changes
     handleFieldChange = event => {
         const stateToChange = {}
         stateToChange[event.target.id] = event.target.value

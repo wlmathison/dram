@@ -32,21 +32,32 @@ export default class ApplicationViews extends Component {
         return (
             <React.Fragment>
                 <Route exact path="/" render={() => {
-                    return <Welcome />
+                    if (this.isAuthenticated()) {
+                        return <Redirect to="/home" />
+                    } else {
+                        return <Welcome />
+                    }
                 }} />
                 <Route path="/login" render={props => {
                     if (this.isAuthenticated()) {
-                        return <Redirect to="/" />
+                        return <Redirect to="/home" />
                     } else {
                         return <Login users={this.state.users} {...props} />
-
                     }
                 }} />
                 <Route path="/register" render={() => {
-                    return <Register />
+                    if (this.isAuthenticated()) {
+                        return <Redirect to="/home" />
+                    } else {
+                        return <Register />
+                    }
                 }} />
                 <Route path="/guest" render={() => {
-                    return <Guest />
+                    if (this.isAuthenticated()) {
+                        return <Redirect to="/home" />
+                    } else {
+                        return <Guest />
+                    }
                 }} />
             </React.Fragment>
         )
