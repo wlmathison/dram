@@ -28,6 +28,17 @@ export default class ApplicationViews extends Component {
         }
     }
 
+    // Function to post newly registered user to API and set state
+    postRegisteredUser = object => {
+        UserManager.post(object)
+            .then(() => UserManager.getAll())
+            .then(users => {
+                this.setState({
+                    users: users
+                })
+            })
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -45,11 +56,11 @@ export default class ApplicationViews extends Component {
                         return <Login users={this.state.users} {...props} />
                     }
                 }} />
-                <Route path="/register" render={() => {
+                <Route path="/register" render={props => {
                     if (this.isAuthenticated()) {
                         return <Redirect to="/home" />
                     } else {
-                        return <Register />
+                        return <Register users={this.state.users} {...props} postRegisteredUser={this.postRegisteredUser} />
                     }
                 }} />
                 <Route path="/guest" render={() => {
