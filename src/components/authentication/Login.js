@@ -32,11 +32,12 @@ export default class Login extends Component {
         let user = this.props.users.find(user => {
             return user.userName === this.state.userName && user.password === this.state.password
         })
-
-        if (this.state.userName === "") {
-            window.alert("Please enter a username")
+        if(user.isActive === false) {
+            window.alert("This account has been deactivated. Please contact an administrator.")
+        }else if (this.state.userName === "") {
+            window.alert("Please enter a username.")
         } else if (this.state.password === "") {
-            window.alert("Please enter a password")
+            window.alert("Please enter a password.")
         } else if (user !== undefined) {
             if (this.state.rememberMe) {
                 localStorage.setItem("userId", user.id)
