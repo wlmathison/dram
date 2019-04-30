@@ -1,11 +1,10 @@
 import React, { Component } from "react"
-import { Route, Redirect } from "react-router-dom"
- 
-export default class ApplicationViews extends Component {
+
+export default class Welcome extends Component {
     render() {
         return(
             <React.Fragment>
-                
+                Welcome to dram. Please choose one of the following options.
             </React.Fragment>
         )
     }
