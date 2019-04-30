@@ -26,7 +26,28 @@ export default class Login extends Component {
 
     // Function to verify user has filled in all fields and that userName and password match the database before logging them in and saving to either session storage or local storage if selected
     handleLogin = event => {
-        event.preventDefaul()
+        event.preventDefault()
+
+        let user = this.props.users.find(user => {
+            return user.userName === this.state.userName && user.password === this.state.password
+        })
+
+        if (this.state.userName === "") {
+            window.alert("Please enter a username")
+        } else if (this.state.password === "") {
+            window.alert("Please enter a password")
+        } else if (user !== undefined) {
+            if (this.state.rememberMe) {
+                localStorage.setItem("userId", user.id)
+                localStorage.setItem("userName", user.userName)
+            } else {
+                sessionStorage.setItem("userId", user.id)
+                sessionStorage.setItem("userName", user.userName)
+            }
+            this.props.history.push("/")
+        } else {
+            window.alert("Username and password do not match")
+        }
     }
 
     render() {
