@@ -5,10 +5,11 @@ import Login from "./components/authentication/Login"
 import Register from "./components/authentication/Register"
 import Guest from "./components/authentication/Guest"
 import UserManager from "./modules/UserManager"
+import Home from "./components/home/Home"
 
 export default class ApplicationViews extends Component {
     state = {
-        users: []
+        users: [],
     }
 
     componentDidMount() {
@@ -30,7 +31,7 @@ export default class ApplicationViews extends Component {
 
     // Function to post new user (registered or guest) to API and set state
     postNewUser = object => {
-        UserManager.post(object)
+        return UserManager.post(object)
             .then(() => UserManager.getAll())
             .then(users => {
                 this.setState({
@@ -42,6 +43,13 @@ export default class ApplicationViews extends Component {
     render() {
         return (
             <React.Fragment>
+                <Route path="/home" render={props => {
+                    if (this.isAuthenticated()) {
+                        return <Home {...props} />
+                    } else {
+                        return <Redirect to="/" />
+                    }
+                }} />
                 <Route exact path="/" render={() => {
                     if (this.isAuthenticated()) {
                         return <Redirect to="/home" />
@@ -67,7 +75,7 @@ export default class ApplicationViews extends Component {
                     if (this.isAuthenticated()) {
                         return <Redirect to="/home" />
                     } else {
-                        return <Guest users={this.state.users} {...props} postNewUser={this.postNewUser}/>
+                        return <Guest users={this.state.users} {...props} postNewUser={this.postNewUser} />
                     }
                 }} />
             </React.Fragment>

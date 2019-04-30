@@ -27,6 +27,28 @@ export default Object.create(null, {
             }).then(results => results.json())
         }
     },
+    put: {
+        value: function (id, object) {
+            return fetch(`${remoteURL}/${this.resource}/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(object)
+            }).then(results => results.json())
+        }
+    },
+    patch: {
+        value: function (id, object) {
+            return fetch(`${remoteURL}/${this.resource}/${id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(object)
+            }).then(results => results.json())
+        }
+    },
     delete: {
         value: function (id) {
             return fetch(`${remoteURL}/${this.resource}/${id}`, {

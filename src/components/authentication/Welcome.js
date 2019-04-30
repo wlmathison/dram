@@ -10,7 +10,7 @@ export default class Welcome extends Component {
                 Welcome to dram. Please choose one of the following options.
                 <Link to="/login">Login</Link>
                 <Link to="/register">Register</Link>
-                <Link to="/guest">Guest</Link>
+                <Link to="/guest">Use as Guest</Link>
             </React.Fragment>
         )
     }

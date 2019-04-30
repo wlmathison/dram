@@ -47,8 +47,18 @@ export default class Register extends Component {
                 password: this.state.password,
                 isActive: this.state.isActive,
                 userTypeId: this.state.userTypeId
+            }).then(() => {
+                let user = this.props.users.find(user => {
+                    return user.userName === this.state.userName && user.password === this.state.password
+                })
+                if (user !== undefined) {
+                    sessionStorage.setItem("userId", user.id)
+                    sessionStorage.setItem("userName", user.userName)
+                }
+            }).then(() => {
+                this.props.history.push("/home")
             })
-            this.props.history.push("/home")
+
         }
     }
 

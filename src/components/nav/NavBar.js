@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-import { Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, NavLink, Nav, Button } from "reactstrap"
+import { Navbar, NavbarBrand, NavbarToggler, Collapse, NavLink, Nav, Button } from "reactstrap"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 export default class NavBar extends Component {
