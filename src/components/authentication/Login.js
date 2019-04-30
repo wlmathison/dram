@@ -40,6 +40,8 @@ export default class Login extends Component {
             if (this.state.rememberMe) {
                 localStorage.setItem("userId", user.id)
                 localStorage.setItem("userName", user.userName)
+                sessionStorage.setItem("userId", user.id)
+                sessionStorage.setItem("userName", user.userName)
             } else {
                 sessionStorage.setItem("userId", user.id)
                 sessionStorage.setItem("userName", user.userName)

@@ -22,8 +22,6 @@ export default class ApplicationViews extends Component {
         if (sessionStorage.getItem("userId") !== null) {
             return true
         } else if (localStorage.getItem("userId") !== null) {
-            sessionStorage.setItem("userId", localStorage.getItem("userId"))
-            sessionStorage.setItem("userName", localStorage.getItem("userName"))
             return true
         } else {
             return false
