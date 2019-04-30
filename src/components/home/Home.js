@@ -41,6 +41,7 @@ export default class Home extends Component {
         })
     }
 
+// Function to save edits made to profile, PUT them into API, and then render the user profile again
     handleSaveEditProfile = event => {
         UserManager.put(this.state.id, {
             userName: this.state.userName,
@@ -54,6 +55,7 @@ export default class Home extends Component {
         }))
     }
 
+    // Function to confirm user wants to deactivate accoutn, PATCH the isActive change, clear out local and session storage, and then return user to /home
     handleDeactivateAccount = event => {
         if (window.confirm("Are you sure you want to deactivate your account?")) {
             UserManager.patch(this.state.id, {
@@ -65,8 +67,6 @@ export default class Home extends Component {
                 this.props.history.push("/home")
             })
         }
-
-
     }
 
     render() {
