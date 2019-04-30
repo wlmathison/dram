@@ -9,7 +9,7 @@ import Home from "./components/home/Home"
 
 export default class ApplicationViews extends Component {
     state = {
-        users: []
+        users: [],
     }
 
     componentDidMount() {
@@ -31,7 +31,7 @@ export default class ApplicationViews extends Component {
 
     // Function to post new user (registered or guest) to API and set state
     postNewUser = object => {
-        UserManager.post(object)
+        return UserManager.post(object)
             .then(() => UserManager.getAll())
             .then(users => {
                 this.setState({
@@ -45,7 +45,7 @@ export default class ApplicationViews extends Component {
             <React.Fragment>
                 <Route path="/home" render={props => {
                     if (this.isAuthenticated()) {
-                        return <Home {...props}/>
+                        return <Home {...props} />
                     } else {
                         return <Redirect to="/" />
                     }

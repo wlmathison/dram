@@ -47,7 +47,7 @@ export default class Login extends Component {
                 sessionStorage.setItem("userId", user.id)
                 sessionStorage.setItem("userName", user.userName)
             }
-            this.props.history.push("/")
+            this.props.history.push("/home")
         } else {
             window.alert("Username and password do not match")
         }
