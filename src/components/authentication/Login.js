@@ -10,45 +10,62 @@ export default class Login extends Component {
         password: "",
         rememberMe: false
     }
+
     handleFieldChange = event => {
         const stateToChange = {}
         stateToChange[event.target.id] = event.target.value
         this.setState(stateToChange)
     }
 
-    // Function to verify user has filled in all fields and that userName and password match the database before logging them in and saving to either session storage or local storage if selected
-    handleLogin = {
+    // Function to change state when checkbox clicked
+    handleCheckboxChange = event => {
+        const stateToChange = {}
+        stateToChange[event.target.id] = event.target.checked
+        this.setState(stateToChange)
+    }
 
+    // Function to verify user has filled in all fields and that userName and password match the database before logging them in and saving to either session storage or local storage if selected
+    handleLogin = event => {
+        event.preventDefaul()
     }
 
     render() {
         return (
             <Form>
                 <FormGroup>
-                    <Label>Username</Label>
+                    <Label htmlFor="userName">Username</Label>
                     <Input
+                        required
                         type="text"
                         id="userName"
                         onChange={this.handleFieldChange}
+                        placeholder="Username"
                     />
                 </FormGroup>
                 <FormGroup>
-                    <Label>Password</Label>
+                    <Label htmlFor="password">Password</Label>
                     <Input
-                        type="text"
+                        required
+                        type="password"
                         id="password"
                         onChange={this.handleFieldChange}
+                        placeholder="Password"
                     />
                 </FormGroup>
                 <FormGroup>
-                    <Label>Remember Me</Label>
+                    <Label htmlFor="rememberMe">Remember Me</Label>
                     <Input
                         type="checkbox"
                         id="rememberMe"
-                        onChange={this.handleFieldChange}
+                        onChange={this.handleCheckboxChange}
                     />
                 </FormGroup>
-                <Button>Login</Button>
+                <Button
+                    type="submit"
+                    onClick={this.handleLogin}
+                >
+                    Login
+                </Button>
             </Form>
         )
     }
