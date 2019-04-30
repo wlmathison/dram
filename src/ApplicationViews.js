@@ -5,6 +5,7 @@ import Login from "./components/authentication/Login"
 import Register from "./components/authentication/Register"
 import Guest from "./components/authentication/Guest"
 import UserManager from "./modules/UserManager"
+import Home from "./components/home/Home"
 
 export default class ApplicationViews extends Component {
     state = {
@@ -42,6 +43,13 @@ export default class ApplicationViews extends Component {
     render() {
         return (
             <React.Fragment>
+                <Route path="/home" render={props => {
+                    if (this.isAuthenticated()) {
+                        return <Home {...props}/>
+                    } else {
+                        return <Redirect to="/" />
+                    }
+                }} />
                 <Route exact path="/" render={() => {
                     if (this.isAuthenticated()) {
                         return <Redirect to="/home" />
@@ -67,7 +75,7 @@ export default class ApplicationViews extends Component {
                     if (this.isAuthenticated()) {
                         return <Redirect to="/home" />
                     } else {
-                        return <Guest users={this.state.users} {...props} postNewUser={this.postNewUser}/>
+                        return <Guest users={this.state.users} {...props} postNewUser={this.postNewUser} />
                     }
                 }} />
             </React.Fragment>
