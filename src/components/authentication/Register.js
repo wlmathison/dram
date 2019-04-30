@@ -21,7 +21,7 @@ export default class Register extends Component {
         this.setState(stateToChange)
     }
 
-    // 
+    // Function to validate all registration form input, save new registered user to database, and direct to home page
     handleRegister = event => {
         event.preventDefault()
 
@@ -40,7 +40,7 @@ export default class Register extends Component {
         })) {
             window.alert("Email address already exists")
         } else {
-            this.props.postRegisteredUser({
+            this.props.postNewUser({
                 userName: this.state.userName,
                 email: this.state.email,
                 phoneNumber: this.state.phoneNumber,

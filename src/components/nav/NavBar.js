@@ -32,6 +32,7 @@ export default class NavBar extends Component {
                     <NavbarToggler onClick={this.toggleNav} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav navbar>
+                            <NavLink tag={Link} to="/home" onClick={this.toggleNav}>Home</NavLink>
                             <NavLink tag={Link} to="/whiskies" onClick={this.toggleNav}>Whiskies</NavLink>
                             <NavLink tag={Link} to="/tastings" onClick={this.toggleNav}>Tastings</NavLink>
                             <NavLink tag={Link} to="/reviews" onClick={this.toggleNav}>Reviews</NavLink>
