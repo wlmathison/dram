@@ -64,7 +64,7 @@ export default class Home extends Component {
                 sessionStorage.clear()
                 localStorage.clear()
             }).then(() => {
-                this.props.history.push("/home")
+                this.props.history.push("/")
             })
         }
     }
