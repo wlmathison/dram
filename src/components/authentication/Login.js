@@ -10,7 +10,7 @@ export default class Login extends Component {
         password: "",
         rememberMe: false
     }
-    
+
     // Function to change state when input field changes
     handleFieldChange = event => {
         const stateToChange = {}
@@ -32,13 +32,15 @@ export default class Login extends Component {
         let user = this.props.users.find(user => {
             return user.userName === this.state.userName && user.password === this.state.password
         })
-        if(user.isActive === false) {
+        if (user === undefined) {
+            window.alert("Username and password do not match. Please try again.")
+        } else if (user.isActive === false) {
             window.alert("This account has been deactivated. Please contact an administrator.")
-        }else if (this.state.userName === "") {
+        } else if (this.state.userName === "") {
             window.alert("Please enter a username.")
         } else if (this.state.password === "") {
             window.alert("Please enter a password.")
-        } else if (user !== undefined) {
+        } else {
             if (this.state.rememberMe) {
                 localStorage.setItem("userId", user.id)
                 localStorage.setItem("userName", user.userName)
@@ -49,8 +51,6 @@ export default class Login extends Component {
                 sessionStorage.setItem("userName", user.userName)
             }
             this.props.history.push("/home")
-        } else {
-            window.alert("Username and password do not match")
         }
     }
 
