@@ -11,7 +11,12 @@ export default class WhiskeyList extends Component {
 
     state = {
         whiskies: [],
-        isSearching: false
+        viewSearchButton: true,
+        isSearching: false,
+        seeAllWhiskies: true,
+        isSearchingByCategory: false,
+        isSearchingByDistillery: false,
+        isSearchingByName: false,
     }
 
     componentDidMount() {
@@ -24,43 +29,71 @@ export default class WhiskeyList extends Component {
     handleSearchWhiskies = event => {
         event.preventDefault()
         this.setState({
-            isSearching: true
+            viewSearchButton: false,
+            isSearching: true,
+            seeAllWhiskies: false
         })
     }
 
     handleSearchAllWhiskies = event => {
         event.preventDefault()
         this.setState({
-            isSearching: false
+            viewSearchButton: true,
+            isSearching: false,
+            seeAllWhiskies: true
         })
     }
+
+    handleSearchWhiskiesByCategory = event => {
+        event.preventDefault()
+        this.setState({
+            isSearchingByCategory: true
+        })
+    }
+
+    handleSearchWhiskiesByDistillery = event => {
+        event.preventDefault()
+        this.setState({
+            isSearchingByDistillery: true
+        })
+    }
+
+    handleSearchWhiskiesByName = event => {
+        event.preventDefault()
+        this.setState({
+            isSearchingByName: true
+        })
+    }
+
+
+    // if (this.state.isSearching) {
+    //     {this.state.isSearchingByCategory && < />}
+    //     {this.state.isSearchingByDistillery && < />}
+    //     {this.state.isSearchingByName && < />}
 
     render() {
         return (
             <React.Fragment>
                 <Card>
-                    {this.state.isSearching ? (
-                        <React.Fragment>
-                            <CardHeader>Whiskey List
+                    <CardHeader>Whiskey List {this.state.viewSearchButton &&
+                        <Button
+                            onClick={this.handleSearchWhiskies}>
+                            Search Whiskies
+                            </Button>}
                     </CardHeader>
-                            <CardBody>
-                                <CardTitle>Search for whiskies by: </CardTitle>
-                                <WhiskeySearchForm handleSearchAllWhiskies={this.handleSearchAllWhiskies}/>
-                            </CardBody>
-                        </React.Fragment>
-                    ) : (
-                            <React.Fragment>
-                                <CardHeader>Whiskey List
-                                    <Button
-                                        onClick={this.handleSearchWhiskies}>
-                                        Search Whiskies
-                                    </Button>
-                                </CardHeader>
-                                {this.state.whiskies.map(whiskey =>
-                                    <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} />
-                                )}
-                            </React.Fragment>
-                        )}
+                    <CardBody>
+                        {this.state.isSearching &&
+                            <React.Fragment><CardTitle>Search for whiskies by: </CardTitle>
+                                <WhiskeySearchForm
+                                    handleSearchAllWhiskies={this.handleSearchAllWhiskies} handleSearchWhiskiesByCategory={this.handleSearchWhiskiesByCategory} handleSearchWhiskiesByDistillery={this.handleSearchWhiskiesByDistillery}
+                                    handleSearchWhiskiesByName={this.handleSearchWhiskiesByName}
+                                /></React.Fragment>}
+                        {this.state.seeAllWhiskies &&
+                            this.state.whiskies.map(whiskey =>
+                                <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} />
+                            )
+                        }
+                    </CardBody>
                 </Card>
             </React.Fragment>
         )

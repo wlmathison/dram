@@ -11,12 +11,15 @@ export default class WhiskeySearchForm extends Component {
                     <Form>
                         <Button
                             type="radio"
+                            onClick={this.props.handleSearchWhiskiesByName}
                         >Name</Button> {" "}
                         <Button
                             type="radio"
+                            onClick={this.props.handleSearchWhiskiesByCategory}
                         >Category</Button> {" "}
                         <Button
                             type="radio"
+                            onClick={this.props.handleSearchWhiskiesByDistillery}
                         >Distillery</Button> {" "}
                         <Button
                             type="radio"
