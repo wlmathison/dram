@@ -1,12 +1,13 @@
-// Building a search form for whiskies resource to be added to WhiskeyList
+// Building a search form for with serach option buttons to be added to WhiskeyList
 
 import React, { Component } from "react"
-import { CardBody, Form, Dropdown, Input, Button } from "reactstrap"
+import { CardBody, Form, Button, CardTitle } from "reactstrap"
 
 export default class WhiskeySearchForm extends Component {
     render() {
         return (
             <React.Fragment>
+                <CardTitle>Search for whiskies by: </CardTitle>
                 <CardBody>
                     <Form>
                         <Button
