@@ -4,6 +4,6 @@ import APIManager from "./APIManager"
 
 export default Object.create(APIManager, {
     resource: {
-        value: "whiskies"
+        value: "whiskies/?_expand=category&_expand=distillery"
     }
 })

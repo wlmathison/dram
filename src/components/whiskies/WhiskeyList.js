@@ -23,10 +23,11 @@ export default class WhiskeyList extends Component {
             <React.Fragment>
                 <Card>
                     <CardHeader>Whiskey List</CardHeader>
-                    {this.state.whiskies.map(whiskey => 
-                        <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} />
-                    )}
                 </Card>
+                {this.state.whiskies.map(whiskey =>
+                    <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} />
+                )}
+
             </React.Fragment>
         )
     }
