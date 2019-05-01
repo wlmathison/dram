@@ -9,6 +9,7 @@ import WhiskeyIndividualCard from "./WhiskeyIndividualCard";
 import WhiskeySearchForm from "./WhiskeySearchForm";
 import SearchByCategoryForm from "./SearchByCategoryForm"
 import SearchByDistilleryForm from "./SearchByDistilleryForm"
+import SearchByWhiskeyNameForm from "./SearchByWhiskeyNameForm"
 
 
 export default class WhiskeyList extends Component {
@@ -24,6 +25,7 @@ export default class WhiskeyList extends Component {
         seeAllWhiskies: true,
         seeWhiskiesBySelectedCategory: false,
         seeWhiskiesBySelectedDistillery: false,
+        seeWhiskiesByEnteredName: false,
         isSearchingByCategory: false,
         isSearchingByDistillery: false,
         isSearchingByName: false
@@ -48,7 +50,8 @@ export default class WhiskeyList extends Component {
             isSearching: true,
             seeAllWhiskies: false,
             seeWhiskiesBySelectedCategory: false,
-            seeWhiskiesBySelectedDistillery: false
+            seeWhiskiesBySelectedDistillery: false,
+            seeWhiskiesByEnteredName: false
         })
     }
 
@@ -90,6 +93,7 @@ export default class WhiskeyList extends Component {
             isSearching: false,
             viewSearchButton: false
         })
+
     }
 
     // Function to handle user clicking a category and display only whiskies matching that category
@@ -112,9 +116,36 @@ export default class WhiskeyList extends Component {
         })
     }
 
+    // Function to handle user clicking a search button for search by name and display only whiskies matching that name
+    handleSearchByName = event => {
+        event.preventDefault()
+        if (event.target.id === "") {
+            window.alert("Please enter a name to search by")
+        } else {
+            this.setState({
+                isSearchingByName: false,
+                whiskiesByName: this.state.whiskies.filter(whiskey => whiskey.name.toLowerCase().includes(event.target.id.toLowerCase())),
+                seeWhiskiesByEnteredName: true,
+                viewSearchButton: true
+            })
+        }
+    }
 
-    // if (this.state.isSearching) {
-    //     {this.state.isSearchingByName && < />}
+    // Function to handle user clicking cancel button
+    handleCancel = event => {
+        event.preventDefault()
+        this.setState({
+            viewSearchButton: true,
+            isSearching: false,
+            seeAllWhiskies: true,
+            seeWhiskiesBySelectedCategory: false,
+            seeWhiskiesBySelectedDistillery: false,
+            seeWhiskiesByEnteredName: false,
+            isSearchingByCategory: false,
+            isSearchingByDistillery: false,
+            isSearchingByName: false
+        })
+    }
 
     render() {
         return (
@@ -133,9 +164,12 @@ export default class WhiskeyList extends Component {
                                 handleSearchWhiskiesByName={this.handleSearchWhiskiesByName}
                             />}
 
-                        {this.state.isSearchingByCategory && <SearchByCategoryForm categories={this.state.categories} handleSearchByCategory={this.handleSearchByCategory} />}
+                        {this.state.isSearchingByCategory && <SearchByCategoryForm categories={this.state.categories} handleSearchByCategory={this.handleSearchByCategory}
+                        handleCancel={this.handleCancel} />}
 
-                        {this.state.isSearchingByDistillery && <SearchByDistilleryForm distilleries={this.state.distilleries} handleSearchByDistillery={this.handleSearchByDistillery} />}
+                        {this.state.isSearchingByDistillery && <SearchByDistilleryForm distilleries={this.state.distilleries} handleSearchByDistillery={this.handleSearchByDistillery} handleCancel={this.handleCancel} />}
+
+                        {this.state.isSearchingByName && <SearchByWhiskeyNameForm handleSearchByName={this.handleSearchByName} handleCancel={this.handleCancel} />}
 
                         {this.state.seeAllWhiskies &&
                             this.state.whiskies.map(whiskey =>
@@ -147,6 +181,10 @@ export default class WhiskeyList extends Component {
 
                         {this.state.seeWhiskiesBySelectedDistillery && this.state.whiskiesByDistillery.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} />
                         )}
+
+                        {this.state.seeWhiskiesByEnteredName && this.state.whiskiesByName.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} />
+                        )}
+
                     </CardBody>
                 </Card>
             </React.Fragment>

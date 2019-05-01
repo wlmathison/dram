@@ -1,7 +1,7 @@
 // Building a search form for whiskies resource by category to be added to WhiskeyList
 
 import React, { Component } from "react"
-import { CardBody, Dropdown, DropdownMenu, DropdownToggle, DropdownItem, CardTitle } from "reactstrap"
+import { CardBody, Dropdown, DropdownMenu, DropdownToggle, DropdownItem, CardTitle, Button } from "reactstrap"
 
 export default class SearchByCategoryForm extends Component {
 
@@ -27,7 +27,10 @@ export default class SearchByCategoryForm extends Component {
                         <DropdownMenu>
                             {this.props.categories.map(category => <DropdownItem key={category.id} onClick={() => this.props.handleSearchByCategory(category.id)}>{category.name}</DropdownItem>)}
                         </DropdownMenu>
-                    </Dropdown>
+                    </Dropdown> {" "}
+                    <Button
+                    onClick={this.props.handleCancel}
+                    >Cancel</Button>
                 </CardBody>
             </React.Fragment>
         )
