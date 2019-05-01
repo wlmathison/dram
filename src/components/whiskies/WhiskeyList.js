@@ -34,6 +34,7 @@ export default class WhiskeyList extends Component {
             .then(() => this.setState(newState))
     }
 
+    // Function to changes state of isSearching and display search form
     handleSearchWhiskies = event => {
         event.preventDefault()
         this.setState({
@@ -43,6 +44,7 @@ export default class WhiskeyList extends Component {
         })
     }
 
+    // Function to changes state of seeAllWhiskies and display all whiskies
     handleSearchAllWhiskies = event => {
         event.preventDefault()
         this.setState({
@@ -52,6 +54,7 @@ export default class WhiskeyList extends Component {
         })
     }
 
+    // Function to handle user clicking search by category and display WhiskeySearchByCategoryForm
     handleSearchWhiskiesByCategory = event => {
         event.preventDefault()
         this.setState({
@@ -61,6 +64,7 @@ export default class WhiskeyList extends Component {
         })
     }
 
+    // Function to handle user clicking search by distillery and display WhiskeySearchByDistilleryForm
     handleSearchWhiskiesByDistillery = event => {
         event.preventDefault()
         this.setState({
@@ -70,6 +74,7 @@ export default class WhiskeyList extends Component {
         })
     }
 
+    // Function to handle user clicking search by name and display WhiskeySearchByNameForm
     handleSearchWhiskiesByName = event => {
         event.preventDefault()
         this.setState({
@@ -79,6 +84,7 @@ export default class WhiskeyList extends Component {
         })
     }
 
+    // Function to handle user clicking a category and display only whiskies matching that category
     handleSearchByCategory = id => {
         this.setState({
             isSearchingByCategory: false,

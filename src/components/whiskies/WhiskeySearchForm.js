@@ -1,4 +1,4 @@
-// Building a search form for with serach option buttons to be added to WhiskeyList
+// Building a search form for with search option buttons to be added to WhiskeyList
 
 import React, { Component } from "react"
 import { CardBody, Form, Button, CardTitle } from "reactstrap"
