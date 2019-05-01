@@ -1,4 +1,4 @@
-// Building a search form for whiskies resource to be added to WhiskeyList
+// Building a search form for whiskies resource by category to be added to WhiskeyList
 
 import React, { Component } from "react"
 import { CardBody, Dropdown, DropdownMenu, DropdownToggle, DropdownItem, CardTitle } from "reactstrap"

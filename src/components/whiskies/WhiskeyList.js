@@ -4,9 +4,11 @@ import React, { Component } from "react";
 import { Card, CardHeader, CardBody, Button } from "reactstrap";
 import WhiskeyManager from "./../../modules/WhiskeyManager";
 import CategoryManager from "./../../modules/CategoryManager";
+import DistilleryManager from "./../../modules/DistilleryManager"
 import WhiskeyIndividualCard from "./WhiskeyIndividualCard";
 import WhiskeySearchForm from "./WhiskeySearchForm";
-import WhiskeySearchByCategoryForm from "./WhiskeySearchByCategoryForm"
+import SearchByCategoryForm from "./SearchByCategoryForm"
+import SearchByDistilleryForm from "./SearchByDistilleryForm"
 
 
 export default class WhiskeyList extends Component {
@@ -14,12 +16,14 @@ export default class WhiskeyList extends Component {
     state = {
         whiskies: [],
         whiskiesByCategory: [],
+        whiskiesByDistillery: [],
         categories: [],
         distilleries: [],
         viewSearchButton: true,
         isSearching: false,
         seeAllWhiskies: true,
         seeWhiskiesBySelectedCategory: false,
+        seeWhiskiesBySelectedDistillery: false,
         isSearchingByCategory: false,
         isSearchingByDistillery: false,
         isSearchingByName: false
@@ -31,6 +35,8 @@ export default class WhiskeyList extends Component {
             .then(whiskies => (newState.whiskies = whiskies))
             .then(() => CategoryManager.getAll())
             .then(categories => (newState.categories = categories))
+            .then(() => DistilleryManager.getAll())
+            .then(distilleries => (newState.distilleries = distilleries))
             .then(() => this.setState(newState))
     }
 
@@ -40,7 +46,9 @@ export default class WhiskeyList extends Component {
         this.setState({
             viewSearchButton: false,
             isSearching: true,
-            seeAllWhiskies: false
+            seeAllWhiskies: false,
+            seeWhiskiesBySelectedCategory: false,
+            seeWhiskiesBySelectedDistillery: false
         })
     }
 
@@ -54,7 +62,7 @@ export default class WhiskeyList extends Component {
         })
     }
 
-    // Function to handle user clicking search by category and display WhiskeySearchByCategoryForm
+    // Function to handle user clicking search by category and display SearchByCategoryForm
     handleSearchWhiskiesByCategory = event => {
         event.preventDefault()
         this.setState({
@@ -94,10 +102,18 @@ export default class WhiskeyList extends Component {
         })
     }
 
+    // Function to handle user clicking a distillery and display only whiskies matching that distillery
+    handleSearchByDistillery = id => {
+        this.setState({
+            isSearchingByDistillery: false,
+            whiskiesByDistillery: this.state.whiskies.filter(whiskey => whiskey.distilleryId === id),
+            seeWhiskiesBySelectedDistillery: true,
+            viewSearchButton: true
+        })
+    }
+
 
     // if (this.state.isSearching) {
-    //     
-    //     {this.state.isSearchingByDistillery && < />}
     //     {this.state.isSearchingByName && < />}
 
     render() {
@@ -116,13 +132,20 @@ export default class WhiskeyList extends Component {
                                 handleSearchAllWhiskies={this.handleSearchAllWhiskies} handleSearchWhiskiesByCategory={this.handleSearchWhiskiesByCategory} handleSearchWhiskiesByDistillery={this.handleSearchWhiskiesByDistillery}
                                 handleSearchWhiskiesByName={this.handleSearchWhiskiesByName}
                             />}
-                        {this.state.isSearchingByCategory && <WhiskeySearchByCategoryForm categories={this.state.categories} handleSearchByCategory={this.handleSearchByCategory} />}
+
+                        {this.state.isSearchingByCategory && <SearchByCategoryForm categories={this.state.categories} handleSearchByCategory={this.handleSearchByCategory} />}
+
+                        {this.state.isSearchingByDistillery && <SearchByDistilleryForm distilleries={this.state.distilleries} handleSearchByDistillery={this.handleSearchByDistillery} />}
+
                         {this.state.seeAllWhiskies &&
                             this.state.whiskies.map(whiskey =>
                                 <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} />
                             )
                         }
                         {this.state.seeWhiskiesBySelectedCategory && this.state.whiskiesByCategory.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} />
+                        )}
+
+                        {this.state.seeWhiskiesBySelectedDistillery && this.state.whiskiesByDistillery.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} />
                         )}
                     </CardBody>
                 </Card>
