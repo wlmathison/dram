@@ -24,7 +24,7 @@ export default class TastingSearchForm extends Component {
                         >Whiskies</Button> {" "}
                         <Button
                             type="radio"
-                            onClick={this.props.handleSearchWhiskiesByDistillery}
+                            onClick={this.props.handleSearchTastingsByUser}
                         >Users</Button> {" "}
                         <Button
                             type="radio"

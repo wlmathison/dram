@@ -1,21 +1,16 @@
-// Building a search form for tastings resource by whiskey to be added to TastingList
+// Building a search form for tastings resource by user to be added to TastingList
 
 import React, { Component } from "react"
 import { CardBody, Dropdown, DropdownMenu, DropdownToggle, DropdownItem, CardTitle, Button } from "reactstrap"
-import WhiskeyManager from "./../../modules/WhiskeyManager"
 
-export default class SearchByWhiskeyForm extends Component {
+export default class SearchByUserForm extends Component {
 
     state = {
-        dropdownOpen: false,
-        whiskies: []
+        dropdownOpen: false
     }
 
     componentDidMount() {
-        const newState = {}
-        WhiskeyManager.getAll()
-            .then(whiskies => (newState.whiskies = whiskies))
-            .then(() => this.setState(newState))
+
     }
 
     toggle = () => {
@@ -27,15 +22,19 @@ export default class SearchByWhiskeyForm extends Component {
     render() {
         return (
             <React.Fragment>
-                <CardTitle>Search by Whiskey</CardTitle>
+                <CardTitle>Search by User</CardTitle>
                 <CardBody>
                     <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                         <DropdownToggle caret>
-                            Whiskies
+                            Active Users
                                 </DropdownToggle>
                         <DropdownMenu>
-                            {this.state.whiskies.map(whiskey => {
-                                return <DropdownItem key={whiskey.id} onClick={() => this.props.handleSearchByWhiskey(whiskey.id)}>{whiskey.name}</DropdownItem>
+                            {this.props.users.map(user => {
+                                if (user.isActive) {
+                                    return <DropdownItem key={user.id} onClick={() => this.props.handleSearchByUser(user.id)}>{user.userName}</DropdownItem>
+                                } else {
+                                    return null
+                                }
                             })}
                         </DropdownMenu>
                     </Dropdown> {" "}
