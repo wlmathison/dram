@@ -89,7 +89,7 @@ export default class ApplicationViews extends Component {
                 }} />
                 <Route path="/tastings" render={props => {
                     if (this.isAuthenticated()) {
-                        return <TastingList />
+                        return <TastingList users={this.state.users}/>
                     } else {
                         return <Redirect to="/" />
                     }
