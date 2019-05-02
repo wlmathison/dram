@@ -132,7 +132,7 @@ export default class TastingList extends Component {
     handleSearchByWhiskey = whiskey => {
         this.setState({
             isSearchingByWhiskies: false,
-            tastingsByWhiskey: this.state.tastings.filter(tasting => tasting.tastingSelection.some(tastingSelection => tastingSelection.whiskeyId === whiskey)),
+            tastingsByWhiskey: this.state.tastings.filter(tasting => tasting.tastingSelections.some(tastingSelection => tastingSelection.whiskeyId === whiskey)),
             seeTastingsBySelectedWhiskey: true,
             viewSearchButton: true
         })

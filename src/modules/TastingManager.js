@@ -4,6 +4,6 @@ import APIManager from "./APIManager"
 
 export default Object.create(APIManager, {
     resource: {
-        value: "tastings?_embed=tastingSelection&_embed=tastingAttendance"
+        value: "tastings?_embed=tastingSelections&_embed=tastingAttendance"
     }
 })
