@@ -7,27 +7,33 @@ import { Card, CardBody, CardHeader, CardText } from "reactstrap"
 export default class UpcomingTastingCard extends Component {
 
     state = {
-        tasting: {}
+        upcomingTastings: [],
+        isUpcoming: false
     }
 
     componentDidMount() {
         const newState = {}
         TastingManager.getAll()
             .then(tastings => {
-                (newState.tasting = tastings.find(tasting => tasting.isComplete === false))
+                (newState.upcomingTastings = tastings.filter(tasting => tasting.isComplete === false))
             }).then(() => this.setState(newState))
     }
 
     render() {
-        if (this.state.tasting !== {}) {
+        if (this.state.upcomingTastings.length > 0) {
             return (
                 <React.Fragment>
                     <Card>
                         <CardHeader>Next Scheduled Tasting</CardHeader>
                         <CardBody>
-                            <CardText>Date: {this.state.tasting.date}</CardText>
-                            <CardText>Time: {this.state.tasting.time}</CardText>
-                            <CardText>Address: {this.state.tasting.address}</CardText>
+                            {this.state.upcomingTastings.map(tasting =>
+                                <React.Fragment key={tasting.id}>
+                                    <CardText>Date: {tasting.date}</CardText>
+                                    <CardText>Time: {tasting.time}</CardText>
+                                    <CardText>Address: {tasting.address}</CardText>
+                                    <hr></hr>
+                                </React.Fragment>
+                            )}
                         </CardBody>
                     </Card>
                 </React.Fragment>
@@ -38,7 +44,7 @@ export default class UpcomingTastingCard extends Component {
                     <Card>
                         <CardHeader>Next Scheduled Tasting</CardHeader>
                         <CardBody>
-                            <CardText>No Tasting Scheduled</CardText>
+                            <CardText>No future tastings scheduled at this time</CardText>
                         </CardBody>
                     </Card>
                 </React.Fragment>
