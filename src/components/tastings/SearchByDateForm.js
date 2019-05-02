@@ -25,11 +25,17 @@ export default class SearchByDateForm extends Component {
                             Dates
                                 </DropdownToggle>
                         <DropdownMenu>
-                            {this.props.tastings.map(tasting => <DropdownItem key={tasting.id} onClick={() => this.props.handleSearchByDate(tasting.date)}>{tasting.date}</DropdownItem>)}
+                            {this.props.tastings.map(tasting => {
+                                if (tasting.isComplete) {
+                                    return <DropdownItem key={tasting.id} onClick={() => this.props.handleSearchByDate(tasting.date)}>{tasting.date}</DropdownItem>
+                                } else {
+                                    return null
+                                }
+                            })}
                         </DropdownMenu>
                     </Dropdown> {" "}
                     <Button
-                    onClick={this.props.handleCancel}
+                        onClick={this.props.handleCancel}
                     >Cancel</Button>
                 </CardBody>
             </React.Fragment>
