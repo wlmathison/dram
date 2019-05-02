@@ -6,12 +6,14 @@ import TastingManager from "./../../modules/TastingManager"
 import TastingSearchForm from "./TastingSearchForm"
 import TastingIndividualCard from "./TastingIndividualCard"
 import SearchByDateForm from "./SearchByDateForm"
+import SearchByThemeForm from "./SearchByThemeForm"
 
 export default class TastingList extends Component {
 
     state = {
         tastings: [],
         tastingsByDate: [],
+        tastingsByTheme: [],
         viewSearchButton: true,
         isSearching: false,
         seeAllTastings: true,
@@ -49,7 +51,14 @@ export default class TastingList extends Component {
             viewSearchButton: true,
             isSearching: false,
             seeAllTastings: true,
-            isSearchingByDate: false
+            seeTastingsBySelectedDate: false,
+            seeTastingsBySelectedTheme: false,
+            seeTastingsBySelectedWhiskies: false,
+            seeTastingsBySelectedUsers: false,
+            isSearchingByDate: false,
+            isSearchingByTheme: false,
+            isSearchingByWhiskies: false,
+            isSearchingByUsers: false
         })
     }
 
@@ -69,6 +78,26 @@ export default class TastingList extends Component {
             isSearchingByDate: false,
             tastingsByDate: this.state.tastings.filter(tasting => tasting.date === date),
             seeTastingsBySelectedDate: true,
+            viewSearchButton: true
+        })
+    }
+
+    // Function to handle user clicking search by theme and display SearchByThemeForm
+    handleSearchTastingsByTheme = event => {
+        event.preventDefault()
+        this.setState({
+            isSearchingByTheme: true,
+            isSearching: false,
+            viewSearchButton: false
+        })
+    }
+
+    // Function to handle user clicking a theme and display only tastings matching that theme
+    handleSearchByTheme = theme => {
+        this.setState({
+            isSearchingByTheme: false,
+            tastingsByTheme: this.state.tastings.filter(tasting => tasting.theme === theme),
+            seeTastingsBySelectedTheme: true,
             viewSearchButton: true
         })
     }
@@ -103,7 +132,7 @@ export default class TastingList extends Component {
                     </CardHeader>
                     <CardBody>
                         {this.state.isSearching &&
-                            <TastingSearchForm handleSearchAllTastings={this.handleSearchAllTastings} handleSearchTastingsByDate={this.handleSearchTastingsByDate} />
+                            <TastingSearchForm handleSearchAllTastings={this.handleSearchAllTastings} handleSearchTastingsByDate={this.handleSearchTastingsByDate} handleSearchTastingsByTheme={this.handleSearchTastingsByTheme} />
                         }
                         {this.state.seeAllTastings &&
                             this.state.tastings.map(tasting =>
@@ -114,6 +143,11 @@ export default class TastingList extends Component {
                             handleCancel={this.handleCancel} />
                         }
                         {this.state.seeTastingsBySelectedDate && this.state.tastingsByDate.map(tasting => <TastingIndividualCard key={tasting.id} tasting={tasting} />
+                        )}
+                        {this.state.isSearchingByTheme && <SearchByThemeForm tastings={this.state.tastings} handleSearchByTheme={this.handleSearchByTheme}
+                            handleCancel={this.handleCancel} />
+                        }
+                        {this.state.seeTastingsBySelectedTheme && this.state.tastingsByTheme.map(tasting => <TastingIndividualCard key={tasting.id} tasting={tasting} />
                         )}
                     </CardBody>
                 </Card>
