@@ -4,12 +4,15 @@ import React, { Component } from "react"
 import UserProfile from "./UserProfile"
 import UserEditForm from "./UserEditForm"
 import UserManager from "./../../modules/UserManager"
+import UpcomingTastingCard from "./UpcomingTastingCard"
 
 export default class Home extends Component {
 
     state = {
         user: "",
-        editUser: false
+        editUser: false,
+        showProfile: true,
+        tastingScheduled: true
     }
 
     componentDidMount() {
@@ -37,11 +40,12 @@ export default class Home extends Component {
     // Function to change state of editUser to true, udate state with props, and conditionally render edit form
     handleEdit = event => {
         this.setState({
-            editUser: true
+            editUser: true,
+            showProfile: false
         })
     }
 
-// Function to save edits made to profile, PUT them into API, and then render the user profile again
+    // Function to save edits made to profile, PUT them into API, and then render the user profile again
     handleSaveEditProfile = event => {
         UserManager.put(this.state.id, {
             userName: this.state.userName,
@@ -51,7 +55,8 @@ export default class Home extends Component {
             userTypeId: this.state.userTypeId,
             isActive: this.state.isActive,
         }).then(() => this.setState({
-            editUser: false
+            editUser: false,
+            showProfile: true
         }))
     }
 
@@ -72,10 +77,13 @@ export default class Home extends Component {
     render() {
         return (
             <React.Fragment>
-                {this.state.editUser ? (
-                    <UserEditForm userName={this.state.userName} email={this.state.email} phoneNumber={this.state.phoneNumber} password={this.state.password} handleDeactivateAccount={this.handleDeactivateAccount} handleSaveEditProfile={this.handleSaveEditProfile} handleFieldChange={this.handleFieldChange} />
-                ) : (
-                        <UserProfile userName={this.state.userName} email={this.state.email} phoneNumber={this.state.phoneNumber} handleEdit={this.handleEdit} />)}
+                {this.state.editUser && <UserEditForm userName={this.state.userName} email={this.state.email} phoneNumber={this.state.phoneNumber} password={this.state.password} handleDeactivateAccount={this.handleDeactivateAccount} handleSaveEditProfile={this.handleSaveEditProfile} handleFieldChange={this.handleFieldChange} />
+                }
+
+                {this.state.showProfile && <UserProfile userName={this.state.userName} email={this.state.email} phoneNumber={this.state.phoneNumber} handleEdit={this.handleEdit} />}
+
+                {this.state.tastingScheduled && <UpcomingTastingCard />
+                }
             </React.Fragment>
         )
     }
