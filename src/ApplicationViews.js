@@ -80,14 +80,14 @@ export default class ApplicationViews extends Component {
                         return <Guest users={this.state.users} {...props} postNewUser={this.postNewUser} />
                     }
                 }} />
-                <Route path="/whiskies" render={props => {
+                <Route exact path="/whiskies" render={props => {
                     if (this.isAuthenticated()) {
                         return <WhiskeyList />
                     } else {
                         return <Redirect to="/" />
                     }
                 }} />
-                <Route path="/tastings" render={props => {
+                <Route exact path="/tastings" render={props => {
                     if (this.isAuthenticated()) {
                         return <TastingList users={this.state.users}/>
                     } else {

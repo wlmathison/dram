@@ -12,7 +12,7 @@ export default class TastingSearchForm extends Component {
                     <Form>
                         <Button
                             type="radio"
-                            onClick={this.props.handleSearchWhiskiesByCategory}
+                            onClick={this.props.handleSearchTastingsByDate}
                         >Date</Button> {" "}
                         <Button
                             type="radio"

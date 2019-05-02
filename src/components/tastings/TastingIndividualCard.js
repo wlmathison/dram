@@ -3,8 +3,7 @@
 import React, { Component } from "react"
 import { Card, CardBody, CardTitle, CardText } from "reactstrap"
 import TastingSelectionManager from "./../../modules/TastingSelectionManager"
-import tastingAttendanceManager from "./../../modules/TastingAttendanceManager"
-import TastingAttendanceManager from "./../../modules/TastingAttendanceManager";
+import TastingAttendanceManager from "./../../modules/TastingAttendanceManager"
 
 export default class TastingIndividualCard extends Component {
 
@@ -33,13 +32,17 @@ export default class TastingIndividualCard extends Component {
                         <CardText>Whiskies:</CardText>
                         {this.state.tastingSelections.map(tastingSelection => {
                             if (tastingSelection.tastingId === this.props.tasting.id) {
-                                return <CardText> - {tastingSelection.whiskey.name} </CardText>
+                                return <CardText key={tastingSelection.id}> - {tastingSelection.whiskey.name} </CardText>
+                            } else {
+                                return null
                             }
                         })}
                         <CardText>Attendees: </CardText>
                         {this.state.tastingAttendance.map(tastingAttendance => {
                             if (tastingAttendance.tastingId === this.props.tasting.id) {
-                                return <CardText> - {tastingAttendance.user.userName} </CardText>
+                                return <CardText key={tastingAttendance.id}> - {tastingAttendance.user.userName} </CardText>
+                            } else {
+                                return null
                             }
                         })}
                     </CardBody>
