@@ -9,6 +9,7 @@ import TastingSearchForm from "./TastingSearchForm"
 import TastingIndividualCard from "./TastingIndividualCard"
 import SearchByDateForm from "./SearchByDateForm"
 import SearchByThemeForm from "./SearchByThemeForm"
+import SearchByWhiskeyForm from "./SearchByWhiskeyForm"
 
 export default class TastingList extends Component {
 
@@ -53,7 +54,7 @@ export default class TastingList extends Component {
             seeAllTastings: false,
             seeTastingsBySelectedDate: false,
             seeTastingsBySelectedTheme: false,
-            seeTastingsBySelectedWhiskies: false,
+            seeTastingsBySelectedWhiskey: false,
             seeTastingsBySelectedUsers: false
         })
     }
@@ -67,7 +68,7 @@ export default class TastingList extends Component {
             seeAllTastings: true,
             seeTastingsBySelectedDate: false,
             seeTastingsBySelectedTheme: false,
-            seeTastingsBySelectedWhiskies: false,
+            seeTastingsBySelectedWhiskey: false,
             seeTastingsBySelectedUsers: false,
             isSearchingByDate: false,
             isSearchingByTheme: false,
@@ -120,21 +121,21 @@ export default class TastingList extends Component {
     handleSearchTastingsByWhiskey = event => {
         event.preventDefault()
         this.setState({
-            isSearchingByWhiskey: true,
+            isSearchingByWhiskies: true,
             isSearching: false,
             viewSearchButton: false
         })
     }
 
-    // // Function to handle user clicking a whiskey and display only tastings matching that whiskey
-    // handleSearchByWhiskey = whiskey => {
-    //     this.setState({
-    //         isSearchingByWhiskey: false,
-    //         tastingsByWhiskey: this.state.tastings.filter(tasting => tasting.whiskey === whiskey),
-    //         seeTastingsBySelectedWhiskey: true,
-    //         viewSearchButton: true
-    //     })
-    // }
+    // Function to handle user clicking a whiskey and display only tastings matching that whiskey
+    handleSearchByWhiskey = whiskey => {
+        this.setState({
+            isSearchingByWhiskies: false,
+            tastingsByWhiskey: this.state.tastings.filter(tasting => tasting.tastingSelection.some(tastingSelection => tastingSelection.whiskeyId === whiskey)),
+            seeTastingsBySelectedWhiskey: true,
+            viewSearchButton: true
+        })
+    }
 
     // Function to handle user clicking cancel button
     handleCancel = event => {
@@ -145,7 +146,7 @@ export default class TastingList extends Component {
             seeAllTastings: true,
             seeTastingsBySelectedDate: false,
             seeTastingsBySelectedTheme: false,
-            seeTastingsBySelectedWhiskies: false,
+            seeTastingsBySelectedWhiskey: false,
             seeTastingsBySelectedUsers: false,
             isSearchingByDate: false,
             isSearchingByTheme: false,
@@ -166,7 +167,7 @@ export default class TastingList extends Component {
                     </CardHeader>
                     <CardBody>
                         {this.state.isSearching &&
-                            <TastingSearchForm handleSearchAllTastings={this.handleSearchAllTastings} handleSearchTastingsByDate={this.handleSearchTastingsByDate} handleSearchTastingsByTheme={this.handleSearchTastingsByTheme} />
+                            <TastingSearchForm handleSearchAllTastings={this.handleSearchAllTastings} handleSearchTastingsByDate={this.handleSearchTastingsByDate} handleSearchTastingsByTheme={this.handleSearchTastingsByTheme} handleSearchTastingsByWhiskey={this.handleSearchTastingsByWhiskey} />
                         }
                         {this.state.seeAllTastings &&
                             this.state.tastings.map(tasting =>
@@ -182,6 +183,11 @@ export default class TastingList extends Component {
                             handleCancel={this.handleCancel} />
                         }
                         {this.state.seeTastingsBySelectedTheme && this.state.tastingsByTheme.map(tasting => <TastingIndividualCard key={tasting.id} tasting={tasting} tastingSelections={this.state.tastingSelections} tastingAttendance={this.state.tastingAttendance} />
+                        )}
+                        {this.state.isSearchingByWhiskies && <SearchByWhiskeyForm tastingSelections={this.state.tastingSelections} handleSearchByWhiskey={this.handleSearchByWhiskey}
+                            handleCancel={this.handleCancel} />
+                        }
+                        {this.state.seeTastingsBySelectedWhiskey && this.state.tastingsByWhiskey.map(tasting => <TastingIndividualCard key={tasting.id} tasting={tasting} tastingSelections={this.state.tastingSelections} tastingAttendance={this.state.tastingAttendance} />
                         )}
                     </CardBody>
                 </Card>
