@@ -13,7 +13,7 @@ export default class SearchByWhiskeyForm extends Component {
 
     componentDidMount() {
         const newState = {}
-        WhiskeyManager.getAll()
+        WhiskeyManager.getExpand()
             .then(whiskies => (newState.whiskies = whiskies))
             .then(() => this.setState(newState))
     }

@@ -6,6 +6,9 @@ export default Object.create(null, {
     resource: {
         value: ""
     },
+    expand: {
+        value: ""
+    },
     get: {
         value: function (id) {
             return fetch(`${remoteURL}/${this.resource}/${id}`).then(results => results.json())
@@ -14,6 +17,11 @@ export default Object.create(null, {
     getAll: {
         value: function () {
             return fetch(`${remoteURL}/${this.resource}`).then(results => results.json())
+        }
+    },
+    getExpand: {
+        value: function () {
+            return fetch(`${remoteURL}/${this.resource}${this.expand}`).then(results => results.json())
         }
     },
     post: {

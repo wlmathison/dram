@@ -13,7 +13,7 @@ export default class SearchReviewsByTastingForm extends Component {
 
     componentDidMount() {
         const newState = {}
-        TastingManager.getAll()
+        TastingManager.getExpand()
             .then(tastings => (newState.tastings = tastings))
             .then(() => this.setState(newState))
     }

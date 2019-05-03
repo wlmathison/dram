@@ -9,6 +9,7 @@ import ReviewIndividualCard from "./ReviewIndividualCard"
 import SearchReviewsByWhiskeyForm from "./SearchReviewsByWhiskeyForm"
 import SearchReviewsByUserForm from "./SearchReviewsByUserForm"
 import SearchReviewsByTastingForm from "./SearchReviewsByTastingForm"
+import ReviewEditForm from "./ReviewEditForm"
 
 export default class ReviewList extends Component {
 
@@ -18,7 +19,10 @@ export default class ReviewList extends Component {
         reviewsByUser: [],
         reviewsByTasting: [],
         tastingSelections: [],
+        reviewToEdit: {},
+        editedReview: "",
         isSearching: false,
+        isEditing: false,
         viewSearchButton: true,
         seeAllReviews: true,
         seeReviewsBySelectedWhiskey: false,
@@ -31,11 +35,18 @@ export default class ReviewList extends Component {
 
     componentDidMount() {
         const newState = {}
-        ReviewManager.getAll()
+        ReviewManager.getExpand()
             .then(reviews => (newState.reviews = reviews))
-            .then(() => TastingSelectionManager.getAll())
+            .then(() => TastingSelectionManager.getExpand())
             .then(tastingSelections => (newState.tastingSelections = tastingSelections))
             .then(() => this.setState(newState))
+    }
+
+    // Function to change state of editedReview when button clicked
+    handleFieldChange = event => {
+        const stateToChange = {}
+        stateToChange[event.target.id] = event.target.value
+        this.setState(stateToChange)
     }
 
     // Function to changes state of isSearching and display search form
@@ -44,6 +55,7 @@ export default class ReviewList extends Component {
         this.setState({
             viewSearchButton: false,
             isSearching: true,
+            isEditing: false,
             seeAllReviews: false,
             seeReviewsBySelectedWhiskey: false,
             seeReviewsBySelectedUser: false,
@@ -56,6 +68,7 @@ export default class ReviewList extends Component {
         event.preventDefault()
         this.setState({
             isSearching: false,
+            isEditing: false,
             viewSearchButton: true,
             seeAllReviews: true,
             seeReviewsBySelectedWhiskey: false,
@@ -127,11 +140,54 @@ export default class ReviewList extends Component {
         })
     }
 
+    // Function to handle user clicking Edit review button
+    handleEdit = event => {
+        event.preventDefault()
+        let reviewId = parseInt(event.target.id.split("-")[1])
+        this.setState({
+            isEditing: true,
+            seeAllReviews: false,
+            seeReviewsBySelectedWhiskey: false,
+            seeReviewsBySelectedUser: false,
+            seeReviewsBySelectedTasting: false,
+            reviewToEdit: this.state.reviews.find(review => review.id === reviewId),
+            editedReview: this.state.reviews.find(review => review.id === reviewId).review
+        })
+    }
+
+    // Function to handle user clicking Save Review button
+    handleSaveEdit = event => {
+        event.preventDefault()
+        const newState = {
+            isEditing: false,
+            seeAllReviews: true
+        }
+        ReviewManager.patch(event.target.id, {
+            review: this.state.editedReview
+        }).then(() => ReviewManager.getExpand())
+            .then(reviews => (newState.reviews = reviews))
+            .then(() => this.setState(newState))
+    }
+
+    // Function to handle user clicking Delete review button
+    handleDelete = event => {
+        event.preventDefault()
+        if (window.confirm("Are you sure you want to delete this review?")) {
+            let reviewId = parseInt(event.target.id.split("-")[1])
+            const newState = {}
+            ReviewManager.delete(reviewId)
+                .then(() => ReviewManager.getExpand())
+                .then(reviews => (newState.reviews = reviews))
+                .then(() => this.setState(newState))
+        }
+    }
+
     // Function to handle user clicking cancel button
     handleCancel = event => {
         event.preventDefault()
         this.setState({
             isSearching: false,
+            isEditing: false,
             viewSearchButton: true,
             seeAllReviews: true,
             seeReviewsBySelectedWhiskey: false,
@@ -159,7 +215,7 @@ export default class ReviewList extends Component {
                         {this.state.seeAllReviews &&
                             this.state.reviews.map(review =>
                                 <ReviewIndividualCard key={review.id} review={review}
-                                    tastingSelections={this.state.tastingSelections} />
+                                    tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
                             )
                         }
                         {this.state.isSearchingByWhiskey && <SearchReviewsByWhiskeyForm handleSearchByWhiskey={this.handleSearchByWhiskey} handleCancel={this.handleCancel} />
@@ -167,7 +223,7 @@ export default class ReviewList extends Component {
                         {this.state.seeReviewsBySelectedWhiskey && this.state.reviewsByWhiskey.length > 0 &&
                             this.state.reviewsByWhiskey.map(review =>
                                 <ReviewIndividualCard key={review.id} review={review}
-                                    tastingSelections={this.state.tastingSelections} />
+                                    tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
                             )
                         }
                         {this.state.seeReviewsBySelectedWhiskey && this.state.reviewsByWhiskey.length === 0 &&
@@ -180,7 +236,7 @@ export default class ReviewList extends Component {
                         {this.state.isSearchingByUser && <SearchReviewsByUserForm users={this.props.users} handleSearchByUser={this.handleSearchByUser}
                             handleCancel={this.handleCancel} />
                         }
-                        {this.state.seeReviewsBySelectedUser && this.state.reviewsByUser.length > 0 && this.state.reviewsByUser.map(review => <ReviewIndividualCard key={review.id} review={review} tastingSelections={this.state.tastingSelections} />
+                        {this.state.seeReviewsBySelectedUser && this.state.reviewsByUser.length > 0 && this.state.reviewsByUser.map(review => <ReviewIndividualCard key={review.id} review={review} tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
                         )}
                         {this.state.seeReviewsBySelectedUser && this.state.reviewsByUser.length === 0 &&
                             <Card>
@@ -191,7 +247,7 @@ export default class ReviewList extends Component {
                         }
                         {this.state.isSearchingByTasting && <SearchReviewsByTastingForm handleSearchByTasting={this.handleSearchByTasting} handleCancel={this.handleCancel} />
                         }
-                        {this.state.seeReviewsBySelectedTasting && this.state.reviewsByTasting.length > 0 && this.state.reviewsByTasting.map(review => <ReviewIndividualCard key={review.id} review={review} tastingSelections={this.state.tastingSelections} />)
+                        {this.state.seeReviewsBySelectedTasting && this.state.reviewsByTasting.length > 0 && this.state.reviewsByTasting.map(review => <ReviewIndividualCard key={review.id} review={review} tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />)
                         }
                         {this.state.seeReviewsBySelectedTasting && this.state.reviewsByTasting.length === 0 &&
                             <Card>
@@ -200,6 +256,8 @@ export default class ReviewList extends Component {
                                 </CardBody>
                             </Card>
                         }
+                        {this.state.isEditing && <ReviewEditForm review={this.state.reviewToEdit}
+                            tastingSelections={this.state.tastingSelections} editedReview={this.state.editedReview} handleFieldChange={this.handleFieldChange} handleCancel={this.handleCancel} handleSaveEdit={this.handleSaveEdit} />}
                     </CardBody>
                 </Card>
             </React.Fragment>

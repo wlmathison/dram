@@ -97,7 +97,7 @@ export default class ApplicationViews extends Component {
                 }} />
                 <Route exact path="/reviews" render={props => {
                     if (this.isAuthenticated()) {
-                        return <ReviewList users={this.state.users} />
+                        return <ReviewList users={this.state.users} {...props} />
                     } else {
                         return <Redirect to="/" />
                     }

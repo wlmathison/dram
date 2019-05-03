@@ -13,7 +13,7 @@ export default class UpcomingTastingCard extends Component {
 
     componentDidMount() {
         const newState = {}
-        TastingManager.getAll()
+        TastingManager.getExpand()
             .then(tastings => {
                 (newState.upcomingTastings = tastings.filter(tasting => tasting.isComplete === false))
             }).then(() => this.setState(newState))
