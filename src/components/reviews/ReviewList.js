@@ -8,6 +8,7 @@ import ReviewSearchForm from "./ReviewSearchForm"
 import ReviewIndividualCard from "./ReviewIndividualCard"
 import SearchReviewsByWhiskeyForm from "./SearchReviewsByWhiskeyForm"
 import SearchReviewsByUserForm from "./SearchReviewsByUserForm"
+import SearchReviewsByTastingForm from "./SearchReviewsByTastingForm"
 
 export default class ReviewList extends Component {
 
@@ -15,6 +16,7 @@ export default class ReviewList extends Component {
         reviews: [],
         reviewsByWhiskey: [],
         reviewsByUser: [],
+        reviewsByTasting: [],
         tastingSelections: [],
         isSearching: false,
         viewSearchButton: true,
@@ -22,7 +24,7 @@ export default class ReviewList extends Component {
         seeReviewsBySelectedWhiskey: false,
         seeReviewsBySelectedUser: false,
         seeReviewsBySelectedTasting: false,
-        isSearchingByDate: false,
+        isSearchingByTasting: false,
         isSearchingByWhiskey: false,
         isSearchingByUser: false
     }
@@ -59,7 +61,7 @@ export default class ReviewList extends Component {
             seeReviewsBySelectedWhiskey: false,
             seeReviewsBySelectedUser: false,
             seeReviewsBySelectedTasting: false,
-            isSearchingByDate: false,
+            isSearchingByTasting: false,
             isSearchingByWhiskey: false,
             isSearchingByUser: false
         })
@@ -105,6 +107,26 @@ export default class ReviewList extends Component {
         })
     }
 
+    // Function to handle user clicking search by tasting and display SearchByTastingForm
+    handleSearchReviewsByTasting = event => {
+        event.preventDefault()
+        this.setState({
+            isSearchingByTasting: true,
+            isSearching: false,
+            viewSearchButton: false
+        })
+    }
+
+    // Function to handle user clicking a tasting and display only reviews matching that tasting
+    handleSearchByTasting = tasting => {
+        this.setState({
+            isSearchingByTasting: false,
+            reviewsByTasting: this.state.reviews.filter(review => review.tastingSelection.tastingId === tasting),
+            seeReviewsBySelectedTasting: true,
+            viewSearchButton: true
+        })
+    }
+
     // Function to handle user clicking cancel button
     handleCancel = event => {
         event.preventDefault()
@@ -115,7 +137,7 @@ export default class ReviewList extends Component {
             seeReviewsBySelectedWhiskey: false,
             seeReviewsBySelectedUser: false,
             seeReviewsBySelectedTasting: false,
-            isSearchingByDate: false,
+            isSearchingByTasting: false,
             isSearchingByWhiskey: false,
             isSearchingByUser: false
         })
@@ -132,7 +154,7 @@ export default class ReviewList extends Component {
                             </Button>}</CardHeader>
                     <CardBody>
                         {this.state.isSearching &&
-                            <ReviewSearchForm handleSearchAllReviews={this.handleSearchAllReviews} handleSearchReviewsByWhiskey={this.handleSearchReviewsByWhiskey} handleSearchReviewsByUser={this.handleSearchReviewsByUser} />
+                            <ReviewSearchForm handleSearchAllReviews={this.handleSearchAllReviews} handleSearchReviewsByWhiskey={this.handleSearchReviewsByWhiskey} handleSearchReviewsByUser={this.handleSearchReviewsByUser} handleSearchReviewsByTasting={this.handleSearchReviewsByTasting} />
                         }
                         {this.state.seeAllReviews &&
                             this.state.reviews.map(review =>
@@ -164,6 +186,17 @@ export default class ReviewList extends Component {
                             <Card>
                                 <CardBody>
                                     <CardTitle>This user has not reviewed any whiskies.</CardTitle>
+                                </CardBody>
+                            </Card>
+                        }
+                        {this.state.isSearchingByTasting && <SearchReviewsByTastingForm handleSearchByTasting={this.handleSearchByTasting} handleCancel={this.handleCancel} />
+                        }
+                        {this.state.seeReviewsBySelectedTasting && this.state.reviewsByTasting.length > 0 && this.state.reviewsByTasting.map(review => <ReviewIndividualCard key={review.id} review={review} tastingSelections={this.state.tastingSelections} />)
+                        }
+                        {this.state.seeReviewsBySelectedTasting && this.state.reviewsByTasting.length === 0 &&
+                            <Card>
+                                <CardBody>
+                                    <CardTitle>There are no reviews for this tasting.</CardTitle>
                                 </CardBody>
                             </Card>
                         }
