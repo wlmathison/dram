@@ -16,11 +16,11 @@ export default class ReviewSearchForm extends Component {
                         >Whiskey</Button> {" "}
                         <Button
                             type="radio"
-                            onClick={this.props.handleSearchTastingsByTheme}
+                            onClick={this.props.handleSearchReviewsByUser}
                         >User</Button> {" "}
                         <Button
                             type="radio"
-                            onClick={this.props.handleSearchTastingsByWhiskey}
+                            onClick={this.props.handleSearchReviewsByTasting}
                         >Tasting</Button> {" "}
                         <Button
                             type="radio"

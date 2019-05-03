@@ -7,12 +7,14 @@ import TastingSelectionManager from "./../../modules/TastingSelectionManager"
 import ReviewSearchForm from "./ReviewSearchForm"
 import ReviewIndividualCard from "./ReviewIndividualCard"
 import SearchReviewsByWhiskeyForm from "./SearchReviewsByWhiskeyForm"
+import SearchReviewsByUserForm from "./SearchReviewsByUserForm"
 
 export default class ReviewList extends Component {
 
     state = {
         reviews: [],
         reviewsByWhiskey: [],
+        reviewsByUser: [],
         tastingSelections: [],
         isSearching: false,
         viewSearchButton: true,
@@ -83,6 +85,26 @@ export default class ReviewList extends Component {
         })
     }
 
+    // Function to handle user clicking search by user and display SearchByUserForm
+    handleSearchReviewsByUser = event => {
+        event.preventDefault()
+        this.setState({
+            isSearchingByUser: true,
+            isSearching: false,
+            viewSearchButton: false
+        })
+    }
+
+    // Function to handle user clicking a user and display only reviews matching that user
+    handleSearchByUser = user => {
+        this.setState({
+            isSearchingByUser: false,
+            reviewsByUser: this.state.reviews.filter(review => review.userId === user),
+            seeReviewsBySelectedUser: true,
+            viewSearchButton: true
+        })
+    }
+
     // Function to handle user clicking cancel button
     handleCancel = event => {
         event.preventDefault()
@@ -110,7 +132,7 @@ export default class ReviewList extends Component {
                             </Button>}</CardHeader>
                     <CardBody>
                         {this.state.isSearching &&
-                            <ReviewSearchForm handleSearchAllReviews={this.handleSearchAllReviews} handleSearchReviewsByWhiskey={this.handleSearchReviewsByWhiskey} />
+                            <ReviewSearchForm handleSearchAllReviews={this.handleSearchAllReviews} handleSearchReviewsByWhiskey={this.handleSearchReviewsByWhiskey} handleSearchReviewsByUser={this.handleSearchReviewsByUser} />
                         }
                         {this.state.seeAllReviews &&
                             this.state.reviews.map(review =>
@@ -128,10 +150,22 @@ export default class ReviewList extends Component {
                         }
                         {this.state.seeReviewsBySelectedWhiskey && this.state.reviewsByWhiskey.length === 0 &&
                             <Card>
-                            <CardBody>
-                                <CardTitle>There are no reviews for this whiskey.</CardTitle>
-                            </CardBody>
-                        </Card>
+                                <CardBody>
+                                    <CardTitle>There are no reviews for this whiskey.</CardTitle>
+                                </CardBody>
+                            </Card>
+                        }
+                        {this.state.isSearchingByUser && <SearchReviewsByUserForm users={this.props.users} handleSearchByUser={this.handleSearchByUser}
+                            handleCancel={this.handleCancel} />
+                        }
+                        {this.state.seeReviewsBySelectedUser && this.state.reviewsByUser.length > 0 && this.state.reviewsByUser.map(review => <ReviewIndividualCard key={review.id} review={review} tastingSelections={this.state.tastingSelections} />
+                        )}
+                        {this.state.seeReviewsBySelectedUser && this.state.reviewsByUser.length === 0 &&
+                            <Card>
+                                <CardBody>
+                                    <CardTitle>This user has not reviewed any whiskies.</CardTitle>
+                                </CardBody>
+                            </Card>
                         }
                     </CardBody>
                 </Card>
