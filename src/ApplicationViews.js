@@ -5,6 +5,7 @@ import Login from "./components/authentication/Login"
 import Register from "./components/authentication/Register"
 import Guest from "./components/authentication/Guest"
 import UserManager from "./modules/UserManager"
+import FavoritesManager from "./modules/FavoritesManager"
 import Home from "./components/home/Home"
 import WhiskeyList from "./components/whiskies/WhiskeyList"
 import TastingList from "./components/tastings/TastingList"
@@ -13,12 +14,15 @@ import ReviewList from "./components/reviews/ReviewList"
 export default class ApplicationViews extends Component {
     state = {
         users: [],
+        myFavorites: []
     }
 
     componentDidMount() {
         const newState = {}
         UserManager.getAll()
             .then(users => (newState.users = users))
+            .then(() => FavoritesManager.getExpand())
+            .then(favorites => newState.myFavorites = favorites.filter(favorite => favorite.userId === parseInt(sessionStorage.getItem("userId"))))
             .then(() => this.setState(newState))
     }
 
@@ -41,12 +45,24 @@ export default class ApplicationViews extends Component {
             })
     }
 
+    // Function to delete a whiskey as a users favorite
+    handleDeleteFavorite = event => {
+        event.preventDefault()
+        const newState = {}
+        if (window.confirm("Are you sure you want to delete this favorite")) {
+            FavoritesManager.delete(event.target.id)
+                .then(() => FavoritesManager.getExpand())
+                .then(favorites => newState.myFavorites = favorites.filter(favorite => favorite.userId === parseInt(sessionStorage.getItem("userId"))))
+                .then(() => this.setState(newState))
+        }
+    }
+
     render() {
         return (
             <React.Fragment>
                 <Route path="/home" render={props => {
                     if (this.isAuthenticated()) {
-                        return <Home {...props} />
+                        return <Home {...props} myFavorites={this.state.myFavorites} handleDeleteFavorite={this.handleDeleteFavorite} />
                     } else {
                         return <Redirect to="/" />
                     }

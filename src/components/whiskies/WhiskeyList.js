@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { Card, CardHeader, CardBody, CardTitle, Button } from "reactstrap";
 import WhiskeyManager from "./../../modules/WhiskeyManager";
 import CategoryManager from "./../../modules/CategoryManager";
-import DistilleryManager from "./../../modules/DistilleryManager"
+import DistilleryManager from "./../../modules/DistilleryManager";
 import WhiskeyIndividualCard from "./WhiskeyIndividualCard";
 import WhiskeySearchForm from "./WhiskeySearchForm";
 import SearchByCategoryForm from "./SearchByCategoryForm"
