@@ -24,7 +24,7 @@ export default class UpcomingTastingCard extends Component {
             return (
                 <React.Fragment>
                     <Card>
-                        <CardHeader>Next Scheduled Tasting</CardHeader>
+                        <CardHeader>Next Scheduled Tastings</CardHeader>
                         <CardBody>
                             {this.state.upcomingTastings.map(tasting =>
                                 <React.Fragment key={tasting.id}>

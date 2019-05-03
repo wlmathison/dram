@@ -1,7 +1,7 @@
 // Page displays all whiskies and search form to limit whiskies
 
 import React, { Component } from "react";
-import { Card, CardHeader, CardBody, Button } from "reactstrap";
+import { Card, CardHeader, CardBody, CardTitle, Button } from "reactstrap";
 import WhiskeyManager from "./../../modules/WhiskeyManager";
 import CategoryManager from "./../../modules/CategoryManager";
 import DistilleryManager from "./../../modules/DistilleryManager"
@@ -165,7 +165,7 @@ export default class WhiskeyList extends Component {
                             />}
 
                         {this.state.isSearchingByCategory && <SearchByCategoryForm categories={this.state.categories} handleSearchByCategory={this.handleSearchByCategory}
-                        handleCancel={this.handleCancel} />}
+                            handleCancel={this.handleCancel} />}
 
                         {this.state.isSearchingByDistillery && <SearchByDistilleryForm distilleries={this.state.distilleries} handleSearchByDistillery={this.handleSearchByDistillery} handleCancel={this.handleCancel} />}
 
@@ -182,9 +182,15 @@ export default class WhiskeyList extends Component {
                         {this.state.seeWhiskiesBySelectedDistillery && this.state.whiskiesByDistillery.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} />
                         )}
 
-                        {this.state.seeWhiskiesByEnteredName && this.state.whiskiesByName.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} />
+                        {this.state.seeWhiskiesByEnteredName && this.state.whiskiesByName.length > 0 && this.state.whiskiesByName.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} />
                         )}
-
+                        {this.state.seeWhiskiesByEnteredName && this.state.whiskiesByName.length === 0 &&
+                            <Card>
+                                <CardBody>
+                                    <CardTitle>There are no matching whiskies.</CardTitle>
+                                </CardBody>
+                            </Card>
+                        }
                     </CardBody>
                 </Card>
             </React.Fragment>

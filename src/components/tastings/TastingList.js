@@ -1,7 +1,7 @@
 // Page displays all whiskies and search form to limit whiskies
 
 import React, { Component } from "react";
-import { Card, CardHeader, CardBody, Button } from "reactstrap"
+import { Card, CardHeader, CardBody, CardTitle, Button } from "reactstrap"
 import TastingManager from "./../../modules/TastingManager"
 import TastingSelectionManager from "./../../modules/TastingSelectionManager"
 import TastingAttendanceManager from "./../../modules/TastingAttendanceManager"
@@ -132,7 +132,7 @@ export default class TastingList extends Component {
     handleSearchByWhiskey = whiskey => {
         this.setState({
             isSearchingByWhiskies: false,
-            tastingsByWhiskey: this.state.tastings.filter(tasting => tasting.tastingSelection.some(tastingSelection => tastingSelection.whiskeyId === whiskey)),
+            tastingsByWhiskey: this.state.tastings.filter(tasting => tasting.tastingSelections.some(tastingSelection => tastingSelection.whiskeyId === whiskey)),
             seeTastingsBySelectedWhiskey: true,
             viewSearchButton: true
         })
@@ -213,8 +213,15 @@ export default class TastingList extends Component {
                         {this.state.isSearchingByUsers && <SearchByUserForm users={this.props.users} tastingAttendance={this.state.tastingAttendance} handleSearchByUser={this.handleSearchByUser}
                             handleCancel={this.handleCancel} />
                         }
-                        {this.state.seeTastingsBySelectedUser && this.state.tastingsByUser.map(tasting => <TastingIndividualCard key={tasting.id} tasting={tasting} tastingSelections={this.state.tastingSelections} tastingAttendance={this.state.tastingAttendance} />
+                        {this.state.seeTastingsBySelectedUser && this.state.tastingsByUser.length > 0 && this.state.tastingsByUser.map(tasting => <TastingIndividualCard key={tasting.id} tasting={tasting} tastingSelections={this.state.tastingSelections} tastingAttendance={this.state.tastingAttendance} />
                         )}
+                        {this.state.seeTastingsBySelectedUser && this.state.tastingsByUser.length === 0 &&
+                            <Card>
+                                <CardBody>
+                                    <CardTitle>This user has not attended any tastings.</CardTitle>
+                                </CardBody>
+                            </Card>
+                        }
                     </CardBody>
                 </Card>
             </React.Fragment>

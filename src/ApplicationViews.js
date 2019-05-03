@@ -8,6 +8,7 @@ import UserManager from "./modules/UserManager"
 import Home from "./components/home/Home"
 import WhiskeyList from "./components/whiskies/WhiskeyList"
 import TastingList from "./components/tastings/TastingList"
+import ReviewList from "./components/reviews/ReviewList"
 
 export default class ApplicationViews extends Component {
     state = {
@@ -89,7 +90,14 @@ export default class ApplicationViews extends Component {
                 }} />
                 <Route exact path="/tastings" render={props => {
                     if (this.isAuthenticated()) {
-                        return <TastingList users={this.state.users}/>
+                        return <TastingList users={this.state.users} />
+                    } else {
+                        return <Redirect to="/" />
+                    }
+                }} />
+                <Route exact path="/reviews" render={props => {
+                    if (this.isAuthenticated()) {
+                        return <ReviewList users={this.state.users} />
                     } else {
                         return <Redirect to="/" />
                     }
