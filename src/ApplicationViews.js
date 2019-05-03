@@ -49,6 +49,16 @@ export default class ApplicationViews extends Component {
     handleDeleteFavorite = event => {
         event.preventDefault()
         const newState = {}
+        FavoritesManager.delete(event.target.id)
+            .then(() => FavoritesManager.getExpand())
+            .then(favorites => newState.myFavorites = favorites.filter(favorite => favorite.userId === parseInt(sessionStorage.getItem("userId"))))
+            .then(() => this.setState(newState))
+    }
+
+    // Function to delete a whiskey as a users favorite
+    handleConfirmDeleteFavorite = event => {
+        event.preventDefault()
+        const newState = {}
         if (window.confirm("Are you sure you want to delete this favorite")) {
             FavoritesManager.delete(event.target.id)
                 .then(() => FavoritesManager.getExpand())
@@ -77,7 +87,7 @@ export default class ApplicationViews extends Component {
             <React.Fragment>
                 <Route path="/home" render={props => {
                     if (this.isAuthenticated()) {
-                        return <Home {...props} myFavorites={this.state.myFavorites} handleDeleteFavorite={this.handleDeleteFavorite} />
+                        return <Home {...props} myFavorites={this.state.myFavorites} handleConfirmDeleteFavorite={this.handleConfirmDeleteFavorite} />
                     } else {
                         return <Redirect to="/" />
                     }
@@ -126,7 +136,7 @@ export default class ApplicationViews extends Component {
                 }} />
                 <Route exact path="/reviews" render={props => {
                     if (this.isAuthenticated()) {
-                        return <ReviewList users={this.state.users} {...props} />
+                        return <ReviewList users={this.state.users} {...props} myFavorites={this.state.myFavorites} handleDeleteFavorite={this.handleDeleteFavorite} handleAddFavorite={this.handleAddFavorite} />
                     } else {
                         return <Redirect to="/" />
                     }

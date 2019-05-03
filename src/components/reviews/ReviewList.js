@@ -215,7 +215,7 @@ export default class ReviewList extends Component {
                         {this.state.seeAllReviews &&
                             this.state.reviews.map(review =>
                                 <ReviewIndividualCard key={review.id} review={review}
-                                    tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
+                                    tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
                             )
                         }
                         {this.state.isSearchingByWhiskey && <SearchReviewsByWhiskeyForm handleSearchByWhiskey={this.handleSearchByWhiskey} handleCancel={this.handleCancel} />
@@ -223,7 +223,7 @@ export default class ReviewList extends Component {
                         {this.state.seeReviewsBySelectedWhiskey && this.state.reviewsByWhiskey.length > 0 &&
                             this.state.reviewsByWhiskey.map(review =>
                                 <ReviewIndividualCard key={review.id} review={review}
-                                    tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
+                                    tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
                             )
                         }
                         {this.state.seeReviewsBySelectedWhiskey && this.state.reviewsByWhiskey.length === 0 &&
@@ -236,7 +236,7 @@ export default class ReviewList extends Component {
                         {this.state.isSearchingByUser && <SearchReviewsByUserForm users={this.props.users} handleSearchByUser={this.handleSearchByUser}
                             handleCancel={this.handleCancel} />
                         }
-                        {this.state.seeReviewsBySelectedUser && this.state.reviewsByUser.length > 0 && this.state.reviewsByUser.map(review => <ReviewIndividualCard key={review.id} review={review} tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
+                        {this.state.seeReviewsBySelectedUser && this.state.reviewsByUser.length > 0 && this.state.reviewsByUser.map(review => <ReviewIndividualCard key={review.id} review={review} tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
                         )}
                         {this.state.seeReviewsBySelectedUser && this.state.reviewsByUser.length === 0 &&
                             <Card>
@@ -247,7 +247,7 @@ export default class ReviewList extends Component {
                         }
                         {this.state.isSearchingByTasting && <SearchReviewsByTastingForm handleSearchByTasting={this.handleSearchByTasting} handleCancel={this.handleCancel} />
                         }
-                        {this.state.seeReviewsBySelectedTasting && this.state.reviewsByTasting.length > 0 && this.state.reviewsByTasting.map(review => <ReviewIndividualCard key={review.id} review={review} tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />)
+                        {this.state.seeReviewsBySelectedTasting && this.state.reviewsByTasting.length > 0 && this.state.reviewsByTasting.map(review => <ReviewIndividualCard key={review.id} review={review} tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />)
                         }
                         {this.state.seeReviewsBySelectedTasting && this.state.reviewsByTasting.length === 0 &&
                             <Card>
