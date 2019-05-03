@@ -18,9 +18,12 @@ export default class ReviewIndividualCard extends Component {
                             <CardText>At Tasting: {this.props.tastingSelections[id].tasting.theme}</CardText>
                             <CardText>Date: {this.props.review.date}</CardText>
                             <CardText>Review: {this.props.review.review}</CardText>
-                            <Button>Edit</Button> {" "}
                             <Button
-                                id={this.props.review.id}
+                                id={`edit-${this.props.review.id}`}
+                                onClick={this.props.handleEdit}
+                            >Edit</Button> {" "}
+                            <Button
+                                id={`delete-${this.props.review.id}`}
                                 color="danger"
                                 onClick={this.props.handleDelete}
                             >Delete</Button>
