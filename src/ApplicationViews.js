@@ -25,8 +25,6 @@ export default class ApplicationViews extends Component {
     isAuthenticated = () => {
         if (sessionStorage.getItem("userId") !== null) {
             return true
-        } else if (localStorage.getItem("userId") !== null) {
-            return true
         } else {
             return false
         }

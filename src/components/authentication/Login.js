@@ -46,9 +46,12 @@ export default class Login extends Component {
                 localStorage.setItem("userName", user.userName)
                 sessionStorage.setItem("userId", user.id)
                 sessionStorage.setItem("userName", user.userName)
+                sessionStorage.setItem("userTypeId", user.userTypeId)
+
             } else {
                 sessionStorage.setItem("userId", user.id)
                 sessionStorage.setItem("userName", user.userName)
+                sessionStorage.setItem("userTypeId", user.userTypeId)
             }
             this.props.history.push("/home")
         }
