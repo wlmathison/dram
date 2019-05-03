@@ -8,6 +8,7 @@ export default class ReviewIndividualCard extends Component {
 
     render() {
         let id = this.props.review.tastingSelectionId - 1
+        
         return (
             <React.Fragment>
                 <Card>
