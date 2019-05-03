@@ -173,16 +173,16 @@ export default class WhiskeyList extends Component {
 
                         {this.state.seeAllWhiskies &&
                             this.state.whiskies.map(whiskey =>
-                                <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} />
+                                <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
                             )
                         }
-                        {this.state.seeWhiskiesBySelectedCategory && this.state.whiskiesByCategory.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} />
+                        {this.state.seeWhiskiesBySelectedCategory && this.state.whiskiesByCategory.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
                         )}
 
-                        {this.state.seeWhiskiesBySelectedDistillery && this.state.whiskiesByDistillery.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} />
+                        {this.state.seeWhiskiesBySelectedDistillery && this.state.whiskiesByDistillery.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
                         )}
 
-                        {this.state.seeWhiskiesByEnteredName && this.state.whiskiesByName.length > 0 && this.state.whiskiesByName.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} />
+                        {this.state.seeWhiskiesByEnteredName && this.state.whiskiesByName.length > 0 && this.state.whiskiesByName.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
                         )}
                         {this.state.seeWhiskiesByEnteredName && this.state.whiskiesByName.length === 0 &&
                             <Card>

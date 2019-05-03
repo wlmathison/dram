@@ -57,6 +57,21 @@ export default class ApplicationViews extends Component {
         }
     }
 
+    // Function to add a whiskey as a users favorite
+    handleAddFavorite = event => {
+        event.preventDefault()
+        let user = parseInt(sessionStorage.getItem("userId"))
+        const newState = {}
+        FavoritesManager.post(
+            {
+                userId: user,
+                whiskeyId: parseInt(event.target.id)
+            }
+        ).then(() => FavoritesManager.getExpand())
+            .then(favorites => newState.myFavorites = favorites.filter(favorite => favorite.userId === parseInt(sessionStorage.getItem("userId"))))
+            .then(() => this.setState(newState))
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -97,7 +112,7 @@ export default class ApplicationViews extends Component {
                 }} />
                 <Route exact path="/whiskies" render={props => {
                     if (this.isAuthenticated()) {
-                        return <WhiskeyList />
+                        return <WhiskeyList myFavorites={this.state.myFavorites} handleDeleteFavorite={this.handleDeleteFavorite} handleAddFavorite={this.handleAddFavorite} />
                     } else {
                         return <Redirect to="/" />
                     }
