@@ -5,6 +5,7 @@ import UserProfile from "./UserProfile"
 import UserEditForm from "./UserEditForm"
 import UserManager from "./../../modules/UserManager"
 import UpcomingTastingCard from "./UpcomingTastingCard"
+import FavoritesCard from "./FavoritesCard"
 
 export default class Home extends Component {
 
@@ -84,6 +85,7 @@ export default class Home extends Component {
 
                 {this.state.tastingScheduled && <UpcomingTastingCard />
                 }
+                <FavoritesCard />
             </React.Fragment>
         )
     }
