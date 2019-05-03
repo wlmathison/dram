@@ -37,11 +37,11 @@ export default class TastingList extends Component {
 
     componentDidMount() {
         const newState = {}
-        TastingManager.getAll()
+        TastingManager.getExpand()
             .then(tastings => (newState.tastings = tastings))
-            .then(() => TastingSelectionManager.getAll())
+            .then(() => TastingSelectionManager.getExpand())
             .then(tastingSelections => (newState.tastingSelections = tastingSelections))
-            .then(() => TastingAttendanceManager.getAll())
+            .then(() => TastingAttendanceManager.getExpand())
             .then(tastingAttendance => (newState.tastingAttendance = tastingAttendance))
             .then(() => this.setState(newState))
     }

@@ -33,7 +33,7 @@ export default class WhiskeyList extends Component {
 
     componentDidMount() {
         const newState = {}
-        WhiskeyManager.getAll()
+        WhiskeyManager.getExpand()
             .then(whiskies => (newState.whiskies = whiskies))
             .then(() => CategoryManager.getAll())
             .then(categories => (newState.categories = categories))
