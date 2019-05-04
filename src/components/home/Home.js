@@ -85,7 +85,7 @@ export default class Home extends Component {
 
                 {this.state.tastingScheduled && <UpcomingTastingCard />
                 }
-                <FavoritesCard myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} />
+                <FavoritesCard myFavorites={this.props.myFavorites} handleConfirmDeleteFavorite={this.props.handleConfirmDeleteFavorite} />
             </React.Fragment>
         )
     }

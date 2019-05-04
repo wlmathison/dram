@@ -1,7 +1,8 @@
 // Page builds card for favorites to display on home page
 
 import React, { Component } from "react"
-import { Card, CardBody, CardHeader, CardText, Button } from "reactstrap"
+import { Card, CardBody, CardHeader, CardText } from "reactstrap"
+import { IoIosHeart } from 'react-icons/io';
 
 export default class FavoritesCard extends Component {
 
@@ -14,11 +15,13 @@ export default class FavoritesCard extends Component {
                         {this.props.myFavorites.map(favorite =>
                             <Card key={favorite.id}>
                                 <CardBody>
-                                    <CardText>{favorite.whiskey.name}</CardText>
-                                    <Button
+                                    <CardText>{favorite.whiskey.name}                                    <IoIosHeart
                                         id={favorite.id}
-                                        onClick={this.props.handleDeleteFavorite}
-                                    >Delete</Button>
+                                        color="red"
+                                        onClick={() => this.props.handleConfirmDeleteFavorite(favorite.id)}
+                                    ></IoIosHeart>
+                                    </CardText>
+
                                 </CardBody>
                             </Card>
                         )
