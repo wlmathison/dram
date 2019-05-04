@@ -54,6 +54,8 @@ export default class Register extends Component {
                 if (user !== undefined) {
                     sessionStorage.setItem("userId", user.id)
                     sessionStorage.setItem("userName", user.userName)
+                    sessionStorage.setItem("userTypeId", user.userTypeId)
+
                 }
             }).then(() => {
                 this.props.history.push("/home")

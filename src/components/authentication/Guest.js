@@ -55,12 +55,16 @@ export default class Guest extends Component {
                     })
                     sessionStorage.setItem("userId", user.id)
                     sessionStorage.setItem("userName", user.userName)
+                    sessionStorage.setItem("userTypeId", user.userTypeId)
+
                 } else {
                     let user = this.props.users.find(user => {
                         return user.userName === this.state.userName && user.password === this.state.password
                     })
                     sessionStorage.setItem("userId", user.id)
                     sessionStorage.setItem("userName", user.userName)
+                    sessionStorage.setItem("userTypeId", user.userTypeId)
+
                 }
             }).then(() => {
                 this.props.history.push("/home")

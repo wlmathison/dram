@@ -24,11 +24,18 @@ export default class NavBar extends Component {
         }))
     }
 
+    closeNav = () => {
+        this.setState({
+            isOpen: false
+        })
+    }
+
     render() {
         return (
             <React.Fragment>
                 <Navbar light expand="md">
                     <NavbarBrand>dram</NavbarBrand>
+                    <NavLink tag={Link} to="/home" onClick={this.closeNav}>{sessionStorage.getItem("userName")}</NavLink>
                     <NavbarToggler onClick={this.toggleNav} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav navbar>

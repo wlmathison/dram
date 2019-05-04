@@ -1,4 +1,4 @@
-// Page build card for upcoming tasting to display on home page
+// Page builds card for upcoming tasting to display on home page
 
 import React, { Component } from "react"
 import TastingManager from "../../modules/TastingManager"
