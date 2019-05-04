@@ -2,6 +2,7 @@
 
 import React, { Component } from "react"
 import { Card, CardBody, CardTitle, CardText, Button } from "reactstrap"
+import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io';
 
 
 export default class ReviewIndividualCard extends Component {
@@ -22,18 +23,18 @@ export default class ReviewIndividualCard extends Component {
                 <React.Fragment>
                     <Card>
                         <CardBody>
-                            <CardTitle>Whiskey: {this.props.tastingSelections[id].whiskey.name}
+                            <CardTitle>Whiskey: {this.props.tastingSelections[id].whiskey.name} {" "}
                                 {isMyFavorite &&
-                                    <Button
+                                    <IoIosHeart
                                         id={favoriteId}
-                                        onClick={this.props.handleDeleteFavorite}
-                                    >
-                                        Delete</Button>}
+                                        color="red"
+                                        onClick={() => this.props.handleDeleteFavorite(favoriteId)}
+                                    ></IoIosHeart>}
                                 {!isMyFavorite &&
-                                    <Button
+                                    <IoIosHeartEmpty
                                         id={this.props.tastingSelections[id].whiskey.id}
-                                        onClick={this.props.handleAddFavorite}
-                                    >Add</Button>}
+                                        onClick={() => this.props.handleAddFavorite(this.props.tastingSelections[id].whiskey.id)}
+                                    ></IoIosHeartEmpty>}
                             </CardTitle>
                             <CardText>Reviewed by: {this.props.review.user.userName}</CardText>
                             <CardText>At Tasting: {this.props.tastingSelections[id].tasting.theme}</CardText>
@@ -57,17 +58,18 @@ export default class ReviewIndividualCard extends Component {
                 <React.Fragment>
                     <Card>
                         <CardBody>
-                            <CardTitle>Whiskey: {this.props.tastingSelections[id].whiskey.name}
+                            <CardTitle>Whiskey: {this.props.tastingSelections[id].whiskey.name} {" "}
                                 {isMyFavorite &&
-                                    <Button
+                                    <IoIosHeart
                                         id={favoriteId}
-                                        onClick={this.props.handleDeleteFavorite}
-                                    >Delete</Button>}
+                                        color="red"
+                                        onClick={() => this.props.handleDeleteFavorite(favoriteId)}
+                                    ></IoIosHeart>}
                                 {!isMyFavorite &&
-                                    <Button
+                                    <IoIosHeartEmpty
                                         id={this.props.tastingSelections[id].whiskey.id}
-                                        onClick={this.props.handleAddFavorite}
-                                    >Add</Button>}
+                                        onClick={() => this.props.handleAddFavorite(this.props.tastingSelections[id].whiskey.id)}
+                                    ></IoIosHeartEmpty>}
                             </CardTitle>
                             <CardText>Reviewed by: {this.props.review.user.userName}</CardText>
                             <CardText>At Tasting: {this.props.tastingSelections[id].tasting.theme}</CardText>

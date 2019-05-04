@@ -46,21 +46,19 @@ export default class ApplicationViews extends Component {
     }
 
     // Function to delete a whiskey as a users favorite
-    handleDeleteFavorite = event => {
-        event.preventDefault()
+    handleDeleteFavorite = id => {
         const newState = {}
-        FavoritesManager.delete(event.target.id)
+        FavoritesManager.delete(id)
             .then(() => FavoritesManager.getExpand())
             .then(favorites => newState.myFavorites = favorites.filter(favorite => favorite.userId === parseInt(sessionStorage.getItem("userId"))))
             .then(() => this.setState(newState))
     }
 
     // Function to delete a whiskey as a users favorite
-    handleConfirmDeleteFavorite = event => {
-        event.preventDefault()
+    handleConfirmDeleteFavorite = id => {
         const newState = {}
         if (window.confirm("Are you sure you want to delete this favorite")) {
-            FavoritesManager.delete(event.target.id)
+            FavoritesManager.delete(id)
                 .then(() => FavoritesManager.getExpand())
                 .then(favorites => newState.myFavorites = favorites.filter(favorite => favorite.userId === parseInt(sessionStorage.getItem("userId"))))
                 .then(() => this.setState(newState))
@@ -68,14 +66,13 @@ export default class ApplicationViews extends Component {
     }
 
     // Function to add a whiskey as a users favorite
-    handleAddFavorite = event => {
-        event.preventDefault()
+    handleAddFavorite = id => {
         let user = parseInt(sessionStorage.getItem("userId"))
         const newState = {}
         FavoritesManager.post(
             {
                 userId: user,
-                whiskeyId: parseInt(event.target.id)
+                whiskeyId: parseInt(id)
             }
         ).then(() => FavoritesManager.getExpand())
             .then(favorites => newState.myFavorites = favorites.filter(favorite => favorite.userId === parseInt(sessionStorage.getItem("userId"))))

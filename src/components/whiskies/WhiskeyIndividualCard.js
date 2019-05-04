@@ -1,7 +1,8 @@
 // Page build an individual card to display a single whiskey
 
 import React, { Component } from "react"
-import { Card, CardBody, CardTitle, CardText, Button } from "reactstrap"
+import { Card, CardBody, CardTitle, CardText } from "reactstrap"
+import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io';
 
 export default class WhiskeyIndividualCard extends Component {
     render() {
@@ -11,11 +12,12 @@ export default class WhiskeyIndividualCard extends Component {
                 <React.Fragment>
                     <Card>
                         <CardBody>
-                            <CardTitle>{this.props.whiskey.name}</CardTitle>
-                            < Button
+                            <CardTitle>{this.props.whiskey.name}                            <IoIosHeart
                                 id={favoriteId}
-                                onClick={this.props.handleDeleteFavorite}
-                            > Delete</Button >
+                                color="red"
+                                onClick={() => this.props.handleDeleteFavorite(favoriteId)}
+                            ></IoIosHeart>
+                            </CardTitle>
                             <CardText>Size: {this.props.whiskey.size}</CardText>
                             <CardText>Price: ${this.props.whiskey.price}</CardText>
                             <CardText>Proof: {this.props.whiskey.proof}</CardText>
@@ -31,11 +33,11 @@ export default class WhiskeyIndividualCard extends Component {
                 <React.Fragment>
                     <Card>
                         <CardBody>
-                            <CardTitle>{this.props.whiskey.name}</CardTitle>
-                            < Button
+                            <CardTitle>{this.props.whiskey.name}                            <IoIosHeartEmpty
                                 id={this.props.whiskey.id}
-                                onClick={this.props.handleAddFavorite}
-                            > Add</Button >
+                                onClick={() => this.props.handleAddFavorite(this.props.whiskey.id)}
+                            ></IoIosHeartEmpty>
+                            </CardTitle>
                             <CardText>Size: {this.props.whiskey.size}</CardText>
                             <CardText>Price: ${this.props.whiskey.price}</CardText>
                             <CardText>Proof: {this.props.whiskey.proof}</CardText>
