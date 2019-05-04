@@ -4,31 +4,32 @@ import React, { Component } from "react"
 import UserProfile from "./UserProfile"
 import UserEditForm from "./UserEditForm"
 import UserManager from "./../../modules/UserManager"
+import TastingManager from "./../../modules/TastingManager"
 import UpcomingTastingCard from "./UpcomingTastingCard"
 import FavoritesCard from "./FavoritesCard"
+import JoinActiveTastingCard from "./JoinActiveTastingCard"
 
 export default class Home extends Component {
 
     state = {
-        user: "",
+        user: {},
         editUser: false,
         showProfile: true,
-        tastingScheduled: true
+        tastingScheduled: true,
+        activeTasting: {}
     }
 
     componentDidMount() {
+        const newState = {}
         UserManager.get(sessionStorage.getItem("userId"))
             .then(user => {
-                this.setState({
-                    id: user.id,
-                    userName: user.userName,
-                    password: user.password,
-                    email: user.email,
-                    phoneNumber: user.phoneNumber,
-                    userTypeId: user.userTypeId,
-                    isActive: user.isActive
-                })
-            })
+                newState.user = user
+            }).then(() => TastingManager.getAll())
+            .then(tastings => {
+                if (tastings.some(tasting => tasting.active)) {
+                    newState.activeTasting = tastings.find(tasting => tasting.active)
+                }
+            }).then(() => this.setState(newState))
     }
 
     // Function to change state of editUser when button clicked
@@ -75,17 +76,24 @@ export default class Home extends Component {
         }
     }
 
+    handleJoinActiveTasting = event => {
+        event.preventDefault()
+    }
+
     render() {
         return (
             <React.Fragment>
+                {this.state.activeTasting && <JoinActiveTastingCard activeTasting={this.activeTasting} />
+                }
                 {this.state.editUser && <UserEditForm userName={this.state.userName} email={this.state.email} phoneNumber={this.state.phoneNumber} password={this.state.password} handleDeactivateAccount={this.handleDeactivateAccount} handleSaveEditProfile={this.handleSaveEditProfile} handleFieldChange={this.handleFieldChange} />
                 }
 
                 {this.state.showProfile && <UserProfile userName={this.state.userName} email={this.state.email} phoneNumber={this.state.phoneNumber} handleEdit={this.handleEdit} />}
 
-                {this.state.tastingScheduled && <UpcomingTastingCard />
+                {this.state.tastingScheduled && (parseInt(sessionStorage.getItem("userTypeId")) === 1 || parseInt(sessionStorage.getItem("userTypeId")) === 2) && <UpcomingTastingCard />
                 }
-                <FavoritesCard myFavorites={this.props.myFavorites} handleConfirmDeleteFavorite={this.props.handleConfirmDeleteFavorite} />
+                {(parseInt(sessionStorage.getItem("userTypeId")) === 1 || parseInt(sessionStorage.getItem("userTypeId")) === 2) && <FavoritesCard myFavorites={this.props.myFavorites} handleConfirmDeleteFavorite={this.props.handleConfirmDeleteFavorite} />
+                }
             </React.Fragment>
         )
     }
