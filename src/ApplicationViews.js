@@ -14,7 +14,9 @@ import ReviewList from "./components/reviews/ReviewList"
 export default class ApplicationViews extends Component {
     state = {
         users: [],
-        myFavorites: []
+        myFavorites: [],
+        ratings: [],
+        tastingCompleted: false
     }
 
     componentDidMount() {
@@ -79,12 +81,19 @@ export default class ApplicationViews extends Component {
             .then(() => this.setState(newState))
     }
 
+    // Function to handle user clicking Submit Tasting Form button and change status of tastingCompleted to hide ActiveTastingModal
+    handleClearTastingForm = event => {
+        this.setState({
+            tastingCompleted: true
+        })
+    }
+
     render() {
         return (
             <React.Fragment>
                 <Route path="/home" render={props => {
                     if (this.isAuthenticated()) {
-                        return <Home {...props} myFavorites={this.state.myFavorites} handleConfirmDeleteFavorite={this.handleConfirmDeleteFavorite} />
+                        return <Home {...props} myFavorites={this.state.myFavorites} handleConfirmDeleteFavorite={this.handleConfirmDeleteFavorite} handleClearTastingForm={this.handleClearTastingForm} tastingCompleted={this.state.tastingCompleted} />
                     } else {
                         return <Redirect to="/" />
                     }

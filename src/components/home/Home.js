@@ -7,7 +7,7 @@ import UserManager from "./../../modules/UserManager"
 import TastingManager from "./../../modules/TastingManager"
 import UpcomingTastingCard from "./UpcomingTastingCard"
 import FavoritesCard from "./FavoritesCard"
-import JoinActiveTastingCard from "./JoinActiveTastingCard"
+import ActiveTastingModal from "./ActiveTastingModal"
 
 export default class Home extends Component {
 
@@ -16,7 +16,10 @@ export default class Home extends Component {
         editUser: false,
         showProfile: true,
         tastingScheduled: true,
-        activeTasting: {}
+        activeTasting: {},
+        isActive: false,
+        review: "",
+        rating: ""
     }
 
     componentDidMount() {
@@ -24,10 +27,11 @@ export default class Home extends Component {
         UserManager.get(sessionStorage.getItem("userId"))
             .then(user => {
                 newState.user = user
-            }).then(() => TastingManager.getAll())
+            }).then(() => TastingManager.getExpand())
             .then(tastings => {
                 if (tastings.some(tasting => tasting.active)) {
                     newState.activeTasting = tastings.find(tasting => tasting.active)
+                    newState.isActive = true
                 }
             }).then(() => this.setState(newState))
     }
@@ -76,18 +80,14 @@ export default class Home extends Component {
         }
     }
 
-    handleJoinActiveTasting = event => {
-        event.preventDefault()
-    }
 
     render() {
         return (
             <React.Fragment>
-                {this.state.activeTasting && <JoinActiveTastingCard activeTasting={this.activeTasting} />
+                {this.state.isActive && !this.props.tastingCompleted && <ActiveTastingModal handleJoinActiveTasting={this.handleJoinActiveTasting} activeTasting={this.state.activeTasting} handleClearTastingForm={this.props.handleClearTastingForm} />
                 }
                 {this.state.editUser && <UserEditForm userName={this.state.userName} email={this.state.email} phoneNumber={this.state.phoneNumber} password={this.state.password} handleDeactivateAccount={this.handleDeactivateAccount} handleSaveEditProfile={this.handleSaveEditProfile} handleFieldChange={this.handleFieldChange} />
                 }
-
                 {this.state.showProfile && <UserProfile userName={this.state.userName} email={this.state.email} phoneNumber={this.state.phoneNumber} handleEdit={this.handleEdit} />}
 
                 {this.state.tastingScheduled && (parseInt(sessionStorage.getItem("userTypeId")) === 1 || parseInt(sessionStorage.getItem("userTypeId")) === 2) && <UpcomingTastingCard />
