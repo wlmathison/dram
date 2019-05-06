@@ -17,7 +17,7 @@ export default class Home extends Component {
         showProfile: true,
         tastingScheduled: true,
         activeTasting: {},
-        isActive: false,
+        tastingIsActive: false,
         review: "",
         rating: ""
     }
@@ -26,12 +26,20 @@ export default class Home extends Component {
         const newState = {}
         UserManager.get(sessionStorage.getItem("userId"))
             .then(user => {
-                newState.user = user
+                return (newState.user = user,
+                    newState.id = user.id,
+                    newState.userName = user.userName,
+                    newState.password = user.password,
+                    newState.email = user.email,
+                    newState.phoneNumber = user.phoneNumber,
+                    newState.userTypeId = user.userTypeId,
+                    newState.isActive = user.isActive
+                )
             }).then(() => TastingManager.getExpand())
             .then(tastings => {
                 if (tastings.some(tasting => tasting.active)) {
                     newState.activeTasting = tastings.find(tasting => tasting.active)
-                    newState.isActive = true
+                    newState.tastingIsActive = true
                 }
             }).then(() => this.setState(newState))
     }
@@ -48,6 +56,13 @@ export default class Home extends Component {
         this.setState({
             editUser: true,
             showProfile: false
+        })
+    }
+
+    handleCancelEdit = event => {
+        this.setState({
+            editUser: false,
+            showProfile: true
         })
     }
 
@@ -84,9 +99,9 @@ export default class Home extends Component {
     render() {
         return (
             <React.Fragment>
-                {this.state.isActive && !this.props.tastingCompleted && <ActiveTastingModal handleJoinActiveTasting={this.handleJoinActiveTasting} activeTasting={this.state.activeTasting} handleClearTastingForm={this.props.handleClearTastingForm} />
+                {this.state.tastingIsActive && !this.props.tastingCompleted && <ActiveTastingModal handleJoinActiveTasting={this.handleJoinActiveTasting} activeTasting={this.state.activeTasting} handleClearTastingForm={this.props.handleClearTastingForm} />
                 }
-                {this.state.editUser && <UserEditForm userName={this.state.userName} email={this.state.email} phoneNumber={this.state.phoneNumber} password={this.state.password} handleDeactivateAccount={this.handleDeactivateAccount} handleSaveEditProfile={this.handleSaveEditProfile} handleFieldChange={this.handleFieldChange} />
+                {this.state.editUser && <UserEditForm userName={this.state.userName} email={this.state.email} phoneNumber={this.state.phoneNumber} password={this.state.password} handleDeactivateAccount={this.handleDeactivateAccount} handleSaveEditProfile={this.handleSaveEditProfile} handleFieldChange={this.handleFieldChange} handleCancelEdit={this.handleCancelEdit} />
                 }
                 {this.state.showProfile && <UserProfile userName={this.state.userName} email={this.state.email} phoneNumber={this.state.phoneNumber} handleEdit={this.handleEdit} />}
 

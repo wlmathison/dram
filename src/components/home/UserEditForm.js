@@ -57,6 +57,11 @@ export default class UserEditForm extends Component {
                     </CardBody>
                     <CardFooter>
                         <Button
+                            onClick={this.props.handleCancelEdit}
+                        >
+                            Cancel
+                            </Button>{" "}
+                        <Button
                             onClick={this.props.handleSaveEditProfile}
                         >
                             Save Profile
