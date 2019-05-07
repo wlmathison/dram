@@ -72,7 +72,7 @@ export default class IndividualResultCard extends Component {
                             ></IoIosHeartEmpty>
                         </CardTitle>
                         <div>
-                            <CardText>Rating:</CardText>
+                            <CardText>Average Rating:</CardText>
                             <StarRatingComponent
                                 name={"rating"}
                                 starCount={5}
