@@ -12,7 +12,7 @@ export default class FavoritesCard extends Component {
                 <Card>
                     <CardHeader>Favorites</CardHeader>
                     <CardBody>
-                        {this.props.myFavorites.map(favorite =>
+                        {this.props.myFavorites !== undefined && this.props.myFavorites.map(favorite =>
                             <Card key={favorite.id}>
                                 <CardBody>
                                     <CardText>{favorite.whiskey.name}                                    <IoIosHeart

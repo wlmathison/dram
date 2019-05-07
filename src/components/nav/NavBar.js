@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 export default class NavBar extends Component {
 
     state = {
-        isOpen: false,
+        isOpen: false
     }
 
     toggleNav = () => {
@@ -43,6 +43,8 @@ export default class NavBar extends Component {
                             <NavLink tag={Link} to="/whiskies" onClick={this.toggleNav}>Whiskies</NavLink>
                             <NavLink tag={Link} to="/tastings" onClick={this.toggleNav}>Tastings</NavLink>
                             <NavLink tag={Link} to="/reviews" onClick={this.toggleNav}>Reviews</NavLink>
+                            {sessionStorage.getItem("tastingCompleted") && <NavLink tag={Link} to="/results" onClick={this.toggleNav}>Results</NavLink>
+                            }
                             <Button tag={Link} to="/" onClick={this.handleLogOut} size="sm">Log Out</Button>
                         </Nav>
                     </Collapse>

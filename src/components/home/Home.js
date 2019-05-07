@@ -6,29 +6,33 @@ import UserEditForm from "./UserEditForm"
 import UserManager from "./../../modules/UserManager"
 import UpcomingTastingCard from "./UpcomingTastingCard"
 import FavoritesCard from "./FavoritesCard"
+import ActiveTastingModal from "./ActiveTastingModal"
 
 export default class Home extends Component {
 
     state = {
-        user: "",
+        user: {},
         editUser: false,
         showProfile: true,
-        tastingScheduled: true
+        tastingScheduled: true,
+        review: "",
+        rating: ""
     }
 
     componentDidMount() {
+        const newState = {}
         UserManager.get(sessionStorage.getItem("userId"))
             .then(user => {
-                this.setState({
-                    id: user.id,
-                    userName: user.userName,
-                    password: user.password,
-                    email: user.email,
-                    phoneNumber: user.phoneNumber,
-                    userTypeId: user.userTypeId,
-                    isActive: user.isActive
-                })
-            })
+                return (newState.user = user,
+                    newState.id = user.id,
+                    newState.userName = user.userName,
+                    newState.password = user.password,
+                    newState.email = user.email,
+                    newState.phoneNumber = user.phoneNumber,
+                    newState.userTypeId = user.userTypeId,
+                    newState.isActive = user.isActive
+                )
+            }).then(() => this.setState(newState))
     }
 
     // Function to change state of editUser when button clicked
@@ -43,6 +47,13 @@ export default class Home extends Component {
         this.setState({
             editUser: true,
             showProfile: false
+        })
+    }
+
+    handleCancelEdit = event => {
+        this.setState({
+            editUser: false,
+            showProfile: true
         })
     }
 
@@ -70,22 +81,29 @@ export default class Home extends Component {
                 sessionStorage.clear()
                 localStorage.clear()
             }).then(() => {
+                this.props.updateApplicationViewsState()
                 this.props.history.push("/")
             })
         }
     }
 
+    pushResults = event => {
+        this.props.history.push("/results")
+    }
+
     render() {
         return (
             <React.Fragment>
-                {this.state.editUser && <UserEditForm userName={this.state.userName} email={this.state.email} phoneNumber={this.state.phoneNumber} password={this.state.password} handleDeactivateAccount={this.handleDeactivateAccount} handleSaveEditProfile={this.handleSaveEditProfile} handleFieldChange={this.handleFieldChange} />
+                {this.props.tastingIsActive && !sessionStorage.getItem("tastingCompleted") && <ActiveTastingModal handleJoinActiveTasting={this.handleJoinActiveTasting} activeTasting={this.props.activeTasting} pushResults={this.pushResults}/>
                 }
-
+                {this.state.editUser && <UserEditForm userName={this.state.userName} email={this.state.email} phoneNumber={this.state.phoneNumber} password={this.state.password} handleDeactivateAccount={this.handleDeactivateAccount} handleSaveEditProfile={this.handleSaveEditProfile} handleFieldChange={this.handleFieldChange} handleCancelEdit={this.handleCancelEdit} />
+                }
                 {this.state.showProfile && <UserProfile userName={this.state.userName} email={this.state.email} phoneNumber={this.state.phoneNumber} handleEdit={this.handleEdit} />}
 
-                {this.state.tastingScheduled && <UpcomingTastingCard />
+                {this.state.tastingScheduled && (parseInt(sessionStorage.getItem("userTypeId")) === 1 || parseInt(sessionStorage.getItem("userTypeId")) === 2) && <UpcomingTastingCard />
                 }
-                <FavoritesCard myFavorites={this.props.myFavorites} handleConfirmDeleteFavorite={this.props.handleConfirmDeleteFavorite} />
+                {(parseInt(sessionStorage.getItem("userTypeId")) === 1 || parseInt(sessionStorage.getItem("userTypeId")) === 2) && <FavoritesCard myFavorites={this.props.myFavorites} handleConfirmDeleteFavorite={this.props.handleConfirmDeleteFavorite} />
+                }
             </React.Fragment>
         )
     }
