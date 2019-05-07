@@ -50,6 +50,7 @@ export default class Home extends Component {
         })
     }
 
+    // Function to handle user clicking cancel button and show profile instead of edit form
     handleCancelEdit = event => {
         this.setState({
             editUser: false,
@@ -87,6 +88,7 @@ export default class Home extends Component {
         }
     }
 
+    // Function to send user to results page
     pushResults = event => {
         this.props.history.push("/results")
     }
@@ -94,6 +96,8 @@ export default class Home extends Component {
     render() {
         return (
             <React.Fragment>
+                {/* Below are multiple conditional rendering statements to display the imported file depending on the state(whish is listed first) */}
+                
                 {this.props.tastingIsActive && !sessionStorage.getItem("tastingCompleted") && <ActiveTastingModal handleJoinActiveTasting={this.handleJoinActiveTasting} activeTasting={this.props.activeTasting} pushResults={this.pushResults}/>
                 }
                 {this.state.editUser && <UserEditForm userName={this.state.userName} email={this.state.email} phoneNumber={this.state.phoneNumber} password={this.state.password} handleDeactivateAccount={this.handleDeactivateAccount} handleSaveEditProfile={this.handleSaveEditProfile} handleFieldChange={this.handleFieldChange} handleCancelEdit={this.handleCancelEdit} />

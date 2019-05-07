@@ -11,19 +11,26 @@ export default class UserProfile extends Component {
                 <Card>
                     <CardHeader>My Profile</CardHeader>
                     <CardBody>
-                        <CardTitle>                    <CardImg src="http://www.clker.com/cliparts/5/7/4/8/13099629981030824019profile.svg.med.png"></CardImg></CardTitle>
+                        <CardTitle>
+                            <CardImg src="http://www.clker.com/cliparts/5/7/4/8/13099629981030824019profile.svg.med.png"></CardImg>
+                        </CardTitle>
                         <CardText>
                             Username: {this.props.userName}
                         </CardText>
                         <CardText>
                             Email address: {this.props.email}
                         </CardText>
-                        <CardText>
-                            Phone Number: {this.props.phoneNumber}
+                        {/* Conditional rendering only if user has user or admin account */}
+                        {(parseInt(sessionStorage.getItem("userTypeId")) === 1 || parseInt(sessionStorage.getItem("userTypeId")) === 2) &&
+                            <React.Fragment>
+                                <CardText>
+                                    Phone Number: {this.props.phoneNumber}
+                                </CardText>
+                                <CardText>
+                                    Password: ******
                         </CardText>
-                        <CardText>
-                            Password: ******
-                        </CardText>
+                            </React.Fragment>
+                        }
                     </CardBody>
                     <CardFooter>
                         <Button

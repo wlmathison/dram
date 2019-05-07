@@ -33,26 +33,30 @@ export default class UserEditForm extends Component {
                                     value={this.props.email}
                                 />
                             </FormGroup>
-                            <FormGroup>
-                                <Label htmlFor="phoneNumber">Phone Number</Label>
-                                <Input
-                                    required
-                                    type="text"
-                                    id="phoneNumber"
-                                    onChange={this.props.handleFieldChange}
-                                    value={this.props.phoneNumber}
-                                />
-                            </FormGroup>
-                            {(parseInt(sessionStorage.getItem("userTypeId")) === 1 || parseInt(sessionStorage.getItem("userTypeId")) === 2) && <FormGroup>
-                                <Label htmlFor="password">Password</Label>
-                                <Input
-                                    required
-                                    type="text"
-                                    id="password"
-                                    onChange={this.props.handleFieldChange}
-                                    value={this.props.password}
-                                />
-                            </FormGroup>
+                            {/* Conditional rendering only if user has user or admin account */}
+                            {(parseInt(sessionStorage.getItem("userTypeId")) === 1 || parseInt(sessionStorage.getItem("userTypeId")) === 2) &&
+                                <React.Fragment>
+                                    <FormGroup>
+                                        <Label htmlFor="phoneNumber">Phone Number</Label>
+                                        <Input
+                                            required
+                                            type="text"
+                                            id="phoneNumber"
+                                            onChange={this.props.handleFieldChange}
+                                            value={this.props.phoneNumber}
+                                        />
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Label htmlFor="password">Password</Label>
+                                        <Input
+                                            required
+                                            type="text"
+                                            id="password"
+                                            onChange={this.props.handleFieldChange}
+                                            value={this.props.password}
+                                        />
+                                    </FormGroup>
+                                </React.Fragment>
                             }
                         </Form>
                     </CardBody>

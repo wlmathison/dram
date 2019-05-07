@@ -47,6 +47,7 @@ export default class ReviewIndividualCard extends Component {
                     <Card>
                         <CardBody>
                             <CardTitle>Whiskey: {this.props.tastingSelections[id].whiskey.name} {" "}
+                                {/* Conditionally rendering depending on whether the whiskey has been saved as a favorite or not */}
                                 {isMyFavorite &&
                                     <IoIosHeart
                                         id={favoriteId}
@@ -90,6 +91,7 @@ export default class ReviewIndividualCard extends Component {
                     <Card>
                         <CardBody>
                             <CardTitle>Whiskey: {this.props.tastingSelections[id].whiskey.name} {" "}
+                                {/* Conditionally rendering depending on whether the whiskey has been saved as a favorite or not */}
                                 {isMyFavorite &&
                                     <IoIosHeart
                                         id={favoriteId}

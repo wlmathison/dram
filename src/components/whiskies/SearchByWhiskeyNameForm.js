@@ -16,7 +16,6 @@ export default class SearchByWhiskeyNameForm extends Component {
         this.setState(stateToChange)
     }
 
-
     render() {
         return (
             <React.Fragment>
@@ -41,7 +40,6 @@ export default class SearchByWhiskeyNameForm extends Component {
                         onClick={this.props.handleCancel}
                         >Cancel</Button>
                     </Form>
-
                 </CardBody>
             </React.Fragment>
         )

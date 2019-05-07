@@ -19,6 +19,7 @@ export default class ActiveTastingModal extends Component {
         this.setState(stateToChange)
     }
 
+    // Function to toggle state of modal between false and true
     toggle = () => {
         this.setState(prevState => ({
             modal: !prevState.modal

@@ -209,6 +209,7 @@ export default class ReviewList extends Component {
                             Search Reviews
                             </Button>}</CardHeader>
                     <CardBody>
+                        {/* Below are multiple conditional rendering statements to display the imported file depending on the state(whish is listed first) */}
                         {this.state.isSearching &&
                             <ReviewSearchForm handleSearchAllReviews={this.handleSearchAllReviews} handleSearchReviewsByWhiskey={this.handleSearchReviewsByWhiskey} handleSearchReviewsByUser={this.handleSearchReviewsByUser} handleSearchReviewsByTasting={this.handleSearchReviewsByTasting} />
                         }

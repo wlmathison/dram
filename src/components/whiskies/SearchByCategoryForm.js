@@ -9,6 +9,7 @@ export default class SearchByCategoryForm extends Component {
         dropdownOpen: false
     }
 
+    // Function to toggle state of dropdown
     toggle = () => {
         this.setState(prevState => ({
             dropdownOpen: !prevState.dropdownOpen
@@ -29,7 +30,7 @@ export default class SearchByCategoryForm extends Component {
                         </DropdownMenu>
                     </Dropdown> {" "}
                     <Button
-                    onClick={this.props.handleCancel}
+                        onClick={this.props.handleCancel}
                     >Cancel</Button>
                 </CardBody>
             </React.Fragment>
