@@ -158,6 +158,7 @@ export default class WhiskeyList extends Component {
                             </Button>}
                     </CardHeader>
                     <CardBody>
+                        {/* Below are multiple conditional rendering statements to display the imported file depending on the state(whish is listed first) */}
                         {this.state.isSearching &&
                             <WhiskeySearchForm
                                 handleSearchAllWhiskies={this.handleSearchAllWhiskies} handleSearchWhiskiesByCategory={this.handleSearchWhiskiesByCategory} handleSearchWhiskiesByDistillery={this.handleSearchWhiskiesByDistillery}

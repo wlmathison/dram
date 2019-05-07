@@ -28,6 +28,7 @@ export default class ApplicationViews extends Component {
         this.updateApplicationViewsState()
     }
 
+    // Function to update all states of ApplicationViews both when mounting and after login
     updateApplicationViewsState = () => {
         const newState = {}
         UserManager.getAll()
@@ -46,7 +47,7 @@ export default class ApplicationViews extends Component {
             .then(() => this.setState(newState))
     }
 
-
+    // Function to verify that a user is logged in and has their userId in session storage
     isAuthenticated = () => {
         if (sessionStorage.getItem("userId") !== null) {
             return true

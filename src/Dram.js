@@ -14,6 +14,7 @@ export default class Dram extends Component {
         })
     }
 
+    // Function to update state of userName
     updateUserName = () => {
         this.setState({
             userName: sessionStorage.getItem("userName")

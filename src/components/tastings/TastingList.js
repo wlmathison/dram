@@ -187,6 +187,7 @@ export default class TastingList extends Component {
                             </Button>}
                     </CardHeader>
                     <CardBody>
+                        {/* Below are multiple conditional rendering statements to display the imported file depending on the state(whish is listed first) */}
                         {this.state.isSearching &&
                             <TastingSearchForm handleSearchAllTastings={this.handleSearchAllTastings} handleSearchTastingsByDate={this.handleSearchTastingsByDate} handleSearchTastingsByTheme={this.handleSearchTastingsByTheme} handleSearchTastingsByWhiskey={this.handleSearchTastingsByWhiskey} handleSearchTastingsByUser={this.handleSearchTastingsByUser} />
                         }

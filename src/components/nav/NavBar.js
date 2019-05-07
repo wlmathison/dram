@@ -25,6 +25,7 @@ export default class NavBar extends Component {
         this.props.updateUserName()
     }
 
+    // Function to close the navbar
     closeNav = () => {
         this.setState({
             isOpen: false
@@ -44,7 +45,8 @@ export default class NavBar extends Component {
                             <NavLink tag={Link} to="/whiskies" onClick={this.toggleNav}>Whiskies</NavLink>
                             <NavLink tag={Link} to="/tastings" onClick={this.toggleNav}>Tastings</NavLink>
                             <NavLink tag={Link} to="/reviews" onClick={this.toggleNav}>Reviews</NavLink>
-                            {sessionStorage.getItem("tastingCompleted") && <NavLink tag={Link} to="/results" onClick={this.toggleNav}>Results</NavLink>
+                            {/* Conidtionally rendering link to tasting results if user has submitted their tasting review */}
+                            {sessionStorage.getItem("tastingCompleted") && <NavLink tag={Link} to="/results" onClick={this.toggleNav}>Tasting Results</NavLink>
                             }
                             <Button tag={Link} to="/" onClick={this.handleLogOut} size="sm">Log Out</Button>
                         </Nav>

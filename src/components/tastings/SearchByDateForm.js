@@ -9,6 +9,7 @@ export default class SearchByDateForm extends Component {
         dropdownOpen: false
     }
 
+    // Function to toggle state of dropdown
     toggle = () => {
         this.setState(prevState => ({
             dropdownOpen: !prevState.dropdownOpen

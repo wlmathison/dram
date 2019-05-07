@@ -18,6 +18,7 @@ export default class SearchByWhiskeyForm extends Component {
             .then(() => this.setState(newState))
     }
 
+    // Function to toggle state of dropdown
     toggle = () => {
         this.setState(prevState => ({
             dropdownOpen: !prevState.dropdownOpen

@@ -9,10 +9,7 @@ export default class SearchByUserForm extends Component {
         dropdownOpen: false
     }
 
-    componentDidMount() {
-
-    }
-
+    // Function to toggle state of dropdown
     toggle = () => {
         this.setState(prevState => ({
             dropdownOpen: !prevState.dropdownOpen
