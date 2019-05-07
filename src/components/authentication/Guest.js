@@ -67,6 +67,8 @@ export default class Guest extends Component {
 
                 }
             }).then(() => {
+                this.props.updateApplicationViewsState()
+                this.props.updateUserName()
                 this.props.history.push("/home")
             })
         }

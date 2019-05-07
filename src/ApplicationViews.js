@@ -121,21 +121,21 @@ export default class ApplicationViews extends Component {
                     if (this.isAuthenticated()) {
                         return <Redirect to="/home" />
                     } else {
-                        return <Login users={this.state.users} {...props} updateApplicationViewsState={this.updateApplicationViewsState} />
+                        return <Login users={this.state.users} {...props} updateApplicationViewsState={this.updateApplicationViewsState} updateUserName={this.props.updateUserName} />
                     }
                 }} />
                 <Route path="/register" render={props => {
                     if (this.isAuthenticated()) {
                         return <Redirect to="/home" />
                     } else {
-                        return <Register users={this.state.users} {...props} postNewUser={this.postNewUser} />
+                        return <Register users={this.state.users} {...props} postNewUser={this.postNewUser} updateApplicationViewsState={this.updateApplicationViewsState} updateUserName={this.props.updateUserName} />
                     }
                 }} />
                 <Route path="/guest" render={props => {
                     if (this.isAuthenticated()) {
                         return <Redirect to="/home" />
                     } else {
-                        return <Guest users={this.state.users} {...props} postNewUser={this.postNewUser} />
+                        return <Guest users={this.state.users} {...props} postNewUser={this.postNewUser} updateApplicationViewsState={this.updateApplicationViewsState} updateUserName={this.props.updateUserName}/>
                     }
                 }} />
                 <Route exact path="/whiskies" render={props => {

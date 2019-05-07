@@ -4,11 +4,26 @@ import ApplicationViews from "./ApplicationViews"
 
 export default class Dram extends Component {
 
+    state = {
+        uesrName: ""
+    }
+
+    componentDidMount() {
+        this.setState({
+            userName: sessionStorage.getItem("userName")
+        })
+    }
+
+    updateUserName = () => {
+        this.setState({
+            userName: sessionStorage.getItem("userName")
+        })
+    }
     render() {
         return (
             <React.Fragment>
-                <Navbar />
-                <ApplicationViews />
+                <Navbar userName={this.state.userName} updateUserName={this.updateUserName} />
+                <ApplicationViews updateUserName={this.updateUserName} />
             </React.Fragment>
         )
     }
