@@ -70,7 +70,7 @@ export default class ActiveTastingModal extends Component {
                         <Button
                             color="success"
                             onClick={this.toggle}
-                        >Join Tasting
+                          >Join Tasting
                             </Button>
                         <Modal isOpen={this.state.modal} toggle={this.toggle}>
                             <ModalHeader toggle={this.toggle}>{this.props.activeTasting.date} Tasting

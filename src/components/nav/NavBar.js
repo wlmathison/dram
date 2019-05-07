@@ -2,6 +2,8 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import { Navbar, NavbarBrand, NavbarToggler, Collapse, NavLink, Nav, Button } from "reactstrap"
 import "bootstrap/dist/css/bootstrap.min.css"
+import barrel from "./barrel.svg"
+import "./navbar.css"
 
 export default class NavBar extends Component {
 
@@ -36,6 +38,10 @@ export default class NavBar extends Component {
         return (
             <React.Fragment>
                 <Navbar light expand="md">
+                    <img
+                        src={barrel}
+                        alt="Barrel"
+                        className="navbar-barrel"></img>
                     <NavbarBrand>dram</NavbarBrand>
                     <NavLink tag={Link} to="/home" onClick={this.closeNav}>{this.props.userName}</NavLink>
                     <NavbarToggler onClick={this.toggleNav} />

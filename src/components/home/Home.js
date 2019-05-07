@@ -7,6 +7,7 @@ import UserManager from "./../../modules/UserManager"
 import UpcomingTastingCard from "./UpcomingTastingCard"
 import FavoritesCard from "./FavoritesCard"
 import ActiveTastingModal from "./ActiveTastingModal"
+import "./home.css"
 
 export default class Home extends Component {
 
