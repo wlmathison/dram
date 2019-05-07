@@ -38,8 +38,6 @@ export default class ActiveTastingModal extends Component {
         let ratings = ratingsArray.filter(rating => this.state[rating] !== undefined)
         let reviews = reviewsArray.filter(review => this.state[review] !== undefined)
 
-        // const ratingsAndReviewsPromises = []
-
         ratings.map(rating =>
             RatingManager.post({
                 userId: parseInt(sessionStorage.getItem("userId")),
@@ -56,8 +54,7 @@ export default class ActiveTastingModal extends Component {
                 review: this.state[review]
             })
         )
-        this.props.handleClearTastingForm()
-
+        sessionStorage.setItem("tastingCompleted", true)
     }
 
     render() {
@@ -112,7 +109,7 @@ export default class ActiveTastingModal extends Component {
                             <ModalFooter>
                                 <Button
                                     color="success"
-                                    onClick={() => this.handleSubmitTastingForm(ratingsArray, reviewsArray)}>
+                                    onClick={() => { this.handleSubmitTastingForm(ratingsArray, reviewsArray); this.props.pushResults() }}>
                                     Submit Tasting Form
                                 </Button>{' '}
                                 <Button

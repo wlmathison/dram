@@ -3,11 +3,34 @@
 import React, { Component } from "react"
 import { Card, CardBody, CardTitle, CardText, Button } from "reactstrap"
 import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io';
-
+import RatingManager from "./../../modules/RatingManager"
+import StarRatingComponent from 'react-star-rating-component'
 
 export default class ReviewIndividualCard extends Component {
+    state = {
+        ratings: []
+    }
+
+    componentDidMount() {
+        RatingManager.get(`?whiskeyId=${this.props.tastingSelections[this.props.review.tastingSelectionId - 1].whiskey.id}`)
+            .then(ratings => {
+                let allRatings = ratings.map(rating => rating.rating)
+                this.setState({
+                    ratings: allRatings
+                })
+            })
+    }
 
     render() {
+        function getSum(total, num) {
+            return total + num
+        }
+
+        let rating = 0;
+        if (this.state.ratings.length > 0) {
+            rating = this.state.ratings.reduce(getSum) / this.state.ratings.length
+        }
+
         let id = this.props.review.tastingSelectionId - 1
 
         let isMyFavorite = this.props.myFavorites.some(favorite => favorite.whiskey.id === this.props.tastingSelections[id].whiskey.id)
@@ -36,6 +59,14 @@ export default class ReviewIndividualCard extends Component {
                                         onClick={() => this.props.handleAddFavorite(this.props.tastingSelections[id].whiskey.id)}
                                     ></IoIosHeartEmpty>}
                             </CardTitle>
+                            <div>
+                                <CardText>Average Rating: </CardText>
+                                <StarRatingComponent
+                                    name={"name"}
+                                    starCount={5}
+                                    value={rating}
+                                />
+                            </div>
                             <CardText>Reviewed by: {this.props.review.user.userName}</CardText>
                             <CardText>At Tasting: {this.props.tastingSelections[id].tasting.theme}</CardText>
                             <CardText>Date: {this.props.review.date}</CardText>
@@ -71,6 +102,14 @@ export default class ReviewIndividualCard extends Component {
                                         onClick={() => this.props.handleAddFavorite(this.props.tastingSelections[id].whiskey.id)}
                                     ></IoIosHeartEmpty>}
                             </CardTitle>
+                            <div>
+                                <CardText>Average Rating: </CardText>
+                                <StarRatingComponent
+                                    name={"name"}
+                                    starCount={5}
+                                    value={rating}
+                                />
+                            </div>
                             <CardText>Reviewed by: {this.props.review.user.userName}</CardText>
                             <CardText>At Tasting: {this.props.tastingSelections[id].tasting.theme}</CardText>
                             <CardText>Date: {this.props.review.date}</CardText>

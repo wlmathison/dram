@@ -6,27 +6,46 @@ import Register from "./components/authentication/Register"
 import Guest from "./components/authentication/Guest"
 import UserManager from "./modules/UserManager"
 import FavoritesManager from "./modules/FavoritesManager"
+import RatingManager from "./modules/RatingManager"
+import TastingManager from "./modules/TastingManager"
 import Home from "./components/home/Home"
 import WhiskeyList from "./components/whiskies/WhiskeyList"
 import TastingList from "./components/tastings/TastingList"
 import ReviewList from "./components/reviews/ReviewList"
+import ResultsList from "./components/results/ResultsList"
+
 
 export default class ApplicationViews extends Component {
     state = {
         users: [],
         myFavorites: [],
         ratings: [],
-        tastingCompleted: false
+        activeTasting: {},
+        tastingIsActive: false
     }
 
     componentDidMount() {
+        this.updateApplicationViewsState()
+    }
+
+    updateApplicationViewsState = () => {
         const newState = {}
         UserManager.getAll()
             .then(users => (newState.users = users))
             .then(() => FavoritesManager.getExpand())
             .then(favorites => newState.myFavorites = favorites.filter(favorite => favorite.userId === parseInt(sessionStorage.getItem("userId"))))
+            .then(() => RatingManager.getAll())
+            .then(ratings => newState.ratings = ratings)
+            .then(() => TastingManager.getExpand())
+            .then(tastings => {
+                if (tastings.some(tasting => tasting.active)) {
+                    newState.activeTasting = tastings.find(tasting => tasting.active)
+                    newState.tastingIsActive = true
+                }
+            })
             .then(() => this.setState(newState))
     }
+
 
     isAuthenticated = () => {
         if (sessionStorage.getItem("userId") !== null) {
@@ -81,19 +100,12 @@ export default class ApplicationViews extends Component {
             .then(() => this.setState(newState))
     }
 
-    // Function to handle user clicking Submit Tasting Form button and change status of tastingCompleted to hide ActiveTastingModal
-    handleClearTastingForm = event => {
-        this.setState({
-            tastingCompleted: true
-        })
-    }
-
     render() {
         return (
             <React.Fragment>
                 <Route path="/home" render={props => {
                     if (this.isAuthenticated()) {
-                        return <Home {...props} myFavorites={this.state.myFavorites} handleConfirmDeleteFavorite={this.handleConfirmDeleteFavorite} handleClearTastingForm={this.handleClearTastingForm} tastingCompleted={this.state.tastingCompleted} />
+                        return <Home {...props} myFavorites={this.state.myFavorites} handleConfirmDeleteFavorite={this.handleConfirmDeleteFavorite} ratings={this.state.ratings} activeTasting={this.state.activeTasting} tastingIsActive={this.state.tastingIsActive} updateApplicationViewsState={this.updateApplicationViewsState} />
                     } else {
                         return <Redirect to="/" />
                     }
@@ -109,7 +121,7 @@ export default class ApplicationViews extends Component {
                     if (this.isAuthenticated()) {
                         return <Redirect to="/home" />
                     } else {
-                        return <Login users={this.state.users} {...props} />
+                        return <Login users={this.state.users} {...props} updateApplicationViewsState={this.updateApplicationViewsState} />
                     }
                 }} />
                 <Route path="/register" render={props => {
@@ -142,10 +154,13 @@ export default class ApplicationViews extends Component {
                 }} />
                 <Route exact path="/reviews" render={props => {
                     if (this.isAuthenticated()) {
-                        return <ReviewList users={this.state.users} {...props} myFavorites={this.state.myFavorites} handleDeleteFavorite={this.handleDeleteFavorite} handleAddFavorite={this.handleAddFavorite} />
+                        return <ReviewList users={this.state.users} {...props} myFavorites={this.state.myFavorites} handleDeleteFavorite={this.handleDeleteFavorite} handleAddFavorite={this.handleAddFavorite} ratings={this.state.ratings} />
                     } else {
                         return <Redirect to="/" />
                     }
+                }} />
+                <Route path="/results" render={props => {
+                    return <ResultsList users={this.state.users} {...props} myFavorites={this.state.myFavorites} handleDeleteFavorite={this.handleDeleteFavorite} handleAddFavorite={this.handleAddFavorite} ratings={this.state.ratings} activeTasting={this.state.activeTasting} tastingIsActive={this.state.tastingIsActive} />
                 }} />
             </React.Fragment>
         )

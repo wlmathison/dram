@@ -51,7 +51,7 @@ export default class WhiskeyIndividualCard extends Component {
                             <CardText>Category: {this.props.whiskey.category.name}</CardText>
                             <CardText>Distillery: {this.props.whiskey.distillery.name}</CardText>
                             <div>
-                                <CardText>Rating: </CardText>
+                                <CardText>Average Rating: </CardText>
                                 <StarRatingComponent
                                     name={"name"}
                                     starCount={5}

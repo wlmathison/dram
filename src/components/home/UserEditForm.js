@@ -43,7 +43,7 @@ export default class UserEditForm extends Component {
                                     value={this.props.phoneNumber}
                                 />
                             </FormGroup>
-                            <FormGroup>
+                            {(parseInt(sessionStorage.getItem("userTypeId")) === 1 || parseInt(sessionStorage.getItem("userTypeId")) === 2) && <FormGroup>
                                 <Label htmlFor="password">Password</Label>
                                 <Input
                                     required
@@ -53,6 +53,7 @@ export default class UserEditForm extends Component {
                                     value={this.props.password}
                                 />
                             </FormGroup>
+                            }
                         </Form>
                     </CardBody>
                     <CardFooter>

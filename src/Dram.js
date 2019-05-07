@@ -3,8 +3,9 @@ import Navbar from "./components/nav/NavBar"
 import ApplicationViews from "./ApplicationViews"
 
 export default class Dram extends Component {
+
     render() {
-        return(
+        return (
             <React.Fragment>
                 <Navbar />
                 <ApplicationViews />
