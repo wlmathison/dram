@@ -46,6 +46,7 @@ export default class NavBar extends Component {
                     <NavbarBrand className="navbar-brand">dram</NavbarBrand>
                     <NavbarBrand>{" "}</NavbarBrand>
                     <NavbarBrand>{" "}</NavbarBrand>
+                    <NavbarBrand>{" "}</NavbarBrand>
                     <NavLink tag={Link} to="/home" onClick={this.closeNav}>{this.props.userName}</NavLink>
                     <NavbarToggler onClick={this.toggleNav} />
                     <Collapse isOpen={this.state.isOpen} navbar>
@@ -57,7 +58,7 @@ export default class NavBar extends Component {
                             {/* Conidtionally rendering link to tasting results if user has submitted their tasting review */}
                             {sessionStorage.getItem("tastingCompleted") && <NavLink tag={Link} to="/results" onClick={this.toggleNav}>Tasting Results</NavLink>
                             }
-                            {(parseInt(sessionStorage.getItem("userTypeId")) === 1 || parseInt(sessionStorage.getItem("userTypeId")) === 2) && <Button tag={Link} to="/" onClick={this.handleLogOut} size="sm">Log Out</Button>
+                            {(parseInt(sessionStorage.getItem("userTypeId")) === 1 || parseInt(sessionStorage.getItem("userTypeId")) === 2) && <Button color="primary" tag={Link} to="/" onClick={this.handleLogOut} size="sm">Log Out</Button>
                             }
                         </Nav>
                     </Collapse>

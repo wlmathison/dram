@@ -67,8 +67,9 @@ export default class Register extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                <h3>Register as new user</h3>
+            <div
+                className="container-div">
+                <h3>Register as a new user</h3>
                 <Form>
                     <FormGroup>
                         <Label htmlFor="userName">Username</Label>
@@ -111,13 +112,14 @@ export default class Register extends Component {
                         />
                     </FormGroup>
                     <Button
+                        color="primary"
                         type="submit"
                         onClick={this.handleRegister}
                     >
                         Register
                 </Button>
                 </Form>
-            </React.Fragment>
+            </div>
         )
     }
 }

@@ -6,6 +6,6 @@
     background-color: #6c757d;
 }
 
-.nav-link {
+.nav-link:visited {
     color: deepskyblue;
-}
+ }

@@ -3,6 +3,10 @@
     background-color: rgb(255, 255, 255, 0.0)
 }
 
+body {
+    background-color: #6c757d;
+}
+
 .card {
     border: none;
 }
@@ -20,7 +24,7 @@
 .card-header {
     background-color: #6c757d;
     border: none;
-    color: linen;
+    color: gainsboro;
 }
 
 .hl-scroll-body {
@@ -41,9 +45,21 @@
 .profile-edit-button {
     margin-top: 10px;
     margin-right: 10px;
-
 }
 
 .card-edit-extra-opacity {
     background-color: rgb(255, 255, 255, 0.7)
+}
+
+#welcome-links {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#welcome-text {
+    text-align: center;
+}
+
+.container-div {
+    padding: 10px;
 }

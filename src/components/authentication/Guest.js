@@ -76,9 +76,10 @@ export default class Guest extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                <h3>Register as guest</h3>
-                <h5>All information is optional</h5>
+            <div
+                className="container-div">
+                <h3>Use dram as a guest</h3>
+                <h6>(All information is optional)</h6>
                 <Form>
                     <FormGroup>
                         <Label htmlFor="userName">Username</Label>
@@ -99,13 +100,14 @@ export default class Guest extends Component {
                         />
                     </FormGroup>
                     <Button
+                        color="primary"
                         type="submit"
                         onClick={this.handleRegister}
                     >
                         Register
                 </Button>
                 </Form>
-            </React.Fragment>
+            </div>
         )
     }
 }
