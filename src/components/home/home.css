@@ -1,22 +1,49 @@
 .profile {
-    width: 40%
-}
-
-.active-tasting {
-    text-align: center
+    width: 35%;
+    background-color: rgb(255, 255, 255, 0.0)
 }
 
 .card {
-    background-image: url()
+    border: none;
 }
 
-.favorites-body {
+.card-first {
+    background-image: url("./wood-background.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat
+}
+
+.card-extra-opacity {
+    background-color: rgb(255, 255, 255, 0.85)
+}
+
+.card-header {
+    background-color: #6c757d;
+    border: none;
+    color: linen;
+}
+
+.hl-scroll-body {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
 }
 
-.favorite-card {
+.hl-scroll-card {
     flex: 0 0 auto;
     margin-right: 10px;
+}
+
+.button {
+    border: 1px solid white;
+}
+
+.profile-edit-button {
+    margin-top: 10px;
+    margin-right: 10px;
+
+}
+
+.card-edit-extra-opacity {
+    background-color: rgb(255, 255, 255, 0.7)
 }

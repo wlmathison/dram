@@ -65,9 +65,9 @@ export default class ActiveTastingModal extends Component {
         const reviewsArray = []
         return (
             <React.Fragment >
-                <Card>
-                    <CardHeader
-                        className="active-tasting"><Spinner type="grow" color="success" />Tasting in Progress</CardHeader>
+                <Card
+                    className="card-first">
+                    <CardHeader><Spinner type="grow" color="success" />Tasting in Progress</CardHeader>
                     <CardBody
                         className="active-tasting">
                         <Button

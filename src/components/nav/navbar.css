@@ -3,5 +3,9 @@
 }
 
 .navbar {
-    background-color: #4c391b
+    background-color: #6c757d;
+}
+
+.nav-link {
+    color: deepskyblue;
 }

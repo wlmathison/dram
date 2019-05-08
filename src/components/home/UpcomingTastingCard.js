@@ -23,16 +23,20 @@ export default class UpcomingTastingCard extends Component {
         if (this.state.upcomingTastings.length > 0) {
             return (
                 <React.Fragment>
-                    <Card>
+                    <Card
+                        className="card-first">
                         <CardHeader>Upcoming Tastings</CardHeader>
-                        <CardBody>
+                        <CardBody
+                            className="hl-scroll-body">
                             {this.state.upcomingTastings.map(tasting =>
-                                <React.Fragment key={tasting.id}>
-                                    <CardText>Date: {tasting.date}</CardText>
-                                    <CardText>Time: {tasting.time}</CardText>
-                                    <CardText>Address: {tasting.address}</CardText>
-                                    <hr></hr>
-                                </React.Fragment>
+                                <Card key={tasting.id}
+                                    className="hl-scroll-card card-extra-opacity">
+                                    <CardBody>
+                                        <CardText>Date: {tasting.date}</CardText>
+                                        <CardText>Time: {tasting.time}</CardText>
+                                        <CardText>Address: {tasting.address}</CardText>
+                                    </CardBody>
+                                </Card>
                             )}
                         </CardBody>
                     </Card>

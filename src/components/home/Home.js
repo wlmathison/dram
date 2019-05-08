@@ -47,8 +47,9 @@ export default class Home extends Component {
     handleEdit = event => {
         this.setState({
             editUser: true,
-            showProfile: false
+            showProfile: false,            
         })
+        
     }
 
     // Function to handle user clicking cancel button and show profile instead of edit form
