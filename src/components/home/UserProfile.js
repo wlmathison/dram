@@ -3,13 +3,15 @@
 import React, { Component } from "react"
 import { Card, CardImg, CardTitle, CardBody, CardHeader, CardFooter, CardText, Button } from "reactstrap"
 import userProfile from "./user-profile.png"
+import "./home.css"
 
 export default class UserProfile extends Component {
 
     render() {
         return (
             <React.Fragment>
-                <Card>
+                <Card
+                    className="card">
                     <CardHeader className="header">My Profile</CardHeader>
                     <CardBody>
                         <CardTitle>

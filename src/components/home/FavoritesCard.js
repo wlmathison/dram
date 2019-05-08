@@ -11,9 +11,11 @@ export default class FavoritesCard extends Component {
             <React.Fragment>
                 <Card>
                     <CardHeader>Favorites</CardHeader>
-                    <CardBody>
+                    <CardBody
+                        className="favorites-body">
                         {this.props.myFavorites !== undefined && this.props.myFavorites.map(favorite =>
-                            <Card key={favorite.id}>
+                            <Card key={favorite.id}
+                                className="favorite-card">
                                 <CardBody>
                                     <CardText>{favorite.whiskey.name}                                    <IoIosHeart
                                         id={favorite.id}
@@ -21,7 +23,6 @@ export default class FavoritesCard extends Component {
                                         onClick={() => this.props.handleConfirmDeleteFavorite(favorite.id)}
                                     ></IoIosHeart>
                                     </CardText>
-
                                 </CardBody>
                             </Card>
                         )

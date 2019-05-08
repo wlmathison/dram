@@ -5,6 +5,7 @@ import { Spinner, Card, CardHeader, CardBody, Button, Modal, ModalHeader, ModalB
 import StarRatingComponent from 'react-star-rating-component'
 import ReviewManager from "./../../modules/ReviewManager"
 import RatingManager from "./../../modules/RatingManager"
+import "./home.css"
 
 export default class ActiveTastingModal extends Component {
 
@@ -65,12 +66,14 @@ export default class ActiveTastingModal extends Component {
         return (
             <React.Fragment >
                 <Card>
-                    <CardHeader><Spinner type="grow" color="success" />Tasting in Progress</CardHeader>
-                    <CardBody>
+                    <CardHeader
+                        className="active-tasting"><Spinner type="grow" color="success" />Tasting in Progress</CardHeader>
+                    <CardBody
+                        className="active-tasting">
                         <Button
                             color="success"
                             onClick={this.toggle}
-                          >Join Tasting
+                        >Join Tasting
                             </Button>
                         <Modal isOpen={this.state.modal} toggle={this.toggle}>
                             <ModalHeader toggle={this.toggle}>{this.props.activeTasting.date} Tasting

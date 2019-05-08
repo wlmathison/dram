@@ -1,3 +1,22 @@
 .profile {
     width: 40%
 }
+
+.active-tasting {
+    text-align: center
+}
+
+.card {
+    background-image: url()
+}
+
+.favorites-body {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.favorite-card {
+    flex: 0 0 auto;
+    margin-right: 10px;
+}
