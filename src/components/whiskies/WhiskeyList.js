@@ -153,46 +153,45 @@ export default class WhiskeyList extends Component {
                 <Card>
                     <CardHeader>Whiskey List {this.state.viewSearchButton &&
                         <Button
+                            color="primary"
                             onClick={this.handleSearchWhiskies}>
                             Search Whiskies
                             </Button>}
                     </CardHeader>
-                    <CardBody>
-                        {/* Below are multiple conditional rendering statements to display the imported file depending on the state(whish is listed first) */}
-                        {this.state.isSearching &&
-                            <WhiskeySearchForm
-                                handleSearchAllWhiskies={this.handleSearchAllWhiskies} handleSearchWhiskiesByCategory={this.handleSearchWhiskiesByCategory} handleSearchWhiskiesByDistillery={this.handleSearchWhiskiesByDistillery}
-                                handleSearchWhiskiesByName={this.handleSearchWhiskiesByName}
-                            />}
+                    {/* Below are multiple conditional rendering statements to display the imported file depending on the state(whish is listed first) */}
+                    {this.state.isSearching &&
+                        <WhiskeySearchForm
+                            handleSearchAllWhiskies={this.handleSearchAllWhiskies} handleSearchWhiskiesByCategory={this.handleSearchWhiskiesByCategory} handleSearchWhiskiesByDistillery={this.handleSearchWhiskiesByDistillery}
+                            handleSearchWhiskiesByName={this.handleSearchWhiskiesByName}
+                        />}
 
-                        {this.state.isSearchingByCategory && <SearchByCategoryForm categories={this.state.categories} handleSearchByCategory={this.handleSearchByCategory}
-                            handleCancel={this.handleCancel} />}
+                    {this.state.isSearchingByCategory && <SearchByCategoryForm categories={this.state.categories} handleSearchByCategory={this.handleSearchByCategory}
+                        handleCancel={this.handleCancel} />}
 
-                        {this.state.isSearchingByDistillery && <SearchByDistilleryForm distilleries={this.state.distilleries} handleSearchByDistillery={this.handleSearchByDistillery} handleCancel={this.handleCancel} />}
+                    {this.state.isSearchingByDistillery && <SearchByDistilleryForm distilleries={this.state.distilleries} handleSearchByDistillery={this.handleSearchByDistillery} handleCancel={this.handleCancel} />}
 
-                        {this.state.isSearchingByName && <SearchByWhiskeyNameForm handleSearchByName={this.handleSearchByName} handleCancel={this.handleCancel} />}
+                    {this.state.isSearchingByName && <SearchByWhiskeyNameForm handleSearchByName={this.handleSearchByName} handleCancel={this.handleCancel} />}
 
-                        {this.state.seeAllWhiskies &&
-                            this.state.whiskies.map(whiskey =>
-                                <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
-                            )
-                        }
-                        {this.state.seeWhiskiesBySelectedCategory && this.state.whiskiesByCategory.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
-                        )}
+                    {this.state.seeAllWhiskies &&
+                        this.state.whiskies.map(whiskey =>
+                            <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
+                        )
+                    }
+                    {this.state.seeWhiskiesBySelectedCategory && this.state.whiskiesByCategory.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
+                    )}
 
-                        {this.state.seeWhiskiesBySelectedDistillery && this.state.whiskiesByDistillery.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
-                        )}
+                    {this.state.seeWhiskiesBySelectedDistillery && this.state.whiskiesByDistillery.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
+                    )}
 
-                        {this.state.seeWhiskiesByEnteredName && this.state.whiskiesByName.length > 0 && this.state.whiskiesByName.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
-                        )}
-                        {this.state.seeWhiskiesByEnteredName && this.state.whiskiesByName.length === 0 &&
-                            <Card>
-                                <CardBody>
-                                    <CardTitle>There are no matching whiskies.</CardTitle>
-                                </CardBody>
-                            </Card>
-                        }
-                    </CardBody>
+                    {this.state.seeWhiskiesByEnteredName && this.state.whiskiesByName.length > 0 && this.state.whiskiesByName.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
+                    )}
+                    {this.state.seeWhiskiesByEnteredName && this.state.whiskiesByName.length === 0 &&
+                        <Card>
+                            <CardBody>
+                                <CardTitle>There are no matching whiskies.</CardTitle>
+                            </CardBody>
+                        </Card>
+                    }
                 </Card>
             </React.Fragment>
         )

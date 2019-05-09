@@ -14,7 +14,7 @@ body {
 .card-first {
     background-image: url("./wood-background.jpg");
     background-size: 100% 100%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 .card-extra-opacity {
@@ -22,7 +22,9 @@ body {
 }
 
 .card-header {
-    background-color: #6c757d;
+    display: flex;
+    justify-content: space-between;
+    background-image: url("./metal-2.jpg");
     border: none;
     color: gainsboro;
 }

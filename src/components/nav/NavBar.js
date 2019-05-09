@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { Navbar, NavbarBrand, NavbarToggler, Collapse, NavLink, Nav, Button } from "reactstrap"
 import "bootstrap/dist/css/bootstrap.min.css"
 import barrel from "./barrel.svg"
+import logo from "./logo.png"
 import "./navbar.css"
 
 export default class NavBar extends Component {
@@ -43,7 +44,7 @@ export default class NavBar extends Component {
                         src={barrel}
                         alt="Barrel"
                         className="navbar-barrel"></img>
-                    <NavbarBrand className="navbar-brand">dram</NavbarBrand>
+                    <NavbarBrand className="navbar-brand"><img src={logo} id="logo" alt="logo"></img></NavbarBrand>
                     <NavbarBrand>{" "}</NavbarBrand>
                     <NavbarBrand>{" "}</NavbarBrand>
                     <NavbarBrand>{" "}</NavbarBrand>

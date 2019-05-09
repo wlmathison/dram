@@ -3,9 +3,25 @@
 }
 
 .navbar {
-    background-color: #6c757d;
+    background-image: url("./../home/metal-2.jpg");
 }
 
 .nav-link:visited {
     color: deepskyblue;
- }
+}
+
+#logo {
+    height: 33px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(220, 220, 220);
+}
+
+.navbar-light .navbar-toggler {
+    border-color: gainsboro;
+}
+
+button:focus {
+    outline: 3px auto deepskyblue;
+}

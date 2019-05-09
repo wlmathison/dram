@@ -12,7 +12,7 @@ export default class UserProfile extends Component {
             <React.Fragment>
                 <Card
                     className="card-first">
-                    <CardHeader className="header">My Profile</CardHeader>
+                    <CardHeader>My Profile</CardHeader>
                     <CardBody>
                         <CardTitle>
                             <CardImg src={userProfile}

@@ -49,7 +49,7 @@ export default class Home extends Component {
             editUser: true,
             showProfile: false,            
         })
-        
+        window.scrollTo(0, 0);
     }
 
     // Function to handle user clicking cancel button and show profile instead of edit form
