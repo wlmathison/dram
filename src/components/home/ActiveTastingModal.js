@@ -85,7 +85,7 @@ export default class ActiveTastingModal extends Component {
                                 const id = `review-${selection.id}-${selection.whiskeyId}`;
                                 reviewsArray.push(id)
                                 i++
-                                let placeholder = `Whiskey ${i} Review`
+                                let placeholder = `Review whiskey #${i} here`
                                 return <CardBody key={selection.id}>
                                     <CardTitle>{i}.{" "}
                                         <StarRatingComponent

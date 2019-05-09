@@ -59,6 +59,12 @@ export default class Login extends Component {
         }
     }
 
+    // Function to handle user clicking cancel button
+    handleCancel = event => {
+        event.preventDefault()
+        this.props.history.push("/home")
+    }
+
     render() {
         return (
             <Card
@@ -99,12 +105,19 @@ export default class Login extends Component {
                                     />
                                 </FormGroup>
                                 <Button
+                                    className="welcome-button"
                                     color="primary"
                                     type="submit"
                                     onClick={this.handleLogin}
                                 >
                                     Login
-                </Button>
+                               </Button>
+                                <Button
+                                    type="submit"
+                                    onClick={this.handleCancel}
+                                >
+                                    Cancel
+                               </Button>
                             </Form>
                         </CardBody>
                     </Card>
