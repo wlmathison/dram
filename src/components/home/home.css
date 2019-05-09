@@ -62,7 +62,7 @@ body {
     justify-content: space-evenly;
 }
 
-#welcome-text {
+.welcome-text {
     text-align: center;
 }
 
@@ -86,4 +86,8 @@ body {
 
 .dropdown-toggle {
     margin-bottom: 10px;
+}
+
+.welcome-button {
+    margin-right: 10px;
 }
