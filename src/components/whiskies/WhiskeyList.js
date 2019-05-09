@@ -186,10 +186,17 @@ export default class WhiskeyList extends Component {
                     {this.state.seeWhiskiesByEnteredName && this.state.whiskiesByName.length > 0 && this.state.whiskiesByName.map(whiskey => <WhiskeyIndividualCard key={whiskey.id} whiskey={whiskey} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
                     )}
                     {this.state.seeWhiskiesByEnteredName && this.state.whiskiesByName.length === 0 &&
-                        <Card>
+                        <Card
+                            className="card-first">
                             <CardBody>
-                                <CardTitle>There are no matching whiskies.</CardTitle>
+                                <Card
+                                    className="card-extra-opacity">
+                                    <CardBody>
+                                        <CardTitle>There are no matching whiskies.</CardTitle>
+                                    </CardBody>
+                                </Card>
                             </CardBody>
+                            <CardHeader></CardHeader>
                         </Card>
                     }
                 </Card>

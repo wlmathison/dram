@@ -1,7 +1,7 @@
 // Page renders the tasting results showing user details about each whiskey from the completed tasting
 
 import React, { Component } from "react"
-import { Card, CardHeader, CardBody } from "reactstrap"
+import { Card, CardHeader } from "reactstrap"
 import WhiskeyManager from "./../../modules/WhiskeyManager"
 import CategoryManager from "./../../modules/CategoryManager"
 import DistilleryManager from "./../../modules/DistilleryManager"
@@ -30,15 +30,13 @@ export default class ResultsList extends Component {
             <React.Fragment>
                 <Card>
                     <CardHeader>Tasting Results</CardHeader>
-                    <CardBody>
-                        {this.state.tastingSelections !== undefined &&
-                            this.props.activeTasting.tastingSelections.map(selection => {
-                                let whiskey = this.state.whiskies.find(whiskey => whiskey.id === selection.whiskeyId)
-                                i++
-                                return <IndividualResultCard key={i} i={i} activeTasting={this.props.activeTasting} selection={selection} whiskies={this.state.whiskies} whiskey={whiskey} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
-                            })
-                        }
-                    </CardBody>
+                    {this.state.tastingSelections !== undefined &&
+                        this.props.activeTasting.tastingSelections.map(selection => {
+                            let whiskey = this.state.whiskies.find(whiskey => whiskey.id === selection.whiskeyId)
+                            i++
+                            return <IndividualResultCard key={i} i={i} activeTasting={this.props.activeTasting} selection={selection} whiskies={this.state.whiskies} whiskey={whiskey} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
+                        })
+                    }
                 </Card>
             </React.Fragment>
         )
