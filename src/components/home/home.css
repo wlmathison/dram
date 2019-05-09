@@ -66,10 +66,6 @@ body {
     text-align: center;
 }
 
-.container-div {
-    padding: 10px;
-}
-
 .card-search {
     background-image: url("./wood-background.jpg");
     background-size: 100% 100%;
@@ -86,4 +82,8 @@ body {
 
 .search-form-title {
     text-align: center;
+}
+
+.dropdown-toggle {
+    margin-bottom: 10px;
 }

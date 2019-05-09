@@ -1,7 +1,7 @@
 // Page renders guest form, posts new guest to API when submitted, and logs in guest
 
 import React, { Component } from "react"
-import { Form, FormGroup, Label, Input, Button } from "reactstrap"
+import { Form, FormGroup, Label, Input, Button, Card, CardBody, CardHeader } from "reactstrap"
 
 export default class Guest extends Component {
 
@@ -76,38 +76,46 @@ export default class Guest extends Component {
 
     render() {
         return (
-            <div
-                className="container-div">
-                <h3>Use dram as a guest</h3>
-                <h6>(All information is optional)</h6>
-                <Form>
-                    <FormGroup>
-                        <Label htmlFor="userName">Username</Label>
-                        <Input
-                            type="text"
-                            id="userName"
-                            onChange={this.handleFieldChange}
-                            placeholder="Username"
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label htmlFor="email">Email Address</Label>
-                        <Input
-                            type="email"
-                            id="email"
-                            onChange={this.handleFieldChange}
-                            placeholder="name@email.com"
-                        />
-                    </FormGroup>
-                    <Button
-                        color="primary"
-                        type="submit"
-                        onClick={this.handleRegister}
-                    >
-                        Register
+            <Card
+                className="card-search">
+                <CardBody>
+                    <Card
+                        className="card-extra-opacity">
+                        <CardBody>
+                            <h3>Use dram as a guest</h3>
+                            <h6>(All information is optional)</h6>
+                            <Form>
+                                <FormGroup>
+                                    <Label htmlFor="userName">Username</Label>
+                                    <Input
+                                        type="text"
+                                        id="userName"
+                                        onChange={this.handleFieldChange}
+                                        placeholder="Username"
+                                    />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label htmlFor="email">Email Address</Label>
+                                    <Input
+                                        type="email"
+                                        id="email"
+                                        onChange={this.handleFieldChange}
+                                        placeholder="name@email.com"
+                                    />
+                                </FormGroup>
+                                <Button
+                                    color="primary"
+                                    type="submit"
+                                    onClick={this.handleRegister}
+                                >
+                                    Register
                 </Button>
-                </Form>
-            </div>
+                            </Form>
+                        </CardBody>
+                    </Card>
+                </CardBody>
+                <CardHeader></CardHeader>
+            </Card>
         )
     }
 }

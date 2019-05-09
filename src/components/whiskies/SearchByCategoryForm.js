@@ -35,10 +35,11 @@ export default class SearchByCategoryForm extends Component {
                                         Categories
                                 </DropdownToggle>
                                     <DropdownMenu>
-                                        {this.props.categories.map(category => <DropdownItem key={category.id} onClick={() => this.props.handleSearchByCategory(category.id)}>{category.name}</DropdownItem>)}
+                                        {this.props.categories.map(category => <DropdownItem key={category.id}
+                                            className="dropdown-buttons"
+                                            onClick={() => this.props.handleSearchByCategory(category.id)}>{category.name}</DropdownItem>)}
                                     </DropdownMenu>
-                                    <CardTitle></CardTitle>
-                                </Dropdown> {" "}
+                                </Dropdown>
                                 <Button
                                     onClick={this.props.handleCancel}
                                 >Cancel</Button>

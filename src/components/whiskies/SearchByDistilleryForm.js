@@ -37,7 +37,6 @@ export default class SearchByDistilleryForm extends Component {
                                     <DropdownMenu>
                                         {this.props.distilleries.map(distillery => <DropdownItem key={distillery.id} onClick={() => this.props.handleSearchByDistillery(distillery.id)}>{distillery.name}</DropdownItem>)}
                                     </DropdownMenu>
-                                    <CardTitle></CardTitle>
                                 </Dropdown>
                                 <Button
                                     onClick={this.props.handleCancel}

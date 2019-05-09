@@ -1,7 +1,7 @@
 // Building a search form for reviews resource by whiskey to be added to ReviewList
 
 import React, { Component } from "react"
-import { CardBody, Dropdown, DropdownMenu, DropdownToggle, DropdownItem, CardTitle, Button } from "reactstrap"
+import { CardBody, Dropdown, DropdownMenu, DropdownToggle, DropdownItem, CardTitle, Button, Card, CardHeader } from "reactstrap"
 import WhiskeyManager from "../../modules/WhiskeyManager"
 
 export default class SearchReviewsByWhiskeyForm extends Component {
@@ -18,7 +18,7 @@ export default class SearchReviewsByWhiskeyForm extends Component {
             .then(() => this.setState(newState))
     }
 
-        // Function to toggle state of dropdown
+    // Function to toggle state of dropdown
     toggle = () => {
         this.setState(prevState => ({
             dropdownOpen: !prevState.dropdownOpen
@@ -28,22 +28,34 @@ export default class SearchReviewsByWhiskeyForm extends Component {
     render() {
         return (
             <React.Fragment>
-                <CardTitle>Search by Whiskey</CardTitle>
-                <CardBody>
-                    <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                        <DropdownToggle caret>
-                            Whiskies
+                <Card
+                    className="card-search">
+                    <CardBody>
+                        <Card
+                            className="card-extra-opacity">
+                            <CardTitle
+                                className="search-form-title"
+                                tag={"h5"}>Search by Whiskey</CardTitle>
+                            <CardBody>
+                                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                    <DropdownToggle
+                                        caret
+                                        color="success">                            Whiskies
                                 </DropdownToggle>
-                        <DropdownMenu>
-                            {this.state.whiskies.map(whiskey => {
-                                return <DropdownItem key={whiskey.id} onClick={() => this.props.handleSearchByWhiskey(whiskey.id)}>{whiskey.name}</DropdownItem>
-                            })}
-                        </DropdownMenu>
-                    </Dropdown> {" "}
-                    <Button
-                        onClick={this.props.handleCancel}
-                    >Cancel</Button>
-                </CardBody>
+                                    <DropdownMenu>
+                                        {this.state.whiskies.map(whiskey => {
+                                            return <DropdownItem key={whiskey.id} onClick={() => this.props.handleSearchByWhiskey(whiskey.id)}>{whiskey.name}</DropdownItem>
+                                        })}
+                                    </DropdownMenu>
+                                </Dropdown> {" "}
+                                <Button
+                                    onClick={this.props.handleCancel}
+                                >Cancel</Button>
+                            </CardBody>
+                        </Card>
+                    </CardBody>
+                    <CardHeader></CardHeader>
+                </Card>
             </React.Fragment>
         )
     }
