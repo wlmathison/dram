@@ -5,6 +5,7 @@ import { Spinner, Card, CardHeader, CardBody, Button, Modal, ModalHeader, ModalB
 import StarRatingComponent from 'react-star-rating-component'
 import ReviewManager from "./../../modules/ReviewManager"
 import RatingManager from "./../../modules/RatingManager"
+import "./home.css"
 
 export default class ActiveTastingModal extends Component {
 
@@ -64,63 +65,64 @@ export default class ActiveTastingModal extends Component {
         const reviewsArray = []
         return (
             <React.Fragment >
-                <Card>
-                    <CardHeader><Spinner type="grow" color="success" />Tasting in Progress</CardHeader>
-                    <CardBody>
+                <Card
+                    className="card-first">
+                    <CardHeader>
+                        <div><Spinner type="grow" color="success" />Tasting in Progress
+                    </div>
                         <Button
                             color="success"
                             onClick={this.toggle}
                         >Join Tasting
-                            </Button>
-                        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                            <ModalHeader toggle={this.toggle}>{this.props.activeTasting.date} Tasting
+                            </Button></CardHeader>
+                    <Modal isOpen={this.state.modal} toggle={this.toggle}>
+                        <ModalHeader toggle={this.toggle}>{this.props.activeTasting.date} Tasting
                             </ModalHeader>
-                            <ModalBody>
-                                {this.props.activeTasting.tastingSelections.map(selection => {
-                                    const name = `rate-${selection.whiskeyId}`;
-                                    ratingsArray.push(name)
-                                    const id = `review-${selection.id}-${selection.whiskeyId}`;
-                                    reviewsArray.push(id)
-                                    i++
-                                    let placeholder = `Whiskey ${i} Review`
-                                    return <CardBody key={selection.id}>
-                                        <CardTitle>{i}.{" "}
-                                            <StarRatingComponent
-                                                required
-                                                name={name}
-                                                starCount={5}
-                                                value={this.state[name]}
-                                                onStarClick={this.onStarClick}
+                        <ModalBody>
+                            {this.props.activeTasting.tastingSelections.map(selection => {
+                                const name = `rate-${selection.whiskeyId}`;
+                                ratingsArray.push(name)
+                                const id = `review-${selection.id}-${selection.whiskeyId}`;
+                                reviewsArray.push(id)
+                                i++
+                                let placeholder = `Whiskey ${i} Review`
+                                return <CardBody key={selection.id}>
+                                    <CardTitle>{i}.{" "}
+                                        <StarRatingComponent
+                                            required
+                                            name={name}
+                                            starCount={5}
+                                            value={this.state[name]}
+                                            onStarClick={this.onStarClick}
+                                        />
+                                    </CardTitle>
+                                    <Form>
+                                        <FormGroup>
+                                            <Label>Review:</Label>
+                                            <Input
+                                                id={id}
+                                                type="text"
+                                                placeholder={placeholder}
+                                                onChange={this.handleFieldChange}
                                             />
-                                        </CardTitle>
-                                        <Form>
-                                            <FormGroup>
-                                                <Label>Review:</Label>
-                                                <Input
-                                                    id={id}
-                                                    type="text"
-                                                    placeholder={placeholder}
-                                                    onChange={this.handleFieldChange}
-                                                />
-                                            </FormGroup>
-                                        </Form>
-                                    </CardBody>
-                                })}
-                            </ModalBody>
-                            <ModalFooter>
-                                <Button
-                                    color="success"
-                                    onClick={() => { this.handleSubmitTastingForm(ratingsArray, reviewsArray); this.props.pushResults() }}>
-                                    Submit Tasting Form
+                                        </FormGroup>
+                                    </Form>
+                                </CardBody>
+                            })}
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button
+                                color="success"
+                                onClick={() => { this.handleSubmitTastingForm(ratingsArray, reviewsArray); this.props.pushResults() }}>
+                                Submit Tasting Form
                                 </Button>{' '}
-                                <Button
-                                    color="secondary"
-                                    onClick={this.toggle}>
-                                    Cancel
+                            <Button
+                                color="secondary"
+                                onClick={this.toggle}>
+                                Cancel
                                 </Button>
-                            </ModalFooter>
-                        </Modal>
-                    </CardBody>
+                        </ModalFooter>
+                    </Modal>
                 </Card>
             </React.Fragment >
         )

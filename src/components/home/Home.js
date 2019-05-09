@@ -7,6 +7,7 @@ import UserManager from "./../../modules/UserManager"
 import UpcomingTastingCard from "./UpcomingTastingCard"
 import FavoritesCard from "./FavoritesCard"
 import ActiveTastingModal from "./ActiveTastingModal"
+import "./home.css"
 
 export default class Home extends Component {
 
@@ -46,8 +47,9 @@ export default class Home extends Component {
     handleEdit = event => {
         this.setState({
             editUser: true,
-            showProfile: false
+            showProfile: false,            
         })
+        window.scrollTo(0, 0);
     }
 
     // Function to handle user clicking cancel button and show profile instead of edit form

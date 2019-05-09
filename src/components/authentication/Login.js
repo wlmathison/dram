@@ -1,7 +1,7 @@
 // Page renders login form and when submitted verifies user's information before logging in the user and loading their home page
 
 import React, { Component } from "react"
-import { Form, FormGroup, Label, Input, Button } from "reactstrap"
+import { Form, FormGroup, Label, Input, Button, Card, CardBody, CardHeader } from "reactstrap"
 
 export default class Login extends Component {
 
@@ -61,42 +61,56 @@ export default class Login extends Component {
 
     render() {
         return (
-            <Form>
-                <FormGroup>
-                    <Label htmlFor="userName">Username</Label>
-                    <Input
-                        required
-                        type="text"
-                        id="userName"
-                        onChange={this.handleFieldChange}
-                        placeholder="Username"
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <Label htmlFor="password">Password</Label>
-                    <Input
-                        required
-                        type="password"
-                        id="password"
-                        onChange={this.handleFieldChange}
-                        placeholder="Password"
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <Label htmlFor="rememberMe">Remember Me</Label>
-                    <Input
-                        type="checkbox"
-                        id="rememberMe"
-                        onChange={this.handleCheckboxChange}
-                    />
-                </FormGroup>
-                <Button
-                    type="submit"
-                    onClick={this.handleLogin}
-                >
-                    Login
+            <Card
+                className="card-search">
+                <CardBody>
+                    <Card
+                        className="card-extra-opacity">
+                        <CardBody>
+                            <h3>Login</h3>
+                            <Form>
+                                <FormGroup>
+                                    <Label htmlFor="userName">Username</Label>
+                                    <Input
+                                        required
+                                        type="text"
+                                        id="userName"
+                                        onChange={this.handleFieldChange}
+                                        placeholder="Username"
+                                    />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label htmlFor="password">Password</Label>
+                                    <Input
+                                        required
+                                        type="password"
+                                        id="password"
+                                        onChange={this.handleFieldChange}
+                                        placeholder="Password"
+                                    />
+                                </FormGroup>
+                                <FormGroup id="remember-me">
+                                    <label>Remember Me</label>
+                                    {" "}
+                                    <input
+                                        type="checkbox"
+                                        id="rememberMe"
+                                        onChange={this.handleCheckboxChange}
+                                    />
+                                </FormGroup>
+                                <Button
+                                    color="primary"
+                                    type="submit"
+                                    onClick={this.handleLogin}
+                                >
+                                    Login
                 </Button>
-            </Form>
+                            </Form>
+                        </CardBody>
+                    </Card>
+                </CardBody>
+                <CardHeader></CardHeader>
+            </Card>
         )
     }
 }

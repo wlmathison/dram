@@ -1,7 +1,7 @@
 // Page renders register form, posts new user to API when submitted, and logs in user
 
 import React, { Component } from "react"
-import { Form, FormGroup, Label, Input, Button } from "reactstrap"
+import { Form, FormGroup, Label, Input, Button, Card, CardBody, CardHeader } from "reactstrap"
 
 export default class Register extends Component {
 
@@ -67,57 +67,68 @@ export default class Register extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                <h3>Register as new user</h3>
-                <Form>
-                    <FormGroup>
-                        <Label htmlFor="userName">Username</Label>
-                        <Input
-                            required
-                            type="text"
-                            id="userName"
-                            onChange={this.handleFieldChange}
-                            placeholder="Username"
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label htmlFor="email">Email Address</Label>
-                        <Input
-                            required
-                            type="email"
-                            id="email"
-                            onChange={this.handleFieldChange}
-                            placeholder="name@email.com"
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label htmlFor="phoneNumber">Phone Number</Label>
-                        <Input
-                            required
-                            type="text"
-                            id="phoneNumber"
-                            onChange={this.handleFieldChange}
-                            placeholder="+1 234 567 8901"
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label htmlFor="password">Password</Label>
-                        <Input
-                            required
-                            type="password"
-                            id="password"
-                            onChange={this.handleFieldChange}
-                            placeholder="Password"
-                        />
-                    </FormGroup>
-                    <Button
-                        type="submit"
-                        onClick={this.handleRegister}
-                    >
-                        Register
+            <Card
+                className="card-search">
+                <CardBody>
+                    <Card
+                        className="card-extra-opacity">
+                        <CardBody>
+                            <h3>Register as a new user</h3>
+                            <Form>
+                                <FormGroup>
+                                    <Label htmlFor="userName">Username</Label>
+                                    <Input
+                                        required
+                                        type="text"
+                                        id="userName"
+                                        onChange={this.handleFieldChange}
+                                        placeholder="Username"
+                                    />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label htmlFor="email">Email Address</Label>
+                                    <Input
+                                        required
+                                        type="email"
+                                        id="email"
+                                        onChange={this.handleFieldChange}
+                                        placeholder="name@email.com"
+                                    />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label htmlFor="phoneNumber">Phone Number</Label>
+                                    <Input
+                                        required
+                                        type="text"
+                                        id="phoneNumber"
+                                        onChange={this.handleFieldChange}
+                                        placeholder="+1 234 567 8901"
+                                    />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label htmlFor="password">Password</Label>
+                                    <Input
+                                        required
+                                        type="password"
+                                        id="password"
+                                        onChange={this.handleFieldChange}
+                                        placeholder="Password"
+                                    />
+                                </FormGroup>
+                                <Button
+                                    color="primary"
+                                    type="submit"
+                                    onClick={this.handleRegister}
+                                >
+                                    Register
                 </Button>
-                </Form>
-            </React.Fragment>
+                            </Form>
+                        </CardBody>
+                    </Card>
+                </CardBody>
+                <CardHeader></CardHeader>
+            </Card>
+
         )
     }
 }

@@ -182,48 +182,49 @@ export default class TastingList extends Component {
                 <Card>
                     <CardHeader>Tasting List {this.state.viewSearchButton &&
                         <Button
+                            color="primary"
                             onClick={this.handleSearchTastings}>
                             Search Tastings
                             </Button>}
                     </CardHeader>
-                    <CardBody>
-                        {/* Below are multiple conditional rendering statements to display the imported file depending on the state(whish is listed first) */}
-                        {this.state.isSearching &&
-                            <TastingSearchForm handleSearchAllTastings={this.handleSearchAllTastings} handleSearchTastingsByDate={this.handleSearchTastingsByDate} handleSearchTastingsByTheme={this.handleSearchTastingsByTheme} handleSearchTastingsByWhiskey={this.handleSearchTastingsByWhiskey} handleSearchTastingsByUser={this.handleSearchTastingsByUser} />
-                        }
-                        {this.state.seeAllTastings &&
-                            this.state.tastings.map(tasting =>
-                                <TastingIndividualCard key={tasting.id} tasting={tasting} tastingSelections={this.state.tastingSelections} tastingAttendance={this.state.tastingAttendance} />
-                            )
-                        }
-                        {this.state.isSearchingByDate && <SearchByDateForm tastings={this.state.tastings} handleSearchByDate={this.handleSearchByDate}
-                            handleCancel={this.handleCancel} />
-                        }
-                        {this.state.seeTastingsBySelectedDate && this.state.tastingsByDate.map(tasting => <TastingIndividualCard key={tasting.id} tasting={tasting} tastingSelections={this.state.tastingSelections} tastingAttendance={this.state.tastingAttendance} />
-                        )}
-                        {this.state.isSearchingByTheme && <SearchByThemeForm tastings={this.state.tastings} handleSearchByTheme={this.handleSearchByTheme}
-                            handleCancel={this.handleCancel} />
-                        }
-                        {this.state.seeTastingsBySelectedTheme && this.state.tastingsByTheme.map(tasting => <TastingIndividualCard key={tasting.id} tasting={tasting} tastingSelections={this.state.tastingSelections} tastingAttendance={this.state.tastingAttendance} />
-                        )}
-                        {this.state.isSearchingByWhiskies && <SearchByWhiskeyForm tastingSelections={this.state.tastingSelections} handleSearchByWhiskey={this.handleSearchByWhiskey}
-                            handleCancel={this.handleCancel} />
-                        }
-                        {this.state.seeTastingsBySelectedWhiskey && this.state.tastingsByWhiskey.map(tasting => <TastingIndividualCard key={tasting.id} tasting={tasting} tastingSelections={this.state.tastingSelections} tastingAttendance={this.state.tastingAttendance} />
-                        )}
-                        {this.state.isSearchingByUsers && <SearchByUserForm users={this.props.users} tastingAttendance={this.state.tastingAttendance} handleSearchByUser={this.handleSearchByUser}
-                            handleCancel={this.handleCancel} />
-                        }
-                        {this.state.seeTastingsBySelectedUser && this.state.tastingsByUser.length > 0 && this.state.tastingsByUser.map(tasting => <TastingIndividualCard key={tasting.id} tasting={tasting} tastingSelections={this.state.tastingSelections} tastingAttendance={this.state.tastingAttendance} />
-                        )}
-                        {this.state.seeTastingsBySelectedUser && this.state.tastingsByUser.length === 0 &&
-                            <Card>
-                                <CardBody>
-                                    <CardTitle>This user has not attended any tastings.</CardTitle>
-                                </CardBody>
-                            </Card>
-                        }
+                    {/* Below are multiple conditional rendering statements to display the imported file depending on the state(whish is listed first) */}
+                    {this.state.isSearching &&
+                        <TastingSearchForm handleSearchAllTastings={this.handleSearchAllTastings} handleSearchTastingsByDate={this.handleSearchTastingsByDate} handleSearchTastingsByTheme={this.handleSearchTastingsByTheme} handleSearchTastingsByWhiskey={this.handleSearchTastingsByWhiskey} handleSearchTastingsByUser={this.handleSearchTastingsByUser} />
+                    }
+                    {this.state.seeAllTastings &&
+                        this.state.tastings.map(tasting =>
+                            <TastingIndividualCard key={tasting.id} tasting={tasting} tastingSelections={this.state.tastingSelections} tastingAttendance={this.state.tastingAttendance} />
+                        )
+                    }
+                    {this.state.isSearchingByDate && <SearchByDateForm tastings={this.state.tastings} handleSearchByDate={this.handleSearchByDate}
+                        handleCancel={this.handleCancel} />
+                    }
+                    {this.state.seeTastingsBySelectedDate && this.state.tastingsByDate.map(tasting => <TastingIndividualCard key={tasting.id} tasting={tasting} tastingSelections={this.state.tastingSelections} tastingAttendance={this.state.tastingAttendance} />
+                    )}
+                    {this.state.isSearchingByTheme && <SearchByThemeForm tastings={this.state.tastings} handleSearchByTheme={this.handleSearchByTheme}
+                        handleCancel={this.handleCancel} />
+                    }
+                    {this.state.seeTastingsBySelectedTheme && this.state.tastingsByTheme.map(tasting => <TastingIndividualCard key={tasting.id} tasting={tasting} tastingSelections={this.state.tastingSelections} tastingAttendance={this.state.tastingAttendance} />
+                    )}
+                    {this.state.isSearchingByWhiskies && <SearchByWhiskeyForm tastingSelections={this.state.tastingSelections} handleSearchByWhiskey={this.handleSearchByWhiskey}
+                        handleCancel={this.handleCancel} />
+                    }
+                    {this.state.seeTastingsBySelectedWhiskey && this.state.tastingsByWhiskey.map(tasting => <TastingIndividualCard key={tasting.id} tasting={tasting} tastingSelections={this.state.tastingSelections} tastingAttendance={this.state.tastingAttendance} />
+                    )}
+                    {this.state.isSearchingByUsers && <SearchByUserForm users={this.props.users} tastingAttendance={this.state.tastingAttendance} handleSearchByUser={this.handleSearchByUser}
+                        handleCancel={this.handleCancel} />
+                    }
+                    {this.state.seeTastingsBySelectedUser && this.state.tastingsByUser.length > 0 && this.state.tastingsByUser.map(tasting => <TastingIndividualCard key={tasting.id} tasting={tasting} tastingSelections={this.state.tastingSelections} tastingAttendance={this.state.tastingAttendance} />
+                    )}
+                    {this.state.seeTastingsBySelectedUser && this.state.tastingsByUser.length === 0 && <CardBody>
+                        <Card
+                            className="card-extra-opacity">
+                            <CardBody>
+                                <CardTitle>This user has not attended any tastings.</CardTitle>
+                            </CardBody>
+                        </Card>
                     </CardBody>
+                    }
                 </Card>
             </React.Fragment>
         )

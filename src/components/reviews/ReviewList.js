@@ -205,61 +205,80 @@ export default class ReviewList extends Component {
                 <Card>
                     <CardHeader>Reviews {this.state.viewSearchButton &&
                         <Button
+                            color="primary"
                             onClick={this.handleSearchReviews}>
                             Search Reviews
                             </Button>}</CardHeader>
-                    <CardBody>
-                        {/* Below are multiple conditional rendering statements to display the imported file depending on the state(whish is listed first) */}
-                        {this.state.isSearching &&
-                            <ReviewSearchForm handleSearchAllReviews={this.handleSearchAllReviews} handleSearchReviewsByWhiskey={this.handleSearchReviewsByWhiskey} handleSearchReviewsByUser={this.handleSearchReviewsByUser} handleSearchReviewsByTasting={this.handleSearchReviewsByTasting} />
-                        }
-                        {this.state.seeAllReviews &&
-                            this.state.reviews.map(review =>
-                                <ReviewIndividualCard key={review.id} review={review}
-                                    tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
-                            )
-                        }
-                        {this.state.isSearchingByWhiskey && <SearchReviewsByWhiskeyForm handleSearchByWhiskey={this.handleSearchByWhiskey} handleCancel={this.handleCancel} />
-                        }
-                        {this.state.seeReviewsBySelectedWhiskey && this.state.reviewsByWhiskey.length > 0 &&
-                            this.state.reviewsByWhiskey.map(review =>
-                                <ReviewIndividualCard key={review.id} review={review}
-                                    tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
-                            )
-                        }
-                        {this.state.seeReviewsBySelectedWhiskey && this.state.reviewsByWhiskey.length === 0 &&
-                            <Card>
-                                <CardBody>
-                                    <CardTitle>There are no reviews for this whiskey.</CardTitle>
-                                </CardBody>
-                            </Card>
-                        }
-                        {this.state.isSearchingByUser && <SearchReviewsByUserForm users={this.props.users} handleSearchByUser={this.handleSearchByUser}
-                            handleCancel={this.handleCancel} />
-                        }
-                        {this.state.seeReviewsBySelectedUser && this.state.reviewsByUser.length > 0 && this.state.reviewsByUser.map(review => <ReviewIndividualCard key={review.id} review={review} tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
-                        )}
-                        {this.state.seeReviewsBySelectedUser && this.state.reviewsByUser.length === 0 &&
-                            <Card>
-                                <CardBody>
-                                    <CardTitle>This user has not reviewed any whiskies.</CardTitle>
-                                </CardBody>
-                            </Card>
-                        }
-                        {this.state.isSearchingByTasting && <SearchReviewsByTastingForm handleSearchByTasting={this.handleSearchByTasting} handleCancel={this.handleCancel} />
-                        }
-                        {this.state.seeReviewsBySelectedTasting && this.state.reviewsByTasting.length > 0 && this.state.reviewsByTasting.map(review => <ReviewIndividualCard key={review.id} review={review} tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />)
-                        }
-                        {this.state.seeReviewsBySelectedTasting && this.state.reviewsByTasting.length === 0 &&
-                            <Card>
-                                <CardBody>
-                                    <CardTitle>There are no reviews for this tasting.</CardTitle>
-                                </CardBody>
-                            </Card>
-                        }
-                        {this.state.isEditing && <ReviewEditForm review={this.state.reviewToEdit}
-                            tastingSelections={this.state.tastingSelections} editedReview={this.state.editedReview} handleFieldChange={this.handleFieldChange} handleCancel={this.handleCancel} handleSaveEdit={this.handleSaveEdit} />}
-                    </CardBody>
+                    {/* Below are multiple conditional rendering statements to display the imported file depending on the state(whish is listed first) */}
+                    {this.state.isSearching &&
+                        <ReviewSearchForm handleSearchAllReviews={this.handleSearchAllReviews} handleSearchReviewsByWhiskey={this.handleSearchReviewsByWhiskey} handleSearchReviewsByUser={this.handleSearchReviewsByUser} handleSearchReviewsByTasting={this.handleSearchReviewsByTasting} />
+                    }
+                    {this.state.seeAllReviews &&
+                        this.state.reviews.map(review =>
+                            <ReviewIndividualCard key={review.id} review={review}
+                                tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
+                        )
+                    }
+                    {this.state.isSearchingByWhiskey && <SearchReviewsByWhiskeyForm handleSearchByWhiskey={this.handleSearchByWhiskey} handleCancel={this.handleCancel} />
+                    }
+                    {this.state.seeReviewsBySelectedWhiskey && this.state.reviewsByWhiskey.length > 0 &&
+                        this.state.reviewsByWhiskey.map(review =>
+                            <ReviewIndividualCard key={review.id} review={review}
+                                tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
+                        )
+                    }
+                    {this.state.seeReviewsBySelectedWhiskey && this.state.reviewsByWhiskey.length === 0 &&
+                        <Card
+                            className="card-first">
+                            <CardBody>
+                                <Card
+                                    className="card-extra-opacity">
+                                    <CardBody>
+                                        <CardTitle>There are no reviews for this whiskey.</CardTitle>
+                                    </CardBody>
+                                </Card>
+                            </CardBody>
+                            <CardHeader></CardHeader>
+                        </Card>
+                    }
+                    {this.state.isSearchingByUser && <SearchReviewsByUserForm users={this.props.users} handleSearchByUser={this.handleSearchByUser}
+                        handleCancel={this.handleCancel} />
+                    }
+                    {this.state.seeReviewsBySelectedUser && this.state.reviewsByUser.length > 0 && this.state.reviewsByUser.map(review => <ReviewIndividualCard key={review.id} review={review} tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />
+                    )}
+                    {this.state.seeReviewsBySelectedUser && this.state.reviewsByUser.length === 0 &&
+                        <Card
+                            className="card-first"><CardBody>
+                                <Card
+                                    className="card-extra-opacity">
+                                    <CardBody>
+                                        <CardTitle>This user has not reviewed any whiskies.</CardTitle>
+                                    </CardBody>
+                                </Card>
+                            </CardBody>
+                            <CardHeader></CardHeader>
+                        </Card>
+                    }
+                    {this.state.isSearchingByTasting && <SearchReviewsByTastingForm handleSearchByTasting={this.handleSearchByTasting} handleCancel={this.handleCancel} />
+                    }
+                    {this.state.seeReviewsBySelectedTasting && this.state.reviewsByTasting.length > 0 && this.state.reviewsByTasting.map(review => <ReviewIndividualCard key={review.id} review={review} tastingSelections={this.state.tastingSelections} handleEdit={this.handleEdit} handleDelete={this.handleDelete} myFavorites={this.props.myFavorites} handleDeleteFavorite={this.props.handleDeleteFavorite} handleAddFavorite={this.props.handleAddFavorite} />)
+                    }
+                    {this.state.seeReviewsBySelectedTasting && this.state.reviewsByTasting.length === 0 &&
+                        <Card
+                            className="card-first">
+                            <CardBody>
+                                <Card
+                                    className="card-extra-opacity">
+                                    <CardBody>
+                                        <CardTitle>There are no reviews for this tasting.</CardTitle>
+                                    </CardBody>
+                                </Card>
+                            </CardBody>
+                            <CardHeader></CardHeader>
+                        </Card>
+                    }
+                    {this.state.isEditing && <ReviewEditForm review={this.state.reviewToEdit}
+                        tastingSelections={this.state.tastingSelections} editedReview={this.state.editedReview} handleFieldChange={this.handleFieldChange} handleCancel={this.handleCancel} handleSaveEdit={this.handleSaveEdit} />}
                 </Card>
             </React.Fragment>
         )

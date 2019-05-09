@@ -9,11 +9,14 @@ export default class FavoritesCard extends Component {
     render() {
         return (
             <React.Fragment>
-                <Card>
+                <Card
+                    className="card-first">
                     <CardHeader>Favorites</CardHeader>
-                    <CardBody>
+                    <CardBody
+                        className="hl-scroll-body">
                         {this.props.myFavorites !== undefined && this.props.myFavorites.map(favorite =>
-                            <Card key={favorite.id}>
+                            <Card key={favorite.id}
+                                className="hl-scroll-card card-extra-opacity">
                                 <CardBody>
                                     <CardText>{favorite.whiskey.name}                                    <IoIosHeart
                                         id={favorite.id}
@@ -21,7 +24,6 @@ export default class FavoritesCard extends Component {
                                         onClick={() => this.props.handleConfirmDeleteFavorite(favorite.id)}
                                     ></IoIosHeart>
                                     </CardText>
-
                                 </CardBody>
                             </Card>
                         )

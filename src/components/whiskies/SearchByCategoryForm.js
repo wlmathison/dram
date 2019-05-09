@@ -1,7 +1,7 @@
 // Building a search form for whiskies resource by category to be added to WhiskeyList
 
 import React, { Component } from "react"
-import { CardBody, Dropdown, DropdownMenu, DropdownToggle, DropdownItem, CardTitle, Button } from "reactstrap"
+import { Card, CardBody, CardHeader, Dropdown, DropdownMenu, DropdownToggle, DropdownItem, CardTitle, Button } from "reactstrap"
 
 export default class SearchByCategoryForm extends Component {
 
@@ -19,20 +19,35 @@ export default class SearchByCategoryForm extends Component {
     render() {
         return (
             <React.Fragment>
-                <CardTitle>Search by Category</CardTitle>
-                <CardBody>
-                    <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                        <DropdownToggle caret>
-                            Categories
+                <Card
+                    className="card-search">
+                    <CardBody>
+                        <Card
+                            className="card-extra-opacity">
+                            <CardTitle
+                                className="search-form-title"
+                                tag={"h5"}>Search by Category</CardTitle>
+                            <CardBody>
+                                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                    <DropdownToggle
+                                        caret
+                                        color="success">
+                                        Categories
                                 </DropdownToggle>
-                        <DropdownMenu>
-                            {this.props.categories.map(category => <DropdownItem key={category.id} onClick={() => this.props.handleSearchByCategory(category.id)}>{category.name}</DropdownItem>)}
-                        </DropdownMenu>
-                    </Dropdown> {" "}
-                    <Button
-                        onClick={this.props.handleCancel}
-                    >Cancel</Button>
-                </CardBody>
+                                    <DropdownMenu>
+                                        {this.props.categories.map(category => <DropdownItem key={category.id}
+                                            className="dropdown-buttons"
+                                            onClick={() => this.props.handleSearchByCategory(category.id)}>{category.name}</DropdownItem>)}
+                                    </DropdownMenu>
+                                </Dropdown>
+                                <Button
+                                    onClick={this.props.handleCancel}
+                                >Cancel</Button>
+                            </CardBody>
+                        </Card>
+                    </CardBody>
+                    <CardHeader></CardHeader>
+                </Card>
             </React.Fragment>
         )
     }
