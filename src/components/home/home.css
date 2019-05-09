@@ -4,7 +4,9 @@
 }
 
 body {
-    background-color: #6c757d;
+    background-image: url("./wood-background.jpg");
+    background-size: 100% 100%;
+    height: 100vh
 }
 
 .card {
@@ -24,9 +26,11 @@ body {
 .card-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-image: url("./metal-2.jpg");
     border: none;
     color: gainsboro;
+    font-size: 1.15rem;
 }
 
 .hl-scroll-body {
@@ -64,4 +68,22 @@ body {
 
 .container-div {
     padding: 10px;
+}
+
+.card-search {
+    background-image: url("./wood-background.jpg");
+    background-size: 100% 100%;
+}
+
+.search-form-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-buttons {
+    margin-bottom: 10px;
+}
+
+.search-form-title {
+    text-align: center;
 }
