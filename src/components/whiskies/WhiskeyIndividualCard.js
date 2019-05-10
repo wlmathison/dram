@@ -42,7 +42,10 @@ export default class WhiskeyIndividualCard extends Component {
                             <Card
                                 className="card-extra-opacity">
                                 <CardBody>
-                                    <CardTitle>{this.props.whiskey.name}                            <IoIosHeart
+                                    <CardTitle
+                                        tag={"h5"}
+                                        className="favorites"
+                                    >{this.props.whiskey.name}                            <IoIosHeart
                                         id={favoriteId}
                                         color="red"
                                         onClick={() => this.props.handleDeleteFavorite(favoriteId)}
@@ -78,7 +81,10 @@ export default class WhiskeyIndividualCard extends Component {
                             <Card
                                 className="card-extra-opacity">
                                 <CardBody>
-                                    <CardTitle>{this.props.whiskey.name}                            <IoIosHeartEmpty
+                                    <CardTitle
+                                        tag={"h5"}
+                                        className="favorites"
+                                    >{this.props.whiskey.name}                            <IoIosHeartEmpty
                                         id={this.props.whiskey.id}
                                         onClick={() => this.props.handleAddFavorite(this.props.whiskey.id)}
                                     ></IoIosHeartEmpty>

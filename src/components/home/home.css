@@ -91,3 +91,9 @@ body {
 .welcome-button {
     margin-right: 10px;
 }
+
+.favorites {
+    font-size: 1.1em;
+    display: flex;
+    justify-content: space-between;
+}

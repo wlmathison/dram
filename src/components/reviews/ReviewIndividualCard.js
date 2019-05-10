@@ -50,7 +50,9 @@ export default class ReviewIndividualCard extends Component {
                             <Card
                                 className="card-extra-opacity">
                                 <CardBody>
-                                    <CardTitle>Whiskey: {this.props.tastingSelections[id].whiskey.name} {" "}
+                                    <CardTitle
+                                        tag={"h5"}
+                                        className="favorites">Whiskey: {this.props.tastingSelections[id].whiskey.name}
                                         {/* Conditionally rendering depending on whether the whiskey has been saved as a favorite or not */}
                                         {isMyFavorite &&
                                             <IoIosHeart
@@ -77,7 +79,7 @@ export default class ReviewIndividualCard extends Component {
                                     <CardText>Date: {this.props.review.date}</CardText>
                                     <CardText>Review: {this.props.review.review}</CardText>
                                     <Button
-                                    color="info"
+                                        color="info"
                                         id={`edit-${this.props.review.id}`}
                                         onClick={this.props.handleEdit}
                                     >Edit</Button> {" "}
@@ -102,7 +104,9 @@ export default class ReviewIndividualCard extends Component {
                             <Card
                                 className="card-extra-opacity">
                                 <CardBody>
-                                    <CardTitle>Whiskey: {this.props.tastingSelections[id].whiskey.name} {" "}
+                                    <CardTitle
+                                        tag={"h5"}
+                                        className="favorites">Whiskey: {this.props.tastingSelections[id].whiskey.name}
                                         {/* Conditionally rendering depending on whether the whiskey has been saved as a favorite or not */}
                                         {isMyFavorite &&
                                             <IoIosHeart
