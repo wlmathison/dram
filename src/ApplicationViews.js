@@ -13,6 +13,7 @@ import WhiskeyList from "./components/whiskies/WhiskeyList"
 import TastingList from "./components/tastings/TastingList"
 import ReviewList from "./components/reviews/ReviewList"
 import ResultsList from "./components/results/ResultsList"
+import Admin from "./components/admin/Admin"
 
 
 export default class ApplicationViews extends Component {
@@ -136,7 +137,7 @@ export default class ApplicationViews extends Component {
                     if (this.isAuthenticated()) {
                         return <Redirect to="/home" />
                     } else {
-                        return <Guest users={this.state.users} {...props} postNewUser={this.postNewUser} updateApplicationViewsState={this.updateApplicationViewsState} updateUserName={this.props.updateUserName}/>
+                        return <Guest users={this.state.users} {...props} postNewUser={this.postNewUser} updateApplicationViewsState={this.updateApplicationViewsState} updateUserName={this.props.updateUserName} />
                     }
                 }} />
                 <Route exact path="/whiskies" render={props => {
@@ -162,6 +163,13 @@ export default class ApplicationViews extends Component {
                 }} />
                 <Route path="/results" render={props => {
                     return <ResultsList users={this.state.users} {...props} myFavorites={this.state.myFavorites} handleDeleteFavorite={this.handleDeleteFavorite} handleAddFavorite={this.handleAddFavorite} ratings={this.state.ratings} activeTasting={this.state.activeTasting} tastingIsActive={this.state.tastingIsActive} />
+                }} />
+                <Route path="/admin" render={props => {
+                    if (parseInt(sessionStorage.getItem("userTypeId")) === 1) {
+                        return <Admin />
+                    } else {
+                        return <Redirect to="/home" />
+                    }
                 }} />
             </React.Fragment>
         )

@@ -56,6 +56,8 @@ export default class NavBar extends Component {
                             <NavLink tag={Link} to="/whiskies" onClick={this.toggleNav}>Whiskies</NavLink>
                             <NavLink tag={Link} to="/tastings" onClick={this.toggleNav}>Tastings</NavLink>
                             <NavLink tag={Link} to="/reviews" onClick={this.toggleNav}>Reviews</NavLink>
+                            {(parseInt(sessionStorage.getItem("userTypeId")) === 1) && <NavLink tag={Link} to="/admin" onClick={this.toggleNav}>Admin</NavLink>
+                            }
                             {/* Conidtionally rendering link to tasting results if user has submitted their tasting review */}
                             {sessionStorage.getItem("tastingCompleted") && <NavLink tag={Link} to="/results" onClick={this.toggleNav}>Tasting Results</NavLink>
                             }
