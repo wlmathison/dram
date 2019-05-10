@@ -39,7 +39,7 @@ export default class NavBar extends Component {
     render() {
         return (
             <React.Fragment>
-                <Navbar light expand="md" className="navbar">
+                <Navbar dark expand="md" className="navbar">
                     <img
                         src={barrel}
                         alt="Barrel"
