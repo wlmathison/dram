@@ -23,7 +23,7 @@ export default class ActivateDeactivateUser extends Component {
                                             color="info"
                                             type="radio"
                                             onClick={this.props.handleActivateUser}
-                                        >Activate Inactive User</Button>
+                                        >Activate User</Button>
                                         <Button
                                             className="search-buttons"
                                             color="info"

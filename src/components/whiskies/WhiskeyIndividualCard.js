@@ -23,6 +23,12 @@ export default class WhiskeyIndividualCard extends Component {
     }
 
     render() {
+
+        let notGuest = false;
+        if (parseInt(sessionStorage.getItem("userTypeId")) === 1 || parseInt(sessionStorage.getItem("userTypeId")) === 2) {
+            notGuest = true
+        }
+
         function getSum(total, num) {
             return total + num
         }
@@ -47,11 +53,13 @@ export default class WhiskeyIndividualCard extends Component {
                                     <CardTitle
                                         tag={"h5"}
                                         className="favorites"
-                                    >{this.props.whiskey.name}                            <IoIosHeart
-                                        id={favoriteId}
-                                        color="red"
-                                        onClick={() => this.props.handleDeleteFavorite(favoriteId)}
-                                    ></IoIosHeart>
+                                    >{this.props.whiskey.name}
+                                        {notGuest && <IoIosHeart
+                                            id={favoriteId}
+                                            color="red"
+                                            onClick={() => this.props.handleDeleteFavorite(favoriteId)}
+                                        ></IoIosHeart>
+                                        }
                                     </CardTitle>
                                     <CardText>Size: {this.props.whiskey.size}</CardText>
                                     <CardText>Price: ${this.props.whiskey.price}</CardText>
@@ -92,10 +100,12 @@ export default class WhiskeyIndividualCard extends Component {
                                     <CardTitle
                                         tag={"h5"}
                                         className="favorites"
-                                    >{this.props.whiskey.name}                            <IoIosHeartEmpty
-                                        id={this.props.whiskey.id}
-                                        onClick={() => this.props.handleAddFavorite(this.props.whiskey.id)}
-                                    ></IoIosHeartEmpty>
+                                    >{this.props.whiskey.name}
+                                        {notGuest && <IoIosHeartEmpty
+                                            id={this.props.whiskey.id}
+                                            onClick={() => this.props.handleAddFavorite(this.props.whiskey.id)}
+                                        ></IoIosHeartEmpty>
+                                        }
                                     </CardTitle>
                                     <CardText>Size: {this.props.whiskey.size}</CardText>
                                     <CardText>Price: ${this.props.whiskey.price}</CardText>
@@ -106,7 +116,7 @@ export default class WhiskeyIndividualCard extends Component {
                                     <div>
                                         <CardText
                                             className="rating-text"
-                                            >Average Rating: </CardText>
+                                        >Average Rating: </CardText>
                                         <div
                                             className="ratings-div"
                                         >{rating.toFixed(2)}                                      <StarRatingComponent

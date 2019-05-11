@@ -82,21 +82,6 @@ export default class Admin extends Component {
     //     }))
     // }
 
-    // Function to confirm user wants to deactivate accoutn, PATCH the isActive change, clear out local and session storage, and then return user to /home
-    // handleDeactivateAccount = event => {
-    //     if (window.confirm("Are you sure you want to deactivate your account?")) {
-    //         UserManager.patch(this.state.id, {
-    //             isActive: false,
-    //         }).then(() => {
-    //             sessionStorage.clear()
-    //             localStorage.clear()
-    //         }).then(() => {
-    //             this.props.updateApplicationViewsState()
-    //             this.props.history.push("/")
-    //         })
-    //     }
-    // }
-
     // Function to handle user clicking Activate Inactive User and change state of 
     handleActivateUser = event => {
         event.preventDefault()
@@ -115,6 +100,7 @@ export default class Admin extends Component {
         })
     }
 
+    // Function to handle user selecting a user to activate, cahnge isActive to true for the user in the database, and update state of users
     handleActivate = event => {
         event.preventDefault()
         const newState = {
@@ -128,6 +114,7 @@ export default class Admin extends Component {
             .then(() => this.setState(newState))
     }
 
+    // Function to handle user selecting a user to deactivate, cahnge isActive to false for the user in the database, and update state of users
     handleDeactivate = event => {
         event.preventDefault()
         const newState = {

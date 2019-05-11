@@ -22,6 +22,12 @@ export default class ReviewIndividualCard extends Component {
     }
 
     render() {
+
+        let notGuest = false;
+        if (parseInt(sessionStorage.getItem("userTypeId")) === 1 || parseInt(sessionStorage.getItem("userTypeId")) === 2) {
+            notGuest = true
+        }
+
         function getSum(total, num) {
             return total + num
         }
@@ -56,13 +62,13 @@ export default class ReviewIndividualCard extends Component {
                                         tag={"h5"}
                                         className="favorites">Whiskey: {this.props.tastingSelections[id].whiskey.name}
                                         {/* Conditionally rendering depending on whether the whiskey has been saved as a favorite or not */}
-                                        {isMyFavorite &&
+                                        {isMyFavorite && notGuest &&
                                             <IoIosHeart
                                                 id={favoriteId}
                                                 color="red"
                                                 onClick={() => this.props.handleDeleteFavorite(favoriteId)}
                                             ></IoIosHeart>}
-                                        {!isMyFavorite &&
+                                        {!isMyFavorite && notGuest &&
                                             <IoIosHeartEmpty
                                                 id={this.props.tastingSelections[id].whiskey.id}
                                                 onClick={() => this.props.handleAddFavorite(this.props.tastingSelections[id].whiskey.id)}
@@ -115,13 +121,13 @@ export default class ReviewIndividualCard extends Component {
                                         tag={"h5"}
                                         className="favorites">Whiskey: {this.props.tastingSelections[id].whiskey.name}
                                         {/* Conditionally rendering depending on whether the whiskey has been saved as a favorite or not */}
-                                        {isMyFavorite &&
+                                        {isMyFavorite && notGuest &&
                                             <IoIosHeart
                                                 id={favoriteId}
                                                 color="red"
                                                 onClick={() => this.props.handleDeleteFavorite(favoriteId)}
                                             ></IoIosHeart>}
-                                        {!isMyFavorite &&
+                                        {!isMyFavorite && notGuest &&
                                             <IoIosHeartEmpty
                                                 id={this.props.tastingSelections[id].whiskey.id}
                                                 onClick={() => this.props.handleAddFavorite(this.props.tastingSelections[id].whiskey.id)}

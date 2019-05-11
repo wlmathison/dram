@@ -36,7 +36,7 @@ export default class ActivateUser extends Component {
                                                 className="search-buttons"
                                                 caret
                                                 color="success">
-                                                Select Inactive User
+                                                Activate Selected User
                                              </DropdownToggle>
                                             <DropdownMenu>
                                                 {this.props.users.some(user => user.isActive === false) && this.props.users.map(user => {

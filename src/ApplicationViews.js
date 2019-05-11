@@ -162,7 +162,11 @@ export default class ApplicationViews extends Component {
                     }
                 }} />
                 <Route path="/results" render={props => {
-                    return <ResultsList users={this.state.users} {...props} myFavorites={this.state.myFavorites} handleDeleteFavorite={this.handleDeleteFavorite} handleAddFavorite={this.handleAddFavorite} ratings={this.state.ratings} activeTasting={this.state.activeTasting} tastingIsActive={this.state.tastingIsActive} />
+                    if (this.isAuthenticated()) {
+                        return <ResultsList users={this.state.users} {...props} myFavorites={this.state.myFavorites} handleDeleteFavorite={this.handleDeleteFavorite} handleAddFavorite={this.handleAddFavorite} ratings={this.state.ratings} activeTasting={this.state.activeTasting} tastingIsActive={this.state.tastingIsActive} />
+                    } else {
+                        return <Redirect to="/" />
+                    }
                 }} />
                 <Route path="/admin" render={props => {
                     if (parseInt(sessionStorage.getItem("userTypeId")) === 1) {

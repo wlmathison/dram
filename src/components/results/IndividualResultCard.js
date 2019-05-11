@@ -23,6 +23,12 @@ export default class IndividualResultCard extends Component {
     }
 
     render() {
+
+        let notGuest = false;
+        if (parseInt(sessionStorage.getItem("userTypeId")) === 1 || parseInt(sessionStorage.getItem("userTypeId")) === 2) {
+            notGuest = true
+        }
+
         function getSum(total, num) {
             return total + num
         }
@@ -50,11 +56,12 @@ export default class IndividualResultCard extends Component {
                                         <CardTitle
                                             tag={"h5"}
                                             className="favorites">#{this.props.i}: {whiskey.name}
-                                            <IoIosHeart
+                                            {notGuest && <IoIosHeart
                                                 id={favoriteId}
                                                 color="red"
                                                 onClick={() => this.props.handleDeleteFavorite(favoriteId)}
                                             ></IoIosHeart>
+                                            }
                                         </CardTitle>
                                         <div>
                                             <CardText
@@ -94,10 +101,12 @@ export default class IndividualResultCard extends Component {
                                         <CardTitle
                                             tag={"h5"}
                                             className="favorites">#{this.props.i}: {whiskey.name}
-                                            <IoIosHeartEmpty
-                                                id={this.props.whiskey.id}
-                                                onClick={() => this.props.handleAddFavorite(this.props.whiskey.id)}
-                                            ></IoIosHeartEmpty>
+                                            {notGuest &&
+                                                <IoIosHeartEmpty
+                                                    id={this.props.whiskey.id}
+                                                    onClick={() => this.props.handleAddFavorite(this.props.whiskey.id)}
+                                                ></IoIosHeartEmpty>
+                                            }
                                         </CardTitle>
                                         <div>
                                             <CardText
