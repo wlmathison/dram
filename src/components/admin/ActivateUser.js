@@ -39,7 +39,7 @@ export default class ActivateUser extends Component {
                                                 Select Inactive User
                                              </DropdownToggle>
                                             <DropdownMenu>
-                                                {this.props.users.map(user => {
+                                                {this.props.users.some(user => user.isActive === false) && this.props.users.map(user => {
                                                     if (!user.isActive) {
                                                         return <DropdownItem
                                                             key={user.id}
@@ -49,6 +49,9 @@ export default class ActivateUser extends Component {
                                                         return null
                                                     }
                                                 })}
+                                                {!this.props.users.some(user => user.isActive === false) && <DropdownItem
+                                                >No Inactive Users</DropdownItem>
+                                                }
                                             </DropdownMenu>
                                         </Dropdown>
                                         <Button

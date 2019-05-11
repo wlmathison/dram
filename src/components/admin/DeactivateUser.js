@@ -1,9 +1,21 @@
 // Page builds the deactivate user form for admin page
 
 import React, { Component } from "react"
-import { Card, CardBody, Form, Button, CardHeader } from "reactstrap"
+import { Card, CardBody, Form, Button, CardHeader, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap"
 
 export default class DeactivateUser extends Component {
+
+    state = {
+        dropdownOpen: false
+    }
+
+    // Function to toggle state of dropdown
+    toggle = () => {
+        this.setState(prevState => ({
+            dropdownOpen: !prevState.dropdownOpen
+        }))
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -18,12 +30,30 @@ export default class DeactivateUser extends Component {
                                 <CardBody>
                                     <Form
                                         className="search-form-buttons">
-                                        <Button
-                                            className="search-buttons"
-                                            color="success"
-                                            type="radio"
-                                            onClick={this.props.handleSearchWhiskiesByName}
-                                        >Select Inactive User</Button>
+                                        <Dropdown
+                                            isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                            <DropdownToggle
+                                                className="search-buttons"
+                                                caret
+                                                color="success">
+                                                Select Active User
+                                             </DropdownToggle>
+                                            <DropdownMenu>
+                                                {this.props.users.some(user => user.isActive === true) && this.props.users.map(user => {
+                                                    if (user.isActive) {
+                                                        return <DropdownItem
+                                                            key={user.id}
+                                                            id={user.id}
+                                                            onClick={this.props.handleDeactivate} >{user.userName}</DropdownItem>
+                                                    } else {
+                                                        return null
+                                                    }
+                                                })}
+                                                {!this.props.users.some(user => user.isActive === true) && <DropdownItem
+                                                >No Active Users</DropdownItem>
+                                                }
+                                            </DropdownMenu>
+                                        </Dropdown>
                                         <Button
                                             className="search-buttons"
                                             type="radio"

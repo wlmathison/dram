@@ -123,7 +123,20 @@ export default class Admin extends Component {
         }
         UserManager.patch(event.target.id, {
             isActive: true
-        }).then(UserManager.getAll())
+        }).then(() => UserManager.getAll())
+            .then(users => (newState.users = users))
+            .then(() => this.setState(newState))
+    }
+
+    handleDeactivate = event => {
+        event.preventDefault()
+        const newState = {
+            showActivateDeactivate: true,
+            showDeactivate: false
+        }
+        UserManager.patch(event.target.id, {
+            isActive: false
+        }).then(() => UserManager.getAll())
             .then(users => (newState.users = users))
             .then(() => this.setState(newState))
     }
@@ -134,7 +147,7 @@ export default class Admin extends Component {
                 {/* Below are multiple conditional rendering statements to display the imported file depending on the state(whish is listed first) */}
                 {this.state.showActivateDeactivate && <ActivateDeactivateUser handleActivateUser={this.handleActivateUser} handleDeactivateUser={this.handleDeactivateUser} />}
                 {this.state.showActivate && <ActivateUser handleCancel={this.handleCancel} users={this.state.users} handleActivate={this.handleActivate} />}
-                {this.state.showDeactivate && <DeactivateUser handleCancel={this.handleCancel} />}
+                {this.state.showDeactivate && <DeactivateUser handleCancel={this.handleCancel} users={this.state.users} handleDeactivate={this.handleDeactivate} />}
                 {this.state.showCreate && <CreateNewResource />}
                 {this.state.showEdit && <EditResource />}
                 {this.state.showDelete && <DeleteResource />}
