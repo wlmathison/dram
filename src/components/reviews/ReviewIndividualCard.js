@@ -27,8 +27,10 @@ export default class ReviewIndividualCard extends Component {
         }
 
         let rating = 0;
+        let totalRatings = 0;
         if (this.state.ratings.length > 0) {
-            rating = this.state.ratings.reduce(getSum) / this.state.ratings.length
+            totalRatings = this.state.ratings.length
+            rating = this.state.ratings.reduce(getSum) / totalRatings
         }
 
         let id = this.props.review.tastingSelectionId - 1
@@ -68,11 +70,14 @@ export default class ReviewIndividualCard extends Component {
                                     </CardTitle>
                                     <div>
                                         <CardText>Average Rating: </CardText>
-                                        <StarRatingComponent
-                                            name={"name"}
-                                            starCount={5}
-                                            value={rating}
-                                        />
+                                        <div
+                                            className="ratings-div"
+                                        >{rating.toFixed(2)}                                        <StarRatingComponent
+                                                name={"name"}
+                                                starCount={5}
+                                                value={rating}
+                                            />
+                                            {`(${totalRatings})`}</div>
                                     </div>
                                     <CardText>Reviewed by: {this.props.review.user.userName}</CardText>
                                     <CardText>At Tasting: {this.props.tastingSelections[id].tasting.theme}</CardText>
@@ -122,11 +127,14 @@ export default class ReviewIndividualCard extends Component {
                                     </CardTitle>
                                     <div>
                                         <CardText>Average Rating: </CardText>
-                                        <StarRatingComponent
-                                            name={"name"}
-                                            starCount={5}
-                                            value={rating}
-                                        />
+                                        <div
+                                            className="ratings-div"
+                                        >{rating.toFixed(2)}                                        <StarRatingComponent
+                                                name={"name"}
+                                                starCount={5}
+                                                value={rating}
+                                            />
+                                            {`(${totalRatings})`}</div>
                                     </div>
                                     <CardText>Reviewed by: {this.props.review.user.userName}</CardText>
                                     <CardText>At Tasting: {this.props.tastingSelections[id].tasting.theme}</CardText>
@@ -140,7 +148,5 @@ export default class ReviewIndividualCard extends Component {
                 </React.Fragment>
             )
         }
-
-
     }
 }

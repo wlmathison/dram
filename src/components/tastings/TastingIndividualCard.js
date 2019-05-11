@@ -16,7 +16,9 @@ export default class TastingIndividualCard extends Component {
                             <Card
                                 className="card-extra-opacity">
                                 <CardBody>
-                                    <CardTitle>Tasting #{this.props.tasting.id}</CardTitle>
+                                    <CardTitle
+                                        tag={"h5"}
+                                    >Tasting #{this.props.tasting.id}</CardTitle>
                                     <CardText>Date: {this.props.tasting.date}</CardText>
                                     <CardText>Theme: {this.props.tasting.theme}</CardText>
                                     <CardText>Whiskies:</CardText>

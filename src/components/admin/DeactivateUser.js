@@ -1,15 +1,15 @@
-// Page builds the activate/deactivate user section for admin page
+// Page builds the deactivate user form for admin page
 
 import React, { Component } from "react"
 import { Card, CardBody, Form, Button, CardHeader } from "reactstrap"
 
-export default class ActivateDeactivateUser extends Component {
+export default class DeactivateUser extends Component {
     render() {
         return (
             <React.Fragment>
                 <Card
                     className="card-first">
-                    <CardHeader>Activate/Deactivate User</CardHeader>
+                    <CardHeader>Deactivate User</CardHeader>
                     <Card
                         className="card-search">
                         <CardBody>
@@ -20,16 +20,15 @@ export default class ActivateDeactivateUser extends Component {
                                         className="search-form-buttons">
                                         <Button
                                             className="search-buttons"
-                                            color="info"
+                                            color="success"
                                             type="radio"
-                                            onClick={this.props.handleActivateUser}
-                                        >Activate Inactive User</Button>
+                                            onClick={this.props.handleSearchWhiskiesByName}
+                                        >Select Inactive User</Button>
                                         <Button
                                             className="search-buttons"
-                                            color="info"
                                             type="radio"
-                                            onClick={this.props.handleDeactivateUser}
-                                        >Deactivate User</Button>
+                                            onClick={this.props.handleCancel}
+                                        >Cancel</Button>
                                     </Form>
                                 </CardBody>
                             </Card>

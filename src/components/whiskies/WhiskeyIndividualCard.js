@@ -28,8 +28,10 @@ export default class WhiskeyIndividualCard extends Component {
         }
 
         let rating = 0;
+        let totalRatings = 0;
         if (this.state.ratings.length > 0) {
-            rating = this.state.ratings.reduce(getSum) / this.state.ratings.length
+            totalRatings = this.state.ratings.length
+            rating = this.state.ratings.reduce(getSum) / totalRatings
         }
 
         if (this.props.myFavorites.some(favorite => favorite.whiskey.id === this.props.whiskey.id)) {
@@ -59,11 +61,15 @@ export default class WhiskeyIndividualCard extends Component {
                                     <CardText>Distillery: {this.props.whiskey.distillery.name}</CardText>
                                     <div>
                                         <CardText>Average Rating: </CardText>
-                                        <StarRatingComponent
-                                            name={"name"}
-                                            starCount={5}
-                                            value={rating}
-                                        />
+                                        <div
+                                            className="ratings-div"
+                                        >{rating.toFixed(2)}                                        <StarRatingComponent
+                                                name={"name"}
+                                                starCount={5}
+                                                value={rating}
+                                            />
+                                            {`(${totalRatings})`}</div>
+
                                     </div>
                                 </CardBody>
                             </Card>
@@ -97,11 +103,14 @@ export default class WhiskeyIndividualCard extends Component {
                                     <CardText>Distillery: {this.props.whiskey.distillery.name}</CardText>
                                     <div>
                                         <CardText>Average Rating: </CardText>
-                                        <StarRatingComponent
-                                            name={"name"}
-                                            starCount={5}
-                                            value={rating}
-                                        />
+                                        <div
+                                            className="ratings-div"
+                                        >{rating.toFixed(2)}                                      <StarRatingComponent
+                                                name={"name"}
+                                                starCount={5}
+                                                value={rating}
+                                            />
+                                            {`(${totalRatings})`}</div>
                                     </div>
                                 </CardBody>
                             </Card>

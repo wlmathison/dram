@@ -166,7 +166,7 @@ export default class ApplicationViews extends Component {
                 }} />
                 <Route path="/admin" render={props => {
                     if (parseInt(sessionStorage.getItem("userTypeId")) === 1) {
-                        return <Admin />
+                        return <Admin users={this.state.users} />
                     } else {
                         return <Redirect to="/home" />
                     }

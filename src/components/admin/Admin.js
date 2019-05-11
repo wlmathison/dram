@@ -1,10 +1,13 @@
 // Page renders the admin page showing admin functions including adding/editing/deleting resources as well as deactivating users
 
 import React, { Component } from "react"
+import UserManager from "./../../modules/UserManager"
 import CreateNewResource from "./CreateNewResource"
 import EditResource from "./EditResource"
 import DeleteResource from "./DeleteResource"
 import ActivateDeactivateUser from "./ActivateDeactivateUser"
+import ActivateUser from "./ActivateUser"
+import DeactivateUser from "./DeactivateUser"
 
 
 
@@ -21,26 +24,19 @@ export default class Admin extends Component {
         tastingSelection: [],
         whiskies: [],
         showActivateDeactivate: true,
+        showActivate: false,
+        showDeactivate: false,
         showCreate: true,
         showEdit: true,
         showDelete: true
     }
 
-    // componentDidMount() {
-    //     const newState = {}
-    //     UserManager.get(sessionStorage.getItem("userId"))
-    //         .then(user => {
-    //             return (newState.user = user,
-    //                 newState.id = user.id,
-    //                 newState.userName = user.userName,
-    //                 newState.password = user.password,
-    //                 newState.email = user.email,
-    //                 newState.phoneNumber = user.phoneNumber,
-    //                 newState.userTypeId = user.userTypeId,
-    //                 newState.isActive = user.isActive
-    //             )
-    //         }).then(() => this.setState(newState))
-    // }
+    componentDidMount() {
+        const newState = {}
+        UserManager.getAll()
+            .then(users => (newState.users = users))
+            .then(() => this.setState(newState))
+    }
 
     // Function to change state of editUser when button clicked
     handleFieldChange = event => {
@@ -58,13 +54,18 @@ export default class Admin extends Component {
     //     window.scrollTo(0, 0);
     // }
 
-    // Function to handle user clicking cancel button and show profile instead of edit form
-    // handleCancelEdit = event => {
-    //     this.setState({
-    //         editUser: false,
-    //         showProfile: true
-    //     })
-    // }
+    // Function to handle user clicking cancel button and return to admin form
+    handleCancel = event => {
+        event.preventDefault()
+        this.setState({
+            showActivateDeactivate: true,
+            showActivate: false,
+            showDeactivate: false,
+            showCreate: true,
+            showEdit: true,
+            showDelete: true
+        })
+    }
 
     // Function to save edits made to profile, PUT them into API, and then render the user profile again
     // handleSaveEditProfile = event => {
@@ -96,11 +97,44 @@ export default class Admin extends Component {
     //     }
     // }
 
+    // Function to handle user clicking Activate Inactive User and change state of 
+    handleActivateUser = event => {
+        event.preventDefault()
+        this.setState({
+            showActivate: true,
+            showActivateDeactivate: false
+        })
+    }
+
+    // Function to handle user clicking Deactivate User and change state of 
+    handleDeactivateUser = event => {
+        event.preventDefault()
+        this.setState({
+            showDeactivate: true,
+            showActivateDeactivate: false
+        })
+    }
+
+    handleActivate = event => {
+        event.preventDefault()
+        const newState = {
+            showActivateDeactivate: true,
+            showActivate: false
+        }
+        UserManager.patch(event.target.id, {
+            isActive: true
+        }).then(UserManager.getAll())
+            .then(users => (newState.users = users))
+            .then(() => this.setState(newState))
+    }
+
     render() {
         return (
             <React.Fragment>
                 {/* Below are multiple conditional rendering statements to display the imported file depending on the state(whish is listed first) */}
-                {this.state.showActivateDeactivate && <ActivateDeactivateUser />}
+                {this.state.showActivateDeactivate && <ActivateDeactivateUser handleActivateUser={this.handleActivateUser} handleDeactivateUser={this.handleDeactivateUser} />}
+                {this.state.showActivate && <ActivateUser handleCancel={this.handleCancel} users={this.state.users} handleActivate={this.handleActivate} />}
+                {this.state.showDeactivate && <DeactivateUser handleCancel={this.handleCancel} />}
                 {this.state.showCreate && <CreateNewResource />}
                 {this.state.showEdit && <EditResource />}
                 {this.state.showDelete && <DeleteResource />}
