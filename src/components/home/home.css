@@ -108,3 +108,7 @@ body {
 .dv-star-rating {
     padding: 0 8px 0 8px;
 }
+
+.rating-text {
+    margin-bottom: 0;
+}

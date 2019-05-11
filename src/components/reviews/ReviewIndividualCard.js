@@ -69,7 +69,9 @@ export default class ReviewIndividualCard extends Component {
                                             ></IoIosHeartEmpty>}
                                     </CardTitle>
                                     <div>
-                                        <CardText>Average Rating: </CardText>
+                                        <CardText
+                                            className="rating-text"
+                                        >Average Rating: </CardText>
                                         <div
                                             className="ratings-div"
                                         >{rating.toFixed(2)}                                        <StarRatingComponent
@@ -126,7 +128,9 @@ export default class ReviewIndividualCard extends Component {
                                             ></IoIosHeartEmpty>}
                                     </CardTitle>
                                     <div>
-                                        <CardText>Average Rating: </CardText>
+                                        <CardText
+                                            className="rating-text"
+                                        >Average Rating: </CardText>
                                         <div
                                             className="ratings-div"
                                         >{rating.toFixed(2)}                                        <StarRatingComponent
