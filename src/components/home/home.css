@@ -34,6 +34,11 @@ body {
     font-size: 1.15rem;
 }
 
+.tasting-header {
+    display: flex;
+    align-items: center;
+}
+
 .hl-scroll-body {
     display: flex;
     flex-wrap: nowrap;

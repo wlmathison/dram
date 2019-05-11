@@ -5,6 +5,7 @@ import { Spinner, Card, CardHeader, CardBody, Button, Modal, ModalHeader, ModalB
 import StarRatingComponent from 'react-star-rating-component'
 import ReviewManager from "./../../modules/ReviewManager"
 import RatingManager from "./../../modules/RatingManager"
+import TastingAttendanceManager from "./../../modules/TastingAttendanceManager"
 import "./home.css"
 
 export default class ActiveTastingModal extends Component {
@@ -56,6 +57,11 @@ export default class ActiveTastingModal extends Component {
                 review: this.state[review]
             })
         )
+
+        TastingAttendanceManager.post({
+            userId: parseInt(sessionStorage.getItem("userId")),
+            tastingId: this.props.activeTasting.id
+        })
         sessionStorage.setItem("tastingCompleted", true)
     }
 
@@ -68,7 +74,9 @@ export default class ActiveTastingModal extends Component {
                 <Card
                     className="card-first">
                     <CardHeader>
-                        <div><Spinner type="grow" color="success" />Tasting in Progress
+                        <div
+                            className="tasting-header">
+                            <Spinner type="grow" color="success" />Tasting in Progress
                     </div>
                         <Button
                             color="success"
