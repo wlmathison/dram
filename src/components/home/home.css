@@ -112,3 +112,11 @@ body {
 .rating-text {
     margin-bottom: 0;
 }
+
+.ScrollUpButton__Container {
+    height: 40px;
+}
+
+.ScrollUpButton__Container:focus {
+    outline: 1px auto deepskyblue;
+}

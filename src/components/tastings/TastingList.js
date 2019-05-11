@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import { Card, CardHeader, CardBody, CardTitle, Button } from "reactstrap"
+import { TinyButton as ScrollUpButton } from "react-scroll-up-button"
 import TastingManager from "./../../modules/TastingManager"
 import TastingSelectionManager from "./../../modules/TastingSelectionManager"
 import TastingAttendanceManager from "./../../modules/TastingAttendanceManager"
@@ -187,6 +188,10 @@ export default class TastingList extends Component {
                             Search Tastings
                             </Button>}
                     </CardHeader>
+                    <div>
+                        <ScrollUpButton
+                            className="scroll-button" />
+                    </div>
                     {/* Below are multiple conditional rendering statements to display the imported file depending on the state(whish is listed first) */}
                     {this.state.isSearching &&
                         <TastingSearchForm handleSearchAllTastings={this.handleSearchAllTastings} handleSearchTastingsByDate={this.handleSearchTastingsByDate} handleSearchTastingsByTheme={this.handleSearchTastingsByTheme} handleSearchTastingsByWhiskey={this.handleSearchTastingsByWhiskey} handleSearchTastingsByUser={this.handleSearchTastingsByUser} />
