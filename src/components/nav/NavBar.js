@@ -40,14 +40,13 @@ export default class NavBar extends Component {
         return (
             <React.Fragment>
                 <Navbar dark expand="md" className="navbar">
-                    <img
-                        src={barrel}
-                        alt="Barrel"
-                        className="navbar-barrel"></img>
-                    <NavbarBrand className="navbar-brand"><img src={logo} id="logo" alt="logo"></img></NavbarBrand>
-                    <NavbarBrand>{" "}</NavbarBrand>
-                    <NavbarBrand>{" "}</NavbarBrand>
-                    <NavbarBrand>{" "}</NavbarBrand>
+                    <div>
+                        <img
+                            src={barrel}
+                            alt="Barrel"
+                            className="navbar-barrel"></img>
+                        <NavbarBrand className="navbar-brand"><img src={logo} id="logo" alt="logo"></img></NavbarBrand>
+                    </div>
                     <NavLink tag={Link} to="/home" onClick={this.closeNav}>{this.props.userName}</NavLink>
                     <NavbarToggler onClick={this.toggleNav} />
                     <Collapse isOpen={this.state.isOpen} navbar>
