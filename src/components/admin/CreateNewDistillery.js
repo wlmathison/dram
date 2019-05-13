@@ -2,13 +2,13 @@
 
 import React, { Component } from "react"
 import { Card, CardBody, Form, Button, FormGroup, Label, Input, CardHeader } from "reactstrap"
-import CategoryManager from "./../../modules/CategoryManager"
+import DistilleryManager from "./../../modules/DistilleryManager"
 
 export default class CreateNewCategory extends Component {
 
     state = {
         name: "",
-        requirements: ""
+        region: ""
     }
 
     // Function to change state when input field changes
@@ -20,9 +20,9 @@ export default class CreateNewCategory extends Component {
 
     // Function to post new category to database and call handleRefresh to refresh admin page
     handlePostNewCategory = event => {
-        CategoryManager.post({
+        DistilleryManager.post({
             name: this.state.name,
-            requirements: this.state.requirements
+            region: this.state.region
         })
         this.props.handleRefresh()
     }
@@ -31,30 +31,30 @@ export default class CreateNewCategory extends Component {
         return (
             <Card
                 className="card-search">
-                <CardHeader>Create New Category</CardHeader>
+                <CardHeader>Create New Distillery</CardHeader>
                 <CardBody>
                     <Card
                         className="card-extra-opacity">
                         <CardBody>
                             <Form>
                                 <FormGroup>
-                                    <Label htmlFor="name">Name</Label>
+                                    <Label htmlFor="name">Distillery Name</Label>
                                     <Input
                                         required
                                         type="text"
                                         id="name"
                                         onChange={this.handleFieldChange}
-                                        placeholder="Whiskey category name"
+                                        placeholder="Distillery name"
                                     />
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label htmlFor="requirements">Requirements</Label>
+                                    <Label htmlFor="region">Region</Label>
                                     <Input
                                         required
                                         type="text"
-                                        id="requirements"
+                                        id="region"
                                         onChange={this.handleFieldChange}
-                                        placeholder="Specific requirements for category"
+                                        placeholder="Region of distillery"
                                     />
                                 </FormGroup>
                                 <div
@@ -65,7 +65,7 @@ export default class CreateNewCategory extends Component {
                                         color="success"
                                         onClick={this.handlePostNewCategory}
                                     >
-                                        Save Category
+                                        Save Distillery
                                 </Button>
                                     <Button
                                         className="search-buttons"

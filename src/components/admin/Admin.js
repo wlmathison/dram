@@ -9,6 +9,7 @@ import ActivateDeactivateUser from "./ActivateDeactivateUser"
 import ActivateUser from "./ActivateUser"
 import DeactivateUser from "./DeactivateUser"
 import CreateNewCategory from "./CreateNewCategory"
+import CreateNewDistillery from "./CreateNewDistillery"
 
 
 
@@ -30,7 +31,8 @@ export default class Admin extends Component {
         showCreate: true,
         showEdit: true,
         showDelete: true,
-        showCreateCategory: false
+        showCreateCategory: false,
+        showCreateDistillery: false
     }
 
     componentDidMount() {
@@ -66,7 +68,22 @@ export default class Admin extends Component {
             showCreate: true,
             showEdit: true,
             showDelete: true,
-            showCreateCategory: false
+            showCreateCategory: false,
+            showCreateDistillery: false
+        })
+    }
+
+    // Function to handle refreshing admin page after user clicks a button
+    handleRefresh = event => {
+        this.setState({
+            showActivateDeactivate: true,
+            showActivate: false,
+            showDeactivate: false,
+            showCreate: true,
+            showEdit: true,
+            showDelete: true,
+            showCreateCategory: false,
+            showCreateDistillery: false
         })
     }
 
@@ -153,6 +170,15 @@ export default class Admin extends Component {
         })
     }
 
+    // Function to handle user clicking Create New Distillery and display create distillery form
+    handleCreateDistillery = event => {
+        event.preventDefault()
+        this.setState({
+            showCreateDistillery: true,
+            showCreate: false
+        })
+    }
+
 
     render() {
         return (
@@ -161,8 +187,9 @@ export default class Admin extends Component {
                 {this.state.showActivateDeactivate && <ActivateDeactivateUser handleActivateUser={this.handleActivateUser} handleDeactivateUser={this.handleDeactivateUser} />}
                 {this.state.showActivate && <ActivateUser handleCancel={this.handleCancel} users={this.state.users} handleActivate={this.handleActivate} />}
                 {this.state.showDeactivate && <DeactivateUser handleCancel={this.handleCancel} users={this.state.users} handleDeactivate={this.handleDeactivate} />}
-                {this.state.showCreate && <CreateNewResource handleCreateCategory={this.handleCreateCategory} />}
+                {this.state.showCreate && <CreateNewResource handleCreateCategory={this.handleCreateCategory} handleCreateDistillery={this.handleCreateDistillery} />}
                 {this.state.showCreateCategory && <CreateNewCategory handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} />}
+                {this.state.showCreateDistillery && <CreateNewDistillery handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} />}
                 {this.state.showEdit && <EditResource />}
                 {this.state.showDelete && <DeleteResource />}
             </React.Fragment>
