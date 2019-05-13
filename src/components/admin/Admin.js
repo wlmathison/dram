@@ -11,6 +11,7 @@ import DeactivateUser from "./DeactivateUser"
 import CreateNewCategory from "./CreateNewCategory"
 import CreateNewDistillery from "./CreateNewDistillery"
 import CreateNewTasting from "./CreateNewTasting"
+import "./admin.css"
 
 
 

@@ -1,7 +1,7 @@
 // Page builds the create new tasting form for admin page
 
 import React, { Component } from "react"
-import { Card, CardBody, Form, Button, FormGroup, Label, Input, CardHeader } from "reactstrap"
+import { Card, CardBody, Form, Button, FormGroup, Label, Input, CardHeader, ButtonGroup } from "reactstrap"
 import TastingManager from "./../../modules/TastingManager"
 
 export default class CreateNewCategory extends Component {
@@ -35,6 +35,14 @@ export default class CreateNewCategory extends Component {
         this.props.handleRefresh()
     }
 
+    onActiveRadioBtnClick(active) {
+        this.setState({ active });
+    }
+
+    onCompleteRadioBtnClick(isComplete) {
+        this.setState({ isComplete });
+    }
+
     render() {
         return (
             <Card
@@ -50,6 +58,7 @@ export default class CreateNewCategory extends Component {
                                     <Input
                                         required
                                         type="theme"
+                                        id="theme"
                                         onChange={this.handleFieldChange}
                                         placeholder="Tasting theme"
                                     />
@@ -69,6 +78,7 @@ export default class CreateNewCategory extends Component {
                                     <Input
                                         required
                                         type="text"
+                                        id="time"
                                         onChange={this.handleFieldChange}
                                         placeholder="Time of day for tasting"
                                     />
@@ -78,12 +88,41 @@ export default class CreateNewCategory extends Component {
                                     <Input
                                         required
                                         type="text"
+                                        id="address"
                                         onChange={this.handleFieldChange}
                                         placeholder="Address where tasting is being held"
                                     />
                                 </FormGroup>
+                                <ButtonGroup
+                                    className="radio-group">
+                                    <Label>Is Tasting Active? </Label>
+                                    <div>
+                                        <Button
+                                            onClick={() => this.onActiveRadioBtnClick(true)}
+                                            active={this.state.active === true}
+                                        >Yes</Button>
+                                        <Button
+                                            onClick={() => this.onActiveRadioBtnClick(false)}
+                                            active={this.state.active === false}
+                                        >No</Button>
+                                    </div>
+                                </ButtonGroup>
+                                <ButtonGroup
+                                    className="radio-group">
+                                    <Label>Is Tasting Complete? </Label>
+                                    <div>
+                                        <Button
+                                            onClick={() => this.onCompleteRadioBtnClick(true)}
+                                            active={this.state.isComplete === true}
+                                        >Yes</Button>
+                                        <Button
+                                            onClick={() => this.onCompleteRadioBtnClick(false)}
+                                            active={this.state.isComplete === false}
+                                        >No</Button>
+                                    </div>
+                                </ButtonGroup>
                                 <div
-                                    className="search-form-buttons"
+                                    className="search-form-buttons save-button-div"
                                 >
                                     <Button
                                         className="search-buttons"

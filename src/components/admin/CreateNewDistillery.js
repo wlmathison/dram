@@ -54,11 +54,11 @@ export default class CreateNewCategory extends Component {
                                         type="text"
                                         id="region"
                                         onChange={this.handleFieldChange}
-                                        placeholder="Region of distillery"
+                                        placeholder="State or country of distillery"
                                     />
                                 </FormGroup>
                                 <div
-                                    className="search-form-buttons"
+                                    className="search-form-buttons  "
                                 >
                                     <Button
                                         className="search-buttons"
