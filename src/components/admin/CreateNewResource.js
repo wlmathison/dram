@@ -22,7 +22,7 @@ export default class CreateNewResource extends Component {
                                             className="search-buttons"
                                             color="info"
                                             type="radio"
-                                            onClick={this.props.handleSearchWhiskiesByName}
+                                            onClick={this.props.handleCreateCategory}
                                         >Category</Button>
                                         <Button
                                             className="search-buttons"

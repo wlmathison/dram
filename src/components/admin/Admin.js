@@ -8,6 +8,7 @@ import DeleteResource from "./DeleteResource"
 import ActivateDeactivateUser from "./ActivateDeactivateUser"
 import ActivateUser from "./ActivateUser"
 import DeactivateUser from "./DeactivateUser"
+import CreateNewCategory from "./CreateNewCategory"
 
 
 
@@ -28,7 +29,8 @@ export default class Admin extends Component {
         showDeactivate: false,
         showCreate: true,
         showEdit: true,
-        showDelete: true
+        showDelete: true,
+        showCreateCategory: false
     }
 
     componentDidMount() {
@@ -63,7 +65,8 @@ export default class Admin extends Component {
             showDeactivate: false,
             showCreate: true,
             showEdit: true,
-            showDelete: true
+            showDelete: true,
+            showCreateCategory: false
         })
     }
 
@@ -82,7 +85,7 @@ export default class Admin extends Component {
     //     }))
     // }
 
-    // Function to handle user clicking Activate Inactive User and change state of 
+    // Function to handle user clicking Activate User and display inactive user dropdown
     handleActivateUser = event => {
         event.preventDefault()
         this.setState({
@@ -91,7 +94,7 @@ export default class Admin extends Component {
         })
     }
 
-    // Function to handle user clicking Deactivate User and change state of 
+    // Function to handle user clicking Deactivate User and display active user dropdown
     handleDeactivateUser = event => {
         event.preventDefault()
         this.setState({
@@ -100,7 +103,7 @@ export default class Admin extends Component {
         })
     }
 
-    // Function to handle user selecting a user to activate, cahnge isActive to true for the user in the database, and update state of users
+    // Function to handle user selecting a user to activate, change isActive to true for the user in the database, and update state of users
     handleActivate = event => {
         event.preventDefault()
         const newState = {
@@ -128,6 +131,29 @@ export default class Admin extends Component {
             .then(() => this.setState(newState))
     }
 
+    // Function to handle user clicking Create New Category and display create category form
+    handleCreateCategory = event => {
+        event.preventDefault()
+        this.setState({
+            showCreateCategory: true,
+            showCreate: false
+        })
+    }
+
+    // Function to handle refreshing admin page after user clicks a button
+    handleRefresh = event => {
+        this.setState({
+            showActivateDeactivate: true,
+            showActivate: false,
+            showDeactivate: false,
+            showCreate: true,
+            showEdit: true,
+            showDelete: true,
+            showCreateCategory: false
+        })
+    }
+
+
     render() {
         return (
             <React.Fragment>
@@ -135,7 +161,8 @@ export default class Admin extends Component {
                 {this.state.showActivateDeactivate && <ActivateDeactivateUser handleActivateUser={this.handleActivateUser} handleDeactivateUser={this.handleDeactivateUser} />}
                 {this.state.showActivate && <ActivateUser handleCancel={this.handleCancel} users={this.state.users} handleActivate={this.handleActivate} />}
                 {this.state.showDeactivate && <DeactivateUser handleCancel={this.handleCancel} users={this.state.users} handleDeactivate={this.handleDeactivate} />}
-                {this.state.showCreate && <CreateNewResource />}
+                {this.state.showCreate && <CreateNewResource handleCreateCategory={this.handleCreateCategory} />}
+                {this.state.showCreateCategory && <CreateNewCategory handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} />}
                 {this.state.showEdit && <EditResource />}
                 {this.state.showDelete && <DeleteResource />}
             </React.Fragment>
