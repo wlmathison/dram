@@ -43,6 +43,10 @@ export default class ReviewIndividualCard extends Component {
 
         let isMyFavorite = this.props.myFavorites.some(favorite => favorite.whiskey.id === this.props.tastingSelections[id].whiskey.id)
 
+        let dateArray = this.props.review.date.split('-')
+        dateArray.push(dateArray.shift())
+        let date = dateArray.join('/')
+
         let favoriteId;
 
         if (isMyFavorite) {
@@ -89,7 +93,7 @@ export default class ReviewIndividualCard extends Component {
                                     </div>
                                     <CardText>Reviewed by: {this.props.review.user.userName}</CardText>
                                     <CardText>At Tasting: {this.props.tastingSelections[id].tasting.theme}</CardText>
-                                    <CardText>Date: {this.props.review.date}</CardText>
+                                    <CardText>Date: {date}</CardText>
                                     <CardText>Review: {this.props.review.review}</CardText>
                                     <Button
                                         color="info"
@@ -148,7 +152,7 @@ export default class ReviewIndividualCard extends Component {
                                     </div>
                                     <CardText>Reviewed by: {this.props.review.user.userName}</CardText>
                                     <CardText>At Tasting: {this.props.tastingSelections[id].tasting.theme}</CardText>
-                                    <CardText>Date: {this.props.review.date}</CardText>
+                                    <CardText>Date: {date}</CardText>
                                     <CardText>Review: {this.props.review.review}</CardText>
                                 </CardBody>
                             </Card>

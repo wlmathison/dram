@@ -10,6 +10,7 @@ import ActivateUser from "./ActivateUser"
 import DeactivateUser from "./DeactivateUser"
 import CreateNewCategory from "./CreateNewCategory"
 import CreateNewDistillery from "./CreateNewDistillery"
+import CreateNewTasting from "./CreateNewTasting"
 
 
 
@@ -32,7 +33,8 @@ export default class Admin extends Component {
         showEdit: true,
         showDelete: true,
         showCreateCategory: false,
-        showCreateDistillery: false
+        showCreateDistillery: false,
+        showCreateTasting: false
     }
 
     componentDidMount() {
@@ -49,15 +51,6 @@ export default class Admin extends Component {
         this.setState(stateToChange)
     }
 
-    // Function to change state of editUser to true, udate state with props, and conditionally render edit form
-    // handleEdit = event => {
-    //     this.setState({
-    //         editUser: true,
-    //         showProfile: false,
-    //     })
-    //     window.scrollTo(0, 0);
-    // }
-
     // Function to handle user clicking cancel button and return to admin form
     handleCancel = event => {
         event.preventDefault()
@@ -69,7 +62,8 @@ export default class Admin extends Component {
             showEdit: true,
             showDelete: true,
             showCreateCategory: false,
-            showCreateDistillery: false
+            showCreateDistillery: false,
+            showCreateTasting: false
         })
     }
 
@@ -83,31 +77,20 @@ export default class Admin extends Component {
             showEdit: true,
             showDelete: true,
             showCreateCategory: false,
-            showCreateDistillery: false
+            showCreateDistillery: false,
+            showCreateTasting: false
         })
     }
-
-    // Function to save edits made to profile, PUT them into API, and then render the user profile again
-    // handleSaveEditProfile = event => {
-    //     UserManager.put(this.state.id, {
-    //         userName: this.state.userName,
-    //         password: this.state.password,
-    //         email: this.state.email,
-    //         phoneNumber: this.state.phoneNumber,
-    //         userTypeId: this.state.userTypeId,
-    //         isActive: this.state.isActive,
-    //     }).then(() => this.setState({
-    //         editUser: false,
-    //         showProfile: true
-    //     }))
-    // }
 
     // Function to handle user clicking Activate User and display inactive user dropdown
     handleActivateUser = event => {
         event.preventDefault()
         this.setState({
             showActivate: true,
-            showActivateDeactivate: false
+            showCreate: false,
+            showActivateDeactivate: false,
+            showEdit: false,
+            showDelete: false,
         })
     }
 
@@ -116,7 +99,10 @@ export default class Admin extends Component {
         event.preventDefault()
         this.setState({
             showDeactivate: true,
-            showActivateDeactivate: false
+            showCreate: false,
+            showActivateDeactivate: false,
+            showEdit: false,
+            showDelete: false,
         })
     }
 
@@ -125,6 +111,9 @@ export default class Admin extends Component {
         event.preventDefault()
         const newState = {
             showActivateDeactivate: true,
+            showCreate: true,
+            showEdit: true,
+            showDelete: true,
             showActivate: false
         }
         UserManager.patch(event.target.id, {
@@ -139,6 +128,9 @@ export default class Admin extends Component {
         event.preventDefault()
         const newState = {
             showActivateDeactivate: true,
+            showCreate: true,
+            showEdit: true,
+            showDelete: true,
             showDeactivate: false
         }
         UserManager.patch(event.target.id, {
@@ -153,20 +145,10 @@ export default class Admin extends Component {
         event.preventDefault()
         this.setState({
             showCreateCategory: true,
-            showCreate: false
-        })
-    }
-
-    // Function to handle refreshing admin page after user clicks a button
-    handleRefresh = event => {
-        this.setState({
-            showActivateDeactivate: true,
-            showActivate: false,
-            showDeactivate: false,
-            showCreate: true,
-            showEdit: true,
-            showDelete: true,
-            showCreateCategory: false
+            showCreate: false,
+            showActivateDeactivate: false,
+            showEdit: false,
+            showDelete: false,
         })
     }
 
@@ -175,23 +157,47 @@ export default class Admin extends Component {
         event.preventDefault()
         this.setState({
             showCreateDistillery: true,
-            showCreate: false
+            showCreate: false,
+            showActivateDeactivate: false,
+            showEdit: false,
+            showDelete: false,
         })
     }
 
+    // Function to handle user clicking Create New Tasting and display create tasting form
+    handleCreateTasting = event => {
+        event.preventDefault()
+        this.setState({
+            showCreateTasting: true,
+            showCreate: false,
+            showActivateDeactivate: false,
+            showEdit: false,
+            showDelete: false,
+        })
+    }
 
     render() {
         return (
             <React.Fragment>
                 {/* Below are multiple conditional rendering statements to display the imported file depending on the state(whish is listed first) */}
-                {this.state.showActivateDeactivate && <ActivateDeactivateUser handleActivateUser={this.handleActivateUser} handleDeactivateUser={this.handleDeactivateUser} />}
-                {this.state.showActivate && <ActivateUser handleCancel={this.handleCancel} users={this.state.users} handleActivate={this.handleActivate} />}
-                {this.state.showDeactivate && <DeactivateUser handleCancel={this.handleCancel} users={this.state.users} handleDeactivate={this.handleDeactivate} />}
-                {this.state.showCreate && <CreateNewResource handleCreateCategory={this.handleCreateCategory} handleCreateDistillery={this.handleCreateDistillery} />}
-                {this.state.showCreateCategory && <CreateNewCategory handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} />}
-                {this.state.showCreateDistillery && <CreateNewDistillery handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} />}
-                {this.state.showEdit && <EditResource />}
-                {this.state.showDelete && <DeleteResource />}
+                {this.state.showActivateDeactivate && <ActivateDeactivateUser handleActivateUser={this.handleActivateUser} handleDeactivateUser={this.handleDeactivateUser} />
+                }
+                {this.state.showActivate && <ActivateUser handleCancel={this.handleCancel} users={this.state.users} handleActivate={this.handleActivate} />
+                }
+                {this.state.showDeactivate && <DeactivateUser handleCancel={this.handleCancel} users={this.state.users} handleDeactivate={this.handleDeactivate} />
+                }
+                {this.state.showCreate && <CreateNewResource handleCreateCategory={this.handleCreateCategory} handleCreateDistillery={this.handleCreateDistillery} handleCreateTasting={this.handleCreateTasting} />
+                }
+                {this.state.showCreateCategory && <CreateNewCategory handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} />
+                }
+                {this.state.showCreateDistillery && <CreateNewDistillery handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} />
+                }
+                {this.state.showCreateTasting && <CreateNewTasting handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} />
+                }
+                {this.state.showEdit && <EditResource />
+                }
+                {this.state.showDelete && <DeleteResource />
+                }
             </React.Fragment>
         )
     }

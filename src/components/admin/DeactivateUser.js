@@ -18,7 +18,6 @@ export default class DeactivateUser extends Component {
 
     render() {
         return (
-            <React.Fragment>
                 <Card
                     className="card-first">
                     <CardHeader>Deactivate User</CardHeader>
@@ -63,9 +62,9 @@ export default class DeactivateUser extends Component {
                                 </CardBody>
                             </Card>
                         </CardBody>
+                        <CardHeader></CardHeader>
                     </Card>
                 </Card>
-            </React.Fragment>
         )
     }
 }

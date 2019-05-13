@@ -18,53 +18,52 @@ export default class ActivateUser extends Component {
 
     render() {
         return (
-            <React.Fragment>
+            <Card
+                className="card-first">
+                <CardHeader>Activate User</CardHeader>
                 <Card
-                    className="card-first">
-                    <CardHeader>Activate User</CardHeader>
-                    <Card
-                        className="card-search">
-                        <CardBody>
-                            <Card
-                                className="card-extra-opacity">
-                                <CardBody>
-                                    <Form
-                                        className="search-form-buttons">
-                                        <Dropdown
-                                            isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                                            <DropdownToggle
-                                                className="search-buttons"
-                                                caret
-                                                color="success">
-                                                Activate Selected User
-                                             </DropdownToggle>
-                                            <DropdownMenu>
-                                                {this.props.users.some(user => user.isActive === false) && this.props.users.map(user => {
-                                                    if (!user.isActive) {
-                                                        return <DropdownItem
-                                                            key={user.id}
-                                                            id={user.id}
-                                                            onClick={this.props.handleActivate} >{user.userName}</DropdownItem>
-                                                    } else {
-                                                        return null
-                                                    }
-                                                })}
-                                                {!this.props.users.some(user => user.isActive === false) && <DropdownItem
-                                                >No Inactive Users</DropdownItem>
-                                                }
-                                            </DropdownMenu>
-                                        </Dropdown>
-                                        <Button
+                    className="card-search">
+                    <CardBody>
+                        <Card
+                            className="card-extra-opacity">
+                            <CardBody>
+                                <Form
+                                    className="search-form-buttons">
+                                    <Dropdown
+                                        isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                        <DropdownToggle
                                             className="search-buttons"
-                                            onClick={this.props.handleCancel}
-                                        >Cancel</Button>
-                                    </Form>
-                                </CardBody>
-                            </Card>
-                        </CardBody>
-                    </Card>
+                                            caret
+                                            color="success">
+                                            Activate Selected User
+                                             </DropdownToggle>
+                                        <DropdownMenu>
+                                            {this.props.users.some(user => user.isActive === false) && this.props.users.map(user => {
+                                                if (!user.isActive) {
+                                                    return <DropdownItem
+                                                        key={user.id}
+                                                        id={user.id}
+                                                        onClick={this.props.handleActivate} >{user.userName}</DropdownItem>
+                                                } else {
+                                                    return null
+                                                }
+                                            })}
+                                            {!this.props.users.some(user => user.isActive === false) && <DropdownItem
+                                            >No Inactive Users</DropdownItem>
+                                            }
+                                        </DropdownMenu>
+                                    </Dropdown>
+                                    <Button
+                                        className="search-buttons"
+                                        onClick={this.props.handleCancel}
+                                    >Cancel</Button>
+                                </Form>
+                            </CardBody>
+                        </Card>
+                    </CardBody>
+                    <CardHeader></CardHeader>
                 </Card>
-            </React.Fragment>
+            </Card>
         )
     }
 }

@@ -76,6 +76,7 @@ export default class CreateNewCategory extends Component {
                         </CardBody>
                     </Card>
                 </CardBody>
+                <CardHeader></CardHeader>
             </Card>
         )
     }

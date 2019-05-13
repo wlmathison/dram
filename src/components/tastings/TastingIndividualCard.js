@@ -7,6 +7,11 @@ import { Card, CardBody, CardTitle, CardText, CardHeader } from "reactstrap"
 export default class TastingIndividualCard extends Component {
 
     render() {
+
+        let dateArray = this.props.tasting.date.split('-')
+        dateArray.push(dateArray.shift())
+        let date = dateArray.join('/')
+
         if (this.props.tasting.isComplete) {
             return (
                 <React.Fragment>
@@ -19,7 +24,7 @@ export default class TastingIndividualCard extends Component {
                                     <CardTitle
                                         tag={"h5"}
                                     >Tasting #{this.props.tasting.id}</CardTitle>
-                                    <CardText>Date: {this.props.tasting.date}</CardText>
+                                    <CardText>Date: {date}</CardText>
                                     <CardText>Theme: {this.props.tasting.theme}</CardText>
                                     <CardText>Whiskies:</CardText>
                                     {this.props.tastingSelections.map(tastingSelection => {

@@ -34,7 +34,7 @@ export default class CreateNewResource extends Component {
                                             className="search-buttons"
                                             color="info"
                                             type="radio"
-                                            onClick={this.props.handleSearchWhiskiesByDistillery}
+                                            onClick={this.props.handleCreateTasting}
                                         >Tasting</Button>
                                         <Button
                                             className="search-buttons"

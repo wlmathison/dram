@@ -1,14 +1,18 @@
-// Page builds the create new category form for admin page
+// Page builds the create new tasting form for admin page
 
 import React, { Component } from "react"
 import { Card, CardBody, Form, Button, FormGroup, Label, Input, CardHeader } from "reactstrap"
-import CategoryManager from "./../../modules/CategoryManager"
+import TastingManager from "./../../modules/TastingManager"
 
 export default class CreateNewCategory extends Component {
 
     state = {
-        name: "",
-        requirements: ""
+        theme: "",
+        date: "",
+        time: "",
+        address: "",
+        active: false,
+        isComplete: false
     }
 
     // Function to change state when input field changes
@@ -19,10 +23,14 @@ export default class CreateNewCategory extends Component {
     }
 
     // Function to post new category to database and call handleRefresh to refresh admin page
-    handlePostNewCategory = event => {
-        CategoryManager.post({
-            name: this.state.name,
-            requirements: this.state.requirements
+    handlePostNewTasting = event => {
+        TastingManager.post({
+            theme: this.state.theme,
+            date: this.state.date,
+            time: this.state.time,
+            address: this.state.address,
+            active: this.state.active,
+            isComplete: this.state.isComplete
         })
         this.props.handleRefresh()
     }
@@ -31,30 +39,47 @@ export default class CreateNewCategory extends Component {
         return (
             <Card
                 className="card-search">
-                <CardHeader>Create New Category</CardHeader>
+                <CardHeader>Create New Tasting</CardHeader>
                 <CardBody>
                     <Card
                         className="card-extra-opacity">
                         <CardBody>
                             <Form>
                                 <FormGroup>
-                                    <Label htmlFor="name">Name</Label>
+                                    <Label htmlFor="theme">Theme</Label>
                                     <Input
                                         required
-                                        type="text"
-                                        id="name"
+                                        type="theme"
                                         onChange={this.handleFieldChange}
-                                        placeholder="Whiskey category name"
+                                        placeholder="Tasting theme"
                                     />
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label htmlFor="requirements">Requirements</Label>
+                                    <Label htmlFor="date">Date</Label>
+                                    <Input
+                                        required
+                                        type="date"
+                                        id="date"
+                                        onChange={this.handleFieldChange}
+                                        placeholder="mm/dd/yyyy"
+                                    />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label htmlFor="time">Time</Label>
                                     <Input
                                         required
                                         type="text"
-                                        id="requirements"
                                         onChange={this.handleFieldChange}
-                                        placeholder="Specific requirements for category"
+                                        placeholder="Time of day for tasting"
+                                    />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label htmlFor="address">Address</Label>
+                                    <Input
+                                        required
+                                        type="text"
+                                        onChange={this.handleFieldChange}
+                                        placeholder="Address where tasting is being held"
                                     />
                                 </FormGroup>
                                 <div
@@ -63,9 +88,9 @@ export default class CreateNewCategory extends Component {
                                     <Button
                                         className="search-buttons"
                                         color="success"
-                                        onClick={this.handlePostNewCategory}
+                                        onClick={this.handlePostNewTasting}
                                     >
-                                        Save Category
+                                        Save Tasting
                                 </Button>
                                     <Button
                                         className="search-buttons"
