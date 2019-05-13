@@ -1,6 +1,7 @@
 .radio-group {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .radio-group button {
@@ -8,8 +9,10 @@
     margin: 0 10px 10px 0;
 }
 
-.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
-    background-color: #71ade2;
+.btn-secondary:not(:disabled):not(.disabled).active,
+.btn-secondary:not(:disabled):not(.disabled):active,
+.show>.btn-secondary.dropdown-toggle {
+    background-color: #17a2b8;
 }
 
 .save-button-div {

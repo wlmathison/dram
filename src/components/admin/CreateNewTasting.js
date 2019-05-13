@@ -35,10 +35,12 @@ export default class CreateNewCategory extends Component {
         this.props.handleRefresh()
     }
 
+    // Function sets state of true/false when radio button selected
     onActiveRadioBtnClick(active) {
         this.setState({ active });
     }
 
+    // Function sets state of true/false when radio button selected
     onCompleteRadioBtnClick(isComplete) {
         this.setState({ isComplete });
     }
@@ -95,7 +97,7 @@ export default class CreateNewCategory extends Component {
                                 </FormGroup>
                                 <ButtonGroup
                                     className="radio-group">
-                                    <Label>Is Tasting Active? </Label>
+                                    <Label>Is tasting active? </Label>
                                     <div>
                                         <Button
                                             onClick={() => this.onActiveRadioBtnClick(true)}
@@ -109,7 +111,7 @@ export default class CreateNewCategory extends Component {
                                 </ButtonGroup>
                                 <ButtonGroup
                                     className="radio-group">
-                                    <Label>Is Tasting Complete? </Label>
+                                    <Label>Is tasting completed? </Label>
                                     <div>
                                         <Button
                                             onClick={() => this.onCompleteRadioBtnClick(true)}

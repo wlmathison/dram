@@ -1,7 +1,6 @@
 // Page renders the admin page showing admin functions including adding/editing/deleting resources as well as deactivating users
 
 import React, { Component } from "react"
-import UserManager from "./../../modules/UserManager"
 import CreateNewResource from "./CreateNewResource"
 import EditResource from "./EditResource"
 import DeleteResource from "./DeleteResource"
@@ -11,6 +10,10 @@ import DeactivateUser from "./DeactivateUser"
 import CreateNewCategory from "./CreateNewCategory"
 import CreateNewDistillery from "./CreateNewDistillery"
 import CreateNewTasting from "./CreateNewTasting"
+import CreateNewTastingSelection from "./CreateNewTastingSelection"
+import UserManager from "./../../modules/UserManager"
+import TastingManager from "./../../modules/TastingManager"
+import WhiskeyManager from "./../../modules/WhiskeyManager"
 import "./admin.css"
 
 
@@ -35,13 +38,18 @@ export default class Admin extends Component {
         showDelete: true,
         showCreateCategory: false,
         showCreateDistillery: false,
-        showCreateTasting: false
+        showCreateTasting: false,
+        showCreateTastingSelection: false
     }
 
     componentDidMount() {
         const newState = {}
         UserManager.getAll()
             .then(users => (newState.users = users))
+            .then(() => TastingManager.getAll())
+            .then(tastings => (newState.tastings = tastings))
+            .then(() => WhiskeyManager.getAll())
+            .then(whiskies => (newState.whiskies = whiskies))
             .then(() => this.setState(newState))
     }
 
@@ -64,7 +72,8 @@ export default class Admin extends Component {
             showDelete: true,
             showCreateCategory: false,
             showCreateDistillery: false,
-            showCreateTasting: false
+            showCreateTasting: false,
+            showCreateTastingSelection: false
         })
     }
 
@@ -79,7 +88,8 @@ export default class Admin extends Component {
             showDelete: true,
             showCreateCategory: false,
             showCreateDistillery: false,
-            showCreateTasting: false
+            showCreateTasting: false,
+            showCreateTastingSelection: false
         })
     }
 
@@ -177,6 +187,18 @@ export default class Admin extends Component {
         })
     }
 
+    // Function to handle user clicking Create New Tasting Selection and display create tasting selection form
+    handleCreateTastingSelection = event => {
+        event.preventDefault()
+        this.setState({
+            showCreateTastingSelection: true,
+            showCreate: false,
+            showActivateDeactivate: false,
+            showEdit: false,
+            showDelete: false,
+        })
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -187,13 +209,15 @@ export default class Admin extends Component {
                 }
                 {this.state.showDeactivate && <DeactivateUser handleCancel={this.handleCancel} users={this.state.users} handleDeactivate={this.handleDeactivate} />
                 }
-                {this.state.showCreate && <CreateNewResource handleCreateCategory={this.handleCreateCategory} handleCreateDistillery={this.handleCreateDistillery} handleCreateTasting={this.handleCreateTasting} />
+                {this.state.showCreate && <CreateNewResource handleCreateCategory={this.handleCreateCategory} handleCreateDistillery={this.handleCreateDistillery} handleCreateTasting={this.handleCreateTasting} handleCreateTastingSelection={this.handleCreateTastingSelection} />
                 }
                 {this.state.showCreateCategory && <CreateNewCategory handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} />
                 }
                 {this.state.showCreateDistillery && <CreateNewDistillery handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} />
                 }
                 {this.state.showCreateTasting && <CreateNewTasting handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} />
+                }
+                {this.state.showCreateTastingSelection && <CreateNewTastingSelection handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} tastings={this.state.tastings} whiskies={this.state.whiskies} />
                 }
                 {this.state.showEdit && <EditResource />
                 }
