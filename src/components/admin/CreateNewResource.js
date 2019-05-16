@@ -46,7 +46,7 @@ export default class CreateNewResource extends Component {
                                             className="search-buttons"
                                             color="info"
                                             type="radio"
-                                            onClick={this.props.handleSearchAllWhiskies}
+                                            onClick={this.props.handleCreateWhiskey}
                                         >Whiskey</Button>
                                     </Form>
                                 </CardBody>

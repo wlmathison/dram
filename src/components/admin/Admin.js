@@ -11,9 +11,12 @@ import CreateNewCategory from "./CreateNewCategory"
 import CreateNewDistillery from "./CreateNewDistillery"
 import CreateNewTasting from "./CreateNewTasting"
 import CreateNewTastingSelection from "./CreateNewTastingSelection"
+import CreateNewWhiskey from "./CreateNewWhiskey"
 import UserManager from "./../../modules/UserManager"
 import TastingManager from "./../../modules/TastingManager"
 import WhiskeyManager from "./../../modules/WhiskeyManager"
+import CategoryManager from "./../../modules/CategoryManager"
+import DistilleryManager from "./../../modules/DistilleryManager"
 import "./admin.css"
 
 
@@ -23,7 +26,7 @@ export default class Admin extends Component {
     state = {
         categories: [],
         users: [],
-        manufacturers: [],
+        distilleries: [],
         ratings: [],
         reviews: [],
         tastings: [],
@@ -39,10 +42,16 @@ export default class Admin extends Component {
         showCreateCategory: false,
         showCreateDistillery: false,
         showCreateTasting: false,
-        showCreateTastingSelection: false
+        showCreateTastingSelection: false,
+        showCreateWhiskey: false
     }
 
     componentDidMount() {
+        this.handleUpdateState()
+    }
+
+    // Function to call all managers and update state
+    handleUpdateState = event => {
         const newState = {}
         UserManager.getAll()
             .then(users => (newState.users = users))
@@ -50,6 +59,10 @@ export default class Admin extends Component {
             .then(tastings => (newState.tastings = tastings))
             .then(() => WhiskeyManager.getAll())
             .then(whiskies => (newState.whiskies = whiskies))
+            .then(() => CategoryManager.getAll())
+            .then(categories => (newState.categories = categories))
+            .then(() => DistilleryManager.getAll())
+            .then(distilleries => (newState.distilleries = distilleries))
             .then(() => this.setState(newState))
     }
 
@@ -73,7 +86,8 @@ export default class Admin extends Component {
             showCreateCategory: false,
             showCreateDistillery: false,
             showCreateTasting: false,
-            showCreateTastingSelection: false
+            showCreateTastingSelection: false,
+            showCreateWhiskey: false
         })
     }
 
@@ -89,8 +103,10 @@ export default class Admin extends Component {
             showCreateCategory: false,
             showCreateDistillery: false,
             showCreateTasting: false,
-            showCreateTastingSelection: false
+            showCreateTastingSelection: false,
+            showCreateWhiskey: false
         })
+        this.handleUpdateState()
     }
 
     // Function to handle user clicking Activate User and display inactive user dropdown
@@ -199,6 +215,18 @@ export default class Admin extends Component {
         })
     }
 
+    // Function to handle user clicking Create New Whiskey  and display create tasting selection whiskey form
+    handleCreateWhiskey = event => {
+        event.preventDefault()
+        this.setState({
+            showCreateWhiskey: true,
+            showCreate: false,
+            showActivateDeactivate: false,
+            showEdit: false,
+            showDelete: false,
+        })
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -209,7 +237,7 @@ export default class Admin extends Component {
                 }
                 {this.state.showDeactivate && <DeactivateUser handleCancel={this.handleCancel} users={this.state.users} handleDeactivate={this.handleDeactivate} />
                 }
-                {this.state.showCreate && <CreateNewResource handleCreateCategory={this.handleCreateCategory} handleCreateDistillery={this.handleCreateDistillery} handleCreateTasting={this.handleCreateTasting} handleCreateTastingSelection={this.handleCreateTastingSelection} />
+                {this.state.showCreate && <CreateNewResource handleCreateCategory={this.handleCreateCategory} handleCreateDistillery={this.handleCreateDistillery} handleCreateTasting={this.handleCreateTasting} handleCreateTastingSelection={this.handleCreateTastingSelection} handleCreateWhiskey={this.handleCreateWhiskey} />
                 }
                 {this.state.showCreateCategory && <CreateNewCategory handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} />
                 }
@@ -218,6 +246,8 @@ export default class Admin extends Component {
                 {this.state.showCreateTasting && <CreateNewTasting handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} />
                 }
                 {this.state.showCreateTastingSelection && <CreateNewTastingSelection handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} tastings={this.state.tastings} whiskies={this.state.whiskies} />
+                }
+                {this.state.showCreateWhiskey && <CreateNewWhiskey handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} whiskies={this.state.whiskies} categories={this.state.categories} distilleries={this.state.distilleries} />
                 }
                 {this.state.showEdit && <EditResource />
                 }

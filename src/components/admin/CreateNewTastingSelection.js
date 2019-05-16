@@ -71,7 +71,7 @@ export default class CreateNewTastingSelection extends Component {
                                         </DropdownToggle>
                                         <DropdownMenu>
                                             {this.props.tastings.some(tasting => tasting.isComplete === false) && this.props.tastings.map(tasting => {
-                                                if (!tasting.iComplete) {
+                                                if (!tasting.isComplete) {
                                                     return <DropdownItem
                                                         key={tasting.id}
                                                         id={tasting.id}
@@ -98,20 +98,16 @@ export default class CreateNewTastingSelection extends Component {
                                             {this.state.whiskeyName}
                                         </DropdownToggle>
                                         <DropdownMenu>
-                                            {this.props.whiskies.map(whiskey => {
-                                                if (!whiskey.iComplete) {
-                                                    return <DropdownItem
-                                                        key={whiskey.id}
-                                                        id={whiskey.id}
-                                                        onClick={() => this.setState({
-                                                            whiskeyId: whiskey.id,
-                                                            whiskeyName: whiskey.name
-                                                        })
-                                                        }>{whiskey.name}</DropdownItem>
-                                                } else {
-                                                    return null
-                                                }
-                                            })}
+                                            {this.props.whiskies.map(whiskey =>
+                                                <DropdownItem
+                                                    key={whiskey.id}
+                                                    id={whiskey.id}
+                                                    onClick={() => this.setState({
+                                                        whiskeyId: whiskey.id,
+                                                        whiskeyName: whiskey.name
+                                                    })
+                                                    }>{whiskey.name}</DropdownItem>
+                                            )}
                                         </DropdownMenu>
                                     </Dropdown>
                                     <Button
