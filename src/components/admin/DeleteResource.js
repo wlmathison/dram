@@ -46,7 +46,7 @@ export default class DeleteResource extends Component {
                                             className="search-buttons"
                                             color="info"
                                             type="radio"
-                                            onClick={this.props.handleSearchAllWhiskies}
+                                            onClick={this.props.handleDeleteWhiskey}
                                         >Whiskey</Button>
                                     </Form>
                                 </CardBody>

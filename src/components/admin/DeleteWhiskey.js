@@ -1,14 +1,14 @@
-// Page builds the delete tasting selection form for admin page
+// Page builds the delete category form for admin page
 
 import React, { Component } from "react"
 import { Card, CardBody, Form, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, CardHeader } from "reactstrap"
-import TastingSelectionManager from "./../../modules/TastingSelectionManager"
+import WhiskeyManager from "./../../modules/WhiskeyManager"
 
-export default class DeleteTastingSelection extends Component {
+export default class DeleteWhiskey extends Component {
 
     state = {
-        tastingSelectionId: 0,
-        tastingSelectionName: "Select a tasting selection",
+        whiskeyId: 0,
+        whiskeyName: "Select a whiskey to delete",
         dropdownOpen: false
     }
 
@@ -19,24 +19,24 @@ export default class DeleteTastingSelection extends Component {
         }))
     }
 
-    // Function to delete tastingSelection from database and call handleRefresh to refresh admin page
-    handleDeleteTastingSelection = event => {
+    // Function to delete whiskey from database and call handleRefresh to refresh admin page
+    handleDeleteWhiskey = event => {
         event.preventDefault()
-        if (window.confirm(`Are you sure you want to delete ${this.state.tastingSelectionName}?`)) {
-            TastingSelectionManager.delete(parseInt(this.state.tastingSelectionId))
+        if (window.confirm(`Are you sure you want to delete ${this.state.whiskeyName}?`)) {
+            WhiskeyManager.delete(parseInt(this.state.whiskeyId))
             this.props.handleRefresh()
         }
     }
 
     render() {
         let toggleColor = "info"
-        if (this.state.tastingSelectionName === "Select a tasting selection") {
+        if (this.state.whiskeyName === "Select a whiskey to delete") {
             toggleColor = "secondary"
         }
         return (
             <Card
                 className="card-search">
-                <CardHeader>Delete Tasting Selection</CardHeader>
+                <CardHeader>Delete Whiskey</CardHeader>
                 <CardBody>
                     <Card
                         className="card-extra-opacity">
@@ -49,22 +49,19 @@ export default class DeleteTastingSelection extends Component {
                                         color={toggleColor}
                                         className="search-buttons long-toggles"
                                         caret>
-                                        {this.state.tastingSelectionName}
+                                        {this.state.whiskeyName}
                                     </DropdownToggle>
                                     <DropdownMenu>
-                                        {this.props.tastingSelections.map(tastingSelection => {
-                                            let tasting = this.props.tastings.find(tasting => tasting.id === tastingSelection.tastingId).theme
-                                            let whiskey = this.props.whiskies.find(whiskey => whiskey.id === tastingSelection.whiskeyId).name
-                                            let tastingWhiskey = `${tasting}, ${whiskey}`
-                                            return <DropdownItem
-                                                key={tastingSelection.id}
-                                                id={tastingSelection.id}
+                                        {this.props.whiskies.map(whiskey =>
+                                            <DropdownItem
+                                                key={whiskey.id}
+                                                id={whiskey.id}
                                                 onClick={() => this.setState({
-                                                    tastingSelectionId: tastingSelection.id,
-                                                    tastingSelectionName: tastingWhiskey
+                                                    whiskeyId: whiskey.id,
+                                                    whiskeyName: whiskey.name
                                                 })
-                                                }>{tastingWhiskey}</DropdownItem>
-                                        })}
+                                                }>{whiskey.name}</DropdownItem>
+                                        )}
                                     </DropdownMenu>
                                 </Dropdown>
                                 <div
@@ -73,9 +70,9 @@ export default class DeleteTastingSelection extends Component {
                                     <Button
                                         className="search-buttons"
                                         color="danger"
-                                        onClick={this.handleDeleteTastingSelection}
+                                        onClick={this.handleDeleteWhiskey}
                                     >
-                                        Delete Tasting Selection
+                                        Delete Whiskey
                                 </Button>
                                     <Button
                                         className="search-buttons"

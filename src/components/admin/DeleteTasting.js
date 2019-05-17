@@ -47,7 +47,7 @@ export default class DeleteTasting extends Component {
                                     isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                                     <DropdownToggle
                                         color={toggleColor}
-                                        className="search-buttons"
+                                        className="search-buttons long-toggles"
                                         caret>
                                         {this.state.tastingName}
                                     </DropdownToggle>

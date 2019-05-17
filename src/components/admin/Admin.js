@@ -16,6 +16,7 @@ import DeleteCategory from "./DeleteCategory"
 import DeleteDistillery from "./DeleteDistillery"
 import DeleteTasting from "./DeleteTasting"
 import DeleteTastingSelection from "./DeleteTastingSelection"
+import DeleteWhiskey from "./DeleteWhiskey"
 import UserManager from "./../../modules/UserManager"
 import TastingManager from "./../../modules/TastingManager"
 import WhiskeyManager from "./../../modules/WhiskeyManager"
@@ -49,7 +50,8 @@ export default class Admin extends Component {
         showDeleteCategory: false,
         showDeleteDistillery: false,
         showDeleteTasting: false,
-        showDeleteTastingSelection: false
+        showDeleteTastingSelection: false,
+        showDeleteWhiskey: false
     }
 
     componentDidMount() {
@@ -99,7 +101,8 @@ export default class Admin extends Component {
             showDeleteCategory: false,
             showDeleteDistillery: false,
             showDeleteTasting: false,
-            showDeleteTastingSelection: false
+            showDeleteTastingSelection: false,
+            showDeleteWhiskey: false
         })
     }
 
@@ -120,7 +123,8 @@ export default class Admin extends Component {
             showDeleteCategory: false,
             showDeleteDistillery: false,
             showDeleteTasting: false,
-            showDeleteTastingSelection: false
+            showDeleteTastingSelection: false,
+            showDeleteWhiskey: false
         })
         this.handleUpdateState()
     }
@@ -291,6 +295,18 @@ export default class Admin extends Component {
         })
     }
 
+    // Function to handle user clicking Delete Whiskey and display delete whiskey form
+    handleDeleteWhiskey = event => {
+        event.preventDefault()
+        this.setState({
+            showDeleteWhiskey: true,
+            showCreate: false,
+            showActivateDeactivate: false,
+            showEdit: false,
+            showDelete: false,
+        })
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -315,7 +331,7 @@ export default class Admin extends Component {
                 }
                 {this.state.showEdit && <EditResource />
                 }
-                {this.state.showDelete && <DeleteResource handleDeleteCategory={this.handleDeleteCategory} handleDeleteDistillery={this.handleDeleteDistillery} handleDeleteTasting={this.handleDeleteTasting} handleDeleteTastingSelection={this.handleDeleteTastingSelection} />
+                {this.state.showDelete && <DeleteResource handleDeleteCategory={this.handleDeleteCategory} handleDeleteDistillery={this.handleDeleteDistillery} handleDeleteTasting={this.handleDeleteTasting} handleDeleteTastingSelection={this.handleDeleteTastingSelection} handleDeleteWhiskey={this.handleDeleteWhiskey} />
                 }
                 {this.state.showDeleteCategory && <DeleteCategory handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} categories={this.state.categories} />
                 }
@@ -324,6 +340,8 @@ export default class Admin extends Component {
                 {this.state.showDeleteTasting && <DeleteTasting handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} tastings={this.state.tastings} />
                 }
                 {this.state.showDeleteTastingSelection && <DeleteTastingSelection handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} tastingSelections={this.state.tastingSelections} tastings={this.state.tastings} whiskies={this.state.whiskies} />
+                }
+                {this.state.showDeleteWhiskey && <DeleteWhiskey handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} whiskies={this.state.whiskies} />
                 }
             </React.Fragment>
         )

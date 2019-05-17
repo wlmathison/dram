@@ -123,48 +123,52 @@ export default class CreateNewWhiskey extends Component {
                                         placeholder="Age of whiskey"
                                     />
                                 </FormGroup>
-                                <Dropdown
-                                    isOpen={this.state.categoryDropdown} toggle={this.categoryToggle}>
-                                    <DropdownToggle
-                                        color={categoryToggleColor}
-                                        className="search-buttons"
-                                        caret>
-                                        {this.state.categoryName}
-                                    </DropdownToggle>
-                                    <DropdownMenu>
-                                        {this.props.categories.map(category =>
-                                            <DropdownItem
-                                                key={category.id}
-                                                id={category.id}
-                                                onClick={() => this.setState({
-                                                    categoryId: category.id,
-                                                    categoryName: category.name
-                                                })
-                                                }>{category.name}</DropdownItem>
-                                        )}
-                                    </DropdownMenu>
-                                </Dropdown>
-                                <Dropdown
-                                    isOpen={this.state.distilleryDropdown} toggle={this.distilleryToggle}>
-                                    <DropdownToggle
-                                        color={distilleryToggleColor}
-                                        className="search-buttons"
-                                        caret>
-                                        {this.state.distilleryName}
-                                    </DropdownToggle>
-                                    <DropdownMenu>
-                                        {this.props.distilleries.map(distillery =>
-                                            <DropdownItem
-                                                key={distillery.id}
-                                                id={distillery.id}
-                                                onClick={() => this.setState({
-                                                    distilleryId: distillery.id,
-                                                    distilleryName: distillery.name
-                                                })
-                                                }>{distillery.name}</DropdownItem>
-                                        )}
-                                    </DropdownMenu>
-                                </Dropdown>
+                                <div
+                                    className="search-form-buttons"
+                                >
+                                    <Dropdown
+                                        isOpen={this.state.categoryDropdown} toggle={this.categoryToggle}>
+                                        <DropdownToggle
+                                            color={categoryToggleColor}
+                                            className="search-buttons long-toggles"
+                                            caret>
+                                            {this.state.categoryName}
+                                        </DropdownToggle>
+                                        <DropdownMenu>
+                                            {this.props.categories.map(category =>
+                                                <DropdownItem
+                                                    key={category.id}
+                                                    id={category.id}
+                                                    onClick={() => this.setState({
+                                                        categoryId: category.id,
+                                                        categoryName: category.name
+                                                    })
+                                                    }>{category.name}</DropdownItem>
+                                            )}
+                                        </DropdownMenu>
+                                    </Dropdown>
+                                    <Dropdown
+                                        isOpen={this.state.distilleryDropdown} toggle={this.distilleryToggle}>
+                                        <DropdownToggle
+                                            color={distilleryToggleColor}
+                                            className="search-buttons long-toggles"
+                                            caret>
+                                            {this.state.distilleryName}
+                                        </DropdownToggle>
+                                        <DropdownMenu>
+                                            {this.props.distilleries.map(distillery =>
+                                                <DropdownItem
+                                                    key={distillery.id}
+                                                    id={distillery.id}
+                                                    onClick={() => this.setState({
+                                                        distilleryId: distillery.id,
+                                                        distilleryName: distillery.name
+                                                    })
+                                                    }>{distillery.name}</DropdownItem>
+                                            )}
+                                        </DropdownMenu>
+                                    </Dropdown>
+                                </div>
                                 <div
                                     className="search-form-buttons"
                                 >

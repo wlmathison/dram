@@ -73,7 +73,7 @@ export default class CreateNewTastingSelection extends Component {
                                         isOpen={this.state.tastingDropdown} toggle={this.tastingToggle}>
                                         <DropdownToggle
                                             color={tastingToggleColor}
-                                            className="search-buttons"
+                                            className="search-buttons long-toggles"
                                             caret>
                                             {this.state.tastingTheme}
                                         </DropdownToggle>
@@ -101,7 +101,7 @@ export default class CreateNewTastingSelection extends Component {
                                         isOpen={this.state.whiskeyDropdown} toggle={this.whiskeyToggle}>
                                         <DropdownToggle
                                             color={whiskeyToggleColor}
-                                            className="search-buttons"
+                                            className="search-buttons long-toggles"
                                             caret>
                                             {this.state.whiskeyName}
                                         </DropdownToggle>
