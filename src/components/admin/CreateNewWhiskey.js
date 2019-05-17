@@ -56,6 +56,14 @@ export default class CreateNewWhiskey extends Component {
     }
 
     render() {
+        let categoryToggleColor = "info"
+        if (this.state.categoryName === "Select a category") {
+            categoryToggleColor = "secondary"
+        }
+        let distilleryToggleColor = "info"
+        if (this.state.distilleryName === "Select a distillery") {
+            distilleryToggleColor = "secondary"
+        }
         return (
             <Card
                 className="card-search">
@@ -118,7 +126,7 @@ export default class CreateNewWhiskey extends Component {
                                 <Dropdown
                                     isOpen={this.state.categoryDropdown} toggle={this.categoryToggle}>
                                     <DropdownToggle
-                                        color="info"
+                                        color={categoryToggleColor}
                                         className="search-buttons"
                                         caret>
                                         {this.state.categoryName}
@@ -139,7 +147,7 @@ export default class CreateNewWhiskey extends Component {
                                 <Dropdown
                                     isOpen={this.state.distilleryDropdown} toggle={this.distilleryToggle}>
                                     <DropdownToggle
-                                        color="info"
+                                        color={distilleryToggleColor}
                                         className="search-buttons"
                                         caret>
                                         {this.state.distilleryName}

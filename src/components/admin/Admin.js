@@ -13,6 +13,8 @@ import CreateNewTasting from "./CreateNewTasting"
 import CreateNewTastingSelection from "./CreateNewTastingSelection"
 import CreateNewWhiskey from "./CreateNewWhiskey"
 import DeleteCategory from "./DeleteCategory"
+import DeleteDistillery from "./DeleteDistillery"
+import DeleteTasting from "./DeleteTasting"
 import UserManager from "./../../modules/UserManager"
 import TastingManager from "./../../modules/TastingManager"
 import WhiskeyManager from "./../../modules/WhiskeyManager"
@@ -44,7 +46,10 @@ export default class Admin extends Component {
         showCreateDistillery: false,
         showCreateTasting: false,
         showCreateTastingSelection: false,
-        showCreateWhiskey: false
+        showCreateWhiskey: false,
+        showDeleteCategory: false,
+        showDeleteDistillery: false,
+        showDeleteTasting: false
     }
 
     componentDidMount() {
@@ -89,7 +94,9 @@ export default class Admin extends Component {
             showCreateTasting: false,
             showCreateTastingSelection: false,
             showCreateWhiskey: false,
-            showDeleteCategory: false
+            showDeleteCategory: false,
+            showDeleteDistillery: false,
+            showDeleteTasting: false
         })
     }
 
@@ -107,7 +114,9 @@ export default class Admin extends Component {
             showCreateTasting: false,
             showCreateTastingSelection: false,
             showCreateWhiskey: false,
-            showDeleteCategory: false
+            showDeleteCategory: false,
+            showDeleteDistillery: false,
+            showDeleteTasting: false
         })
         this.handleUpdateState()
     }
@@ -240,7 +249,30 @@ export default class Admin extends Component {
             showEdit: false,
             showDelete: false,
         })
+    }
 
+    // Function to handle user clicking Delete Distillery and display delete distillery form
+    handleDeleteDistillery = event => {
+        event.preventDefault()
+        this.setState({
+            showDeleteDistillery: true,
+            showCreate: false,
+            showActivateDeactivate: false,
+            showEdit: false,
+            showDelete: false,
+        })
+    }
+
+    // Function to handle user clicking Delete Tasting and display delete tasting form
+    handleDeleteTasting = event => {
+        event.preventDefault()
+        this.setState({
+            showDeleteTasting: true,
+            showCreate: false,
+            showActivateDeactivate: false,
+            showEdit: false,
+            showDelete: false,
+        })
     }
 
     render() {
@@ -267,9 +299,14 @@ export default class Admin extends Component {
                 }
                 {this.state.showEdit && <EditResource />
                 }
-                {this.state.showDelete && <DeleteResource handleDeleteCategory={this.handleDeleteCategory} />
+                {this.state.showDelete && <DeleteResource handleDeleteCategory={this.handleDeleteCategory} handleDeleteDistillery={this.handleDeleteDistillery} handleDeleteTasting={this.handleDeleteTasting} />
                 }
-                {this.state.showDeleteCategory && <DeleteCategory handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} categories={this.state.categories} />}
+                {this.state.showDeleteCategory && <DeleteCategory handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} categories={this.state.categories} />
+                }
+                {this.state.showDeleteDistillery && <DeleteDistillery handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} distilleries={this.state.distilleries} />
+                }
+                {this.state.showDeleteTasting && <DeleteTasting handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} tastings={this.state.tastings} />
+                }
             </React.Fragment>
         )
     }

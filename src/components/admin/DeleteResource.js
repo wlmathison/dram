@@ -28,13 +28,13 @@ export default class DeleteResource extends Component {
                                             className="search-buttons"
                                             color="info"
                                             type="radio"
-                                            onClick={this.props.handleSearchWhiskiesByCategory}
+                                            onClick={this.props.handleDeleteDistillery}
                                         >Distillery</Button>
                                         <Button
                                             className="search-buttons"
                                             color="info"
                                             type="radio"
-                                            onClick={this.props.handleSearchWhiskiesByDistillery}
+                                            onClick={this.props.handleDeleteTasting}
                                         >Tasting</Button>
                                         <Button
                                             className="search-buttons"

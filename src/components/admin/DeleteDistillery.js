@@ -2,13 +2,13 @@
 
 import React, { Component } from "react"
 import { Card, CardBody, Form, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, CardHeader } from "reactstrap"
-import CategoryManager from "./../../modules/CategoryManager"
+import DistilleryManager from "./../../modules/DistilleryManager"
 
-export default class DeleteCategory extends Component {
+export default class DeleteDistillery extends Component {
 
     state = {
-        categoryId: 0,
-        categoryName: "Select a category to delete",
+        distilleryId: 0,
+        distilleryName: "Select a distillery to delete",
         dropdownOpen: false
     }
 
@@ -19,24 +19,25 @@ export default class DeleteCategory extends Component {
         }))
     }
 
-    // Function to delete category from database and call handleRefresh to refresh admin page
-    handleDeleteCategory = event => {
+    // Function to delete distillery from database and call handleRefresh to refresh admin page
+    handleDeleteDistillery = event => {
         event.preventDefault()
-        if (window.confirm(`Are you sure you want to delete ${this.state.categoryName}?`)) {
-            CategoryManager.delete(parseInt(this.state.categoryId))
+        if (window.confirm(`Are you sure you want to delete ${this.state.distilleryName}?`)) {
+            DistilleryManager.delete(parseInt(this.state.distilleryId))
             this.props.handleRefresh()
         }
     }
 
     render() {
         let toggleColor = "info"
-        if (this.state.categoryName === "Select a category to delete") {
+        if (this.state.distilleryName === "Select a distillery to delete") {
             toggleColor = "secondary"
         }
+
         return (
             <Card
                 className="card-search">
-                <CardHeader>Delete Category</CardHeader>
+                <CardHeader>Delete Distillery</CardHeader>
                 <CardBody>
                     <Card
                         className="card-extra-opacity">
@@ -49,18 +50,18 @@ export default class DeleteCategory extends Component {
                                         color={toggleColor}
                                         className="search-buttons"
                                         caret>
-                                        {this.state.categoryName}
+                                        {this.state.distilleryName}
                                     </DropdownToggle>
                                     <DropdownMenu>
-                                        {this.props.categories.map(category =>
+                                        {this.props.distilleries.map(distillery =>
                                             <DropdownItem
-                                                key={category.id}
-                                                id={category.id}
+                                                key={distillery.id}
+                                                id={distillery.id}
                                                 onClick={() => this.setState({
-                                                    categoryId: category.id,
-                                                    categoryName: category.name
+                                                    distilleryId: distillery.id,
+                                                    distilleryName: distillery.name
                                                 })
-                                                }>{category.name}</DropdownItem>
+                                                }>{distillery.name}</DropdownItem>
                                         )}
                                     </DropdownMenu>
                                 </Dropdown>
@@ -70,7 +71,7 @@ export default class DeleteCategory extends Component {
                                     <Button
                                         className="search-buttons"
                                         color="danger"
-                                        onClick={this.handleDeleteCategory}
+                                        onClick={this.handleDeleteDistillery}
                                     >
                                         Delete Category
                                 </Button>

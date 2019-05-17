@@ -1,14 +1,14 @@
-// Page builds the delete category form for admin page
+// Page builds the delete tasting form for admin page
 
 import React, { Component } from "react"
 import { Card, CardBody, Form, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, CardHeader } from "reactstrap"
-import CategoryManager from "./../../modules/CategoryManager"
+import TastingManager from "./../../modules/TastingManager"
 
-export default class DeleteCategory extends Component {
+export default class DeleteTasting extends Component {
 
     state = {
-        categoryId: 0,
-        categoryName: "Select a category to delete",
+        tastingId: 0,
+        tastingName: "Select a tasting to delete",
         dropdownOpen: false
     }
 
@@ -19,24 +19,24 @@ export default class DeleteCategory extends Component {
         }))
     }
 
-    // Function to delete category from database and call handleRefresh to refresh admin page
-    handleDeleteCategory = event => {
+    // Function to delete tasting from database and call handleRefresh to refresh admin page
+    handleDeleteTasting = event => {
         event.preventDefault()
-        if (window.confirm(`Are you sure you want to delete ${this.state.categoryName}?`)) {
-            CategoryManager.delete(parseInt(this.state.categoryId))
+        if (window.confirm(`Are you sure you want to delete ${this.state.tastingName}?`)) {
+            TastingManager.delete(parseInt(this.state.tastingId))
             this.props.handleRefresh()
         }
     }
 
     render() {
         let toggleColor = "info"
-        if (this.state.categoryName === "Select a category to delete") {
+        if (this.state.tastingName === "Select a tasting to delete") {
             toggleColor = "secondary"
         }
         return (
             <Card
                 className="card-search">
-                <CardHeader>Delete Category</CardHeader>
+                <CardHeader>Delete Tasting</CardHeader>
                 <CardBody>
                     <Card
                         className="card-extra-opacity">
@@ -49,18 +49,18 @@ export default class DeleteCategory extends Component {
                                         color={toggleColor}
                                         className="search-buttons"
                                         caret>
-                                        {this.state.categoryName}
+                                        {this.state.tastingName}
                                     </DropdownToggle>
                                     <DropdownMenu>
-                                        {this.props.categories.map(category =>
+                                        {this.props.tastings.map(tasting =>
                                             <DropdownItem
-                                                key={category.id}
-                                                id={category.id}
+                                                key={tasting.id}
+                                                id={tasting.id}
                                                 onClick={() => this.setState({
-                                                    categoryId: category.id,
-                                                    categoryName: category.name
+                                                    tastingId: tasting.id,
+                                                    tastingName: tasting.theme
                                                 })
-                                                }>{category.name}</DropdownItem>
+                                                }>{tasting.theme}</DropdownItem>
                                         )}
                                     </DropdownMenu>
                                 </Dropdown>
@@ -70,9 +70,9 @@ export default class DeleteCategory extends Component {
                                     <Button
                                         className="search-buttons"
                                         color="danger"
-                                        onClick={this.handleDeleteCategory}
+                                        onClick={this.handleDeleteTasting}
                                     >
-                                        Delete Category
+                                        Delete Tasting
                                 </Button>
                                     <Button
                                         className="search-buttons"

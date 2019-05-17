@@ -49,6 +49,14 @@ export default class CreateNewTastingSelection extends Component {
     }
 
     render() {
+        let tastingToggleColor = "info"
+        if (this.state.tastingTheme === "Select a tasting") {
+            tastingToggleColor = "secondary"
+        }
+        let whiskeyToggleColor = "info"
+        if (this.state.whiskeyName === "Select a whiskey") {
+            whiskeyToggleColor = "secondary"
+        }
         return (
             <Card
                 className="card-first">
@@ -64,7 +72,7 @@ export default class CreateNewTastingSelection extends Component {
                                     <Dropdown
                                         isOpen={this.state.tastingDropdown} toggle={this.tastingToggle}>
                                         <DropdownToggle
-                                            color="info"
+                                            color={tastingToggleColor}
                                             className="search-buttons"
                                             caret>
                                             {this.state.tastingTheme}
@@ -92,7 +100,7 @@ export default class CreateNewTastingSelection extends Component {
                                     <Dropdown
                                         isOpen={this.state.whiskeyDropdown} toggle={this.whiskeyToggle}>
                                         <DropdownToggle
-                                            color="info"
+                                            color={whiskeyToggleColor}
                                             className="search-buttons"
                                             caret>
                                             {this.state.whiskeyName}
