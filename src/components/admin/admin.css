@@ -18,3 +18,7 @@
 .save-button-div {
     margin-top: 15px;
 }
+
+#tastingSelectionToggle {
+    white-space: inherit;
+}

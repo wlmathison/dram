@@ -15,11 +15,13 @@ import CreateNewWhiskey from "./CreateNewWhiskey"
 import DeleteCategory from "./DeleteCategory"
 import DeleteDistillery from "./DeleteDistillery"
 import DeleteTasting from "./DeleteTasting"
+import DeleteTastingSelection from "./DeleteTastingSelection"
 import UserManager from "./../../modules/UserManager"
 import TastingManager from "./../../modules/TastingManager"
 import WhiskeyManager from "./../../modules/WhiskeyManager"
 import CategoryManager from "./../../modules/CategoryManager"
 import DistilleryManager from "./../../modules/DistilleryManager"
+import TastingSelectionManager from "./../../modules/TastingSelectionManager"
 import "./admin.css"
 
 
@@ -30,11 +32,8 @@ export default class Admin extends Component {
         categories: [],
         users: [],
         distilleries: [],
-        ratings: [],
-        reviews: [],
         tastings: [],
-        tastingAttendance: [],
-        tastingSelection: [],
+        tastingSelections: [],
         whiskies: [],
         showActivateDeactivate: true,
         showActivate: false,
@@ -49,7 +48,8 @@ export default class Admin extends Component {
         showCreateWhiskey: false,
         showDeleteCategory: false,
         showDeleteDistillery: false,
-        showDeleteTasting: false
+        showDeleteTasting: false,
+        showDeleteTastingSelection: false
     }
 
     componentDidMount() {
@@ -69,6 +69,8 @@ export default class Admin extends Component {
             .then(categories => (newState.categories = categories))
             .then(() => DistilleryManager.getAll())
             .then(distilleries => (newState.distilleries = distilleries))
+            .then(() => TastingSelectionManager.getAll())
+            .then(tastingSelections => (newState.tastingSelections = tastingSelections))
             .then(() => this.setState(newState))
     }
 
@@ -96,7 +98,8 @@ export default class Admin extends Component {
             showCreateWhiskey: false,
             showDeleteCategory: false,
             showDeleteDistillery: false,
-            showDeleteTasting: false
+            showDeleteTasting: false,
+            showDeleteTastingSelection: false
         })
     }
 
@@ -116,7 +119,8 @@ export default class Admin extends Component {
             showCreateWhiskey: false,
             showDeleteCategory: false,
             showDeleteDistillery: false,
-            showDeleteTasting: false
+            showDeleteTasting: false,
+            showDeleteTastingSelection: false
         })
         this.handleUpdateState()
     }
@@ -275,6 +279,18 @@ export default class Admin extends Component {
         })
     }
 
+    // Function to handle user clicking Delete Tasting Selection and display delete tasting selection form
+    handleDeleteTastingSelection = event => {
+        event.preventDefault()
+        this.setState({
+            showDeleteTastingSelection: true,
+            showCreate: false,
+            showActivateDeactivate: false,
+            showEdit: false,
+            showDelete: false,
+        })
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -299,13 +315,15 @@ export default class Admin extends Component {
                 }
                 {this.state.showEdit && <EditResource />
                 }
-                {this.state.showDelete && <DeleteResource handleDeleteCategory={this.handleDeleteCategory} handleDeleteDistillery={this.handleDeleteDistillery} handleDeleteTasting={this.handleDeleteTasting} />
+                {this.state.showDelete && <DeleteResource handleDeleteCategory={this.handleDeleteCategory} handleDeleteDistillery={this.handleDeleteDistillery} handleDeleteTasting={this.handleDeleteTasting} handleDeleteTastingSelection={this.handleDeleteTastingSelection} />
                 }
                 {this.state.showDeleteCategory && <DeleteCategory handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} categories={this.state.categories} />
                 }
                 {this.state.showDeleteDistillery && <DeleteDistillery handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} distilleries={this.state.distilleries} />
                 }
                 {this.state.showDeleteTasting && <DeleteTasting handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} tastings={this.state.tastings} />
+                }
+                {this.state.showDeleteTastingSelection && <DeleteTastingSelection handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} tastingSelections={this.state.tastingSelections} tastings={this.state.tastings} whiskies={this.state.whiskies} />
                 }
             </React.Fragment>
         )
