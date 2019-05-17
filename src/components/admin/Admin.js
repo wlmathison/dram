@@ -12,6 +12,7 @@ import CreateNewDistillery from "./CreateNewDistillery"
 import CreateNewTasting from "./CreateNewTasting"
 import CreateNewTastingSelection from "./CreateNewTastingSelection"
 import CreateNewWhiskey from "./CreateNewWhiskey"
+import DeleteCategory from "./DeleteCategory"
 import UserManager from "./../../modules/UserManager"
 import TastingManager from "./../../modules/TastingManager"
 import WhiskeyManager from "./../../modules/WhiskeyManager"
@@ -87,7 +88,8 @@ export default class Admin extends Component {
             showCreateDistillery: false,
             showCreateTasting: false,
             showCreateTastingSelection: false,
-            showCreateWhiskey: false
+            showCreateWhiskey: false,
+            showDeleteCategory: false
         })
     }
 
@@ -104,7 +106,8 @@ export default class Admin extends Component {
             showCreateDistillery: false,
             showCreateTasting: false,
             showCreateTastingSelection: false,
-            showCreateWhiskey: false
+            showCreateWhiskey: false,
+            showDeleteCategory: false
         })
         this.handleUpdateState()
     }
@@ -215,7 +218,7 @@ export default class Admin extends Component {
         })
     }
 
-    // Function to handle user clicking Create New Whiskey  and display create tasting selection whiskey form
+    // Function to handle user clicking Create New Whiskey and display create whiskey form
     handleCreateWhiskey = event => {
         event.preventDefault()
         this.setState({
@@ -225,6 +228,19 @@ export default class Admin extends Component {
             showEdit: false,
             showDelete: false,
         })
+    }
+
+    // Function to handle user clicking Delete Category and display delete category form
+    handleDeleteCategory = event => {
+        event.preventDefault()
+        this.setState({
+            showDeleteCategory: true,
+            showCreate: false,
+            showActivateDeactivate: false,
+            showEdit: false,
+            showDelete: false,
+        })
+
     }
 
     render() {
@@ -251,8 +267,9 @@ export default class Admin extends Component {
                 }
                 {this.state.showEdit && <EditResource />
                 }
-                {this.state.showDelete && <DeleteResource />
+                {this.state.showDelete && <DeleteResource handleDeleteCategory={this.handleDeleteCategory} />
                 }
+                {this.state.showDeleteCategory && <DeleteCategory handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} categories={this.state.categories} />}
             </React.Fragment>
         )
     }
