@@ -9,7 +9,7 @@ export default class EditResource extends Component {
             <React.Fragment>
                 <Card
                     className="card-first">
-                    <CardHeader>Edit Existing</CardHeader>
+                    <CardHeader>Edit / Delete Existing</CardHeader>
                     <Card
                         className="card-search">
                         <CardBody>
@@ -22,7 +22,7 @@ export default class EditResource extends Component {
                                             className="search-buttons"
                                             color="info"
                                             type="radio"
-                                            onClick={this.props.handleSearchWhiskiesByName}
+                                            onClick={this.props.handleEditDeleteCategory}
                                         >Category</Button>
                                         <Button
                                             className="search-buttons"
