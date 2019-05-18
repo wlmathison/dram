@@ -97,6 +97,33 @@ export default class DeleteCategory extends Component {
                                         )}
                                     </DropdownMenu>
                                 </Dropdown>
+                                {/*If dropdown category has not been clicked, edit and delete buttons are disabled  */}
+                                {this.state.categoryId === 0 &&
+                                    <div
+                                        className="search-form-buttons"
+                                    >
+                                        <Button
+                                            disabled
+                                            className="search-buttons"
+                                            color="info"
+                                            onClick={this.handleEditCategory}
+                                        >
+                                            Edit Category
+                                         </Button>
+                                        <Button
+                                            disabled
+                                            className="search-buttons"
+                                            color="danger"
+                                            onClick={this.handleDeleteCategory}
+                                        >
+                                            Delete Category
+                                        </Button>
+                                        <Button
+                                            className="search-buttons"
+                                            onClick={this.props.handleCancel}
+                                        >Cancel</Button>
+                                    </div>
+                                }
                                 {this.state.categoryId !== 0 &&
                                     <div
                                         className="search-form-buttons"
@@ -138,7 +165,7 @@ export default class DeleteCategory extends Component {
                                     <Label htmlFor="requirements">Requirements</Label>
                                     <Input
                                         required
-                                        type="text"
+                                        type="textarea"
                                         id="requirements"
                                         onChange={this.handleFieldChange}
                                         value={this.state.requirements}
