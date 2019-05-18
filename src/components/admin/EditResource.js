@@ -34,7 +34,7 @@ export default class EditResource extends Component {
                                             className="search-buttons"
                                             color="info"
                                             type="radio"
-                                            onClick={this.props.handleSearchWhiskiesByDistillery}
+                                            onClick={this.props.handleEditDeleteTasting}
                                         >Tasting</Button>
                                         <Button
                                             className="search-buttons"

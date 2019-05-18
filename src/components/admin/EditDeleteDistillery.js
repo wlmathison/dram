@@ -8,7 +8,7 @@ export default class EditDeleteDistillery extends Component {
 
     state = {
         distilleryId: 0,
-        distilleryName: "Select a distillery to delete",
+        distilleryName: "Select a distillery",
         dropdownOpen: false,
         editDeleteButtons: true,
         editForm: false
@@ -28,8 +28,8 @@ export default class EditDeleteDistillery extends Component {
         this.setState(stateToChange)
     }
 
-    // Function to post new category to database and call handleRefresh to refresh admin page
-    handlePutNewDistillery = event => {
+    // Function to put edited distillery to database and call handleRefresh to refresh admin page
+    handlePutEditedDistillery = event => {
         if (this.state.name !== "" && this.state.region !== "") {
             DistilleryManager.put(this.state.distilleryId, {
                 name: this.state.name,
@@ -61,7 +61,7 @@ export default class EditDeleteDistillery extends Component {
 
     render() {
         let toggleColor = "info"
-        if (this.state.distilleryName === "Select a distillery to delete") {
+        if (this.state.distilleryName === "Select a distillery") {
             toggleColor = "secondary"
         }
 
@@ -179,9 +179,9 @@ export default class EditDeleteDistillery extends Component {
                                     <Button
                                         className="search-buttons"
                                         color="success"
-                                        onClick={this.handlePutNewDistillery}
+                                        onClick={this.handlePutEditedDistillery}
                                     >
-                                        Save Distillery
+                                        Save Edited Distillery
                                 </Button>
                                     <Button
                                         className="search-buttons"

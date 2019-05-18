@@ -19,6 +19,7 @@ import DeleteTastingSelection from "./DeleteTastingSelection"
 import DeleteWhiskey from "./DeleteWhiskey"
 import EditDeleteCategory from "./EditDeleteCategory"
 import EditDeleteDistillery from "./EditDeleteDistillery"
+import EditDeleteTasting from "./EditDeleteTasting"
 import UserManager from "./../../modules/UserManager"
 import TastingManager from "./../../modules/TastingManager"
 import WhiskeyManager from "./../../modules/WhiskeyManager"
@@ -55,7 +56,8 @@ export default class Admin extends Component {
         showDeleteTastingSelection: false,
         showDeleteWhiskey: false,
         showEditDeleteCategory: false,
-        showEditDeleteDistillery: false
+        showEditDeleteDistillery: false,
+        showEditDeleteTasting: false
     }
 
     componentDidMount() {
@@ -108,7 +110,8 @@ export default class Admin extends Component {
             showDeleteTastingSelection: false,
             showDeleteWhiskey: false,
             showEditDeleteCategory: false,
-            showEditDeleteDistillery: false
+            showEditDeleteDistillery: false,
+            showEditDeleteTasting: false
         })
     }
 
@@ -132,7 +135,8 @@ export default class Admin extends Component {
             showDeleteTastingSelection: false,
             showDeleteWhiskey: false,
             showEditDeleteCategory: false,
-            showEditDeleteDistillery: false
+            showEditDeleteDistillery: false,
+            showEditDeleteTasting: false
         })
         this.handleUpdateState()
     }
@@ -339,6 +343,18 @@ export default class Admin extends Component {
         })
     }
 
+    // Function to handle user clicking Edit/Delete Tasting and display edit/delete tasting form
+    handleEditDeleteTasting = event => {
+        event.preventDefault()
+        this.setState({
+            showEditDeleteTasting: true,
+            showCreate: false,
+            showActivateDeactivate: false,
+            showEdit: false,
+            showDelete: false,
+        })
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -361,11 +377,13 @@ export default class Admin extends Component {
                 }
                 {this.state.showCreateWhiskey && <CreateNewWhiskey handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} whiskies={this.state.whiskies} categories={this.state.categories} distilleries={this.state.distilleries} />
                 }
-                {this.state.showEdit && <EditResource handleEditDeleteCategory={this.handleEditDeleteCategory} handleEditDeleteDistillery={this.handleEditDeleteDistillery} />
+                {this.state.showEdit && <EditResource handleEditDeleteCategory={this.handleEditDeleteCategory} handleEditDeleteDistillery={this.handleEditDeleteDistillery} handleEditDeleteTasting={this.handleEditDeleteTasting} />
                 }
                 {this.state.showEditDeleteCategory && <EditDeleteCategory handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} categories={this.state.categories} />
                 }
                 {this.state.showEditDeleteDistillery && <EditDeleteDistillery handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} distilleries={this.state.distilleries} />
+                }
+                {this.state.showEditDeleteTasting && <EditDeleteTasting handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} tastings={this.state.tastings} />
                 }
                 {this.state.showDelete && <DeleteResource handleDeleteCategory={this.handleDeleteCategory} handleDeleteDistillery={this.handleDeleteDistillery} handleDeleteTasting={this.handleDeleteTasting} handleDeleteTastingSelection={this.handleDeleteTastingSelection} handleDeleteWhiskey={this.handleDeleteWhiskey} />
                 }

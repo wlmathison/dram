@@ -1,4 +1,4 @@
-// Page builds the delete category form for admin page
+// Page builds the edit/delete category form for admin page
 
 import React, { Component } from "react"
 import { Card, CardBody, Form, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, CardHeader, FormGroup, Label, Input } from "reactstrap"
@@ -28,8 +28,8 @@ export default class DeleteCategory extends Component {
         this.setState(stateToChange)
     }
 
-    // Function to post new category to database and call handleRefresh to refresh admin page
-    handlePutNewCategory = event => {
+    // Function to put edited category to database and call handleRefresh to refresh admin page
+    handlePutEditedCategory = event => {
         if (this.state.name !== "" && this.state.requirements !== "") {
             CategoryManager.put(this.state.categoryId, {
                 name: this.state.name,
@@ -177,9 +177,9 @@ export default class DeleteCategory extends Component {
                                     <Button
                                         className="search-buttons"
                                         color="success"
-                                        onClick={this.handlePutNewCategory}
+                                        onClick={this.handlePutEditedCategory}
                                     >
-                                        Save Category
+                                        Save Edited Category
                                 </Button>
                                     <Button
                                         className="search-buttons"
