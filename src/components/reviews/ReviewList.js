@@ -2,6 +2,7 @@
 
 import React, { Component } from "react"
 import { Card, CardHeader, CardBody, CardTitle, Button } from "reactstrap"
+import { TinyButton as ScrollUpButton } from "react-scroll-up-button"
 import ReviewManager from "./../../modules/ReviewManager"
 import TastingSelectionManager from "./../../modules/TastingSelectionManager"
 import ReviewSearchForm from "./ReviewSearchForm"
@@ -209,6 +210,10 @@ export default class ReviewList extends Component {
                             onClick={this.handleSearchReviews}>
                             Search Reviews
                             </Button>}</CardHeader>
+                    <div>
+                        <ScrollUpButton
+                            className="scroll-button" />
+                    </div>
                     {/* Below are multiple conditional rendering statements to display the imported file depending on the state(whish is listed first) */}
                     {this.state.isSearching &&
                         <ReviewSearchForm handleSearchAllReviews={this.handleSearchAllReviews} handleSearchReviewsByWhiskey={this.handleSearchReviewsByWhiskey} handleSearchReviewsByUser={this.handleSearchReviewsByUser} handleSearchReviewsByTasting={this.handleSearchReviewsByTasting} />

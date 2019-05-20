@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import { Card, CardHeader, CardBody, CardTitle, Button } from "reactstrap";
+import {TinyButton as ScrollUpButton} from "react-scroll-up-button"
 import WhiskeyManager from "./../../modules/WhiskeyManager";
 import CategoryManager from "./../../modules/CategoryManager";
 import DistilleryManager from "./../../modules/DistilleryManager";
@@ -158,6 +159,10 @@ export default class WhiskeyList extends Component {
                             Search Whiskies
                             </Button>}
                     </CardHeader>
+                    <div>
+                        <ScrollUpButton
+                            className="scroll-button" />
+                    </div>
                     {/* Below are multiple conditional rendering statements to display the imported file depending on the state(whish is listed first) */}
                     {this.state.isSearching &&
                         <WhiskeySearchForm

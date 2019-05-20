@@ -1,0 +1,1653 @@
+{
+  "users": [
+    {
+      "userName": "Billy M",
+      "password": "admin",
+      "email": "email",
+      "phoneNumber": "+1 111 111 1111",
+      "userTypeId": 1,
+      "isActive": true,
+      "id": 1
+    },
+    {
+      "id": 2,
+      "userName": "Laura K",
+      "password": "password",
+      "email": "email",
+      "phoneNumber": "+1 111 111 1111",
+      "userTypeId": 2,
+      "isActive": true
+    },
+    {
+      "userName": "Mr Billy",
+      "password": "password",
+      "email": "email",
+      "isActive": true,
+      "userTypeId": 2,
+      "id": 3
+    },
+    {
+      "userName": "Jim L",
+      "password": "password",
+      "email": "email",
+      "isActive": true,
+      "userTypeId": 2,
+      "id": 4
+    },
+    {
+      "userName": "Jenny C",
+      "password": "password",
+      "email": "email",
+      "isActive": true,
+      "userTypeId": 2,
+      "id": 5
+    },
+    {
+      "userName": "Dave F",
+      "password": "password",
+      "email": "email",
+      "isActive": true,
+      "userTypeId": 2,
+      "id": 6
+    },
+    {
+      "userName": "Mark N",
+      "password": "password",
+      "email": "email",
+      "isActive": true,
+      "userTypeId": 2,
+      "id": 7
+    },
+    {
+      "userName": "Ryan P",
+      "email": "email",
+      "phoneNumber": "password",
+      "password": "password",
+      "isActive": true,
+      "userTypeId": 2,
+      "id": 8
+    },
+    {
+      "userName": "Jennifer W",
+      "email": "email",
+      "phoneNumber": "password",
+      "password": "password",
+      "isActive": true,
+      "userTypeId": 2,
+      "id": 9
+    },
+    {
+      "userName": "Bret D",
+      "email": "email",
+      "phoneNumber": "password",
+      "password": "password",
+      "isActive": true,
+      "userTypeId": 2,
+      "id": 10
+    }
+  ],
+  "whiskies": [
+    {
+      "id": 1,
+      "name": "Jack Daniel's Black Label",
+      "size": "750ml",
+      "price": "21.99",
+      "proof": "80",
+      "age": "NAS",
+      "categoryId": 1,
+      "distilleryId": 1
+    },
+    {
+      "id": 2,
+      "name": "W.L. Weller Special Reserve",
+      "size": "750ml",
+      "price": "19.99",
+      "proof": "90",
+      "age": "NAS",
+      "categoryId": 2,
+      "distilleryId": 2
+    },
+    {
+      "id": 3,
+      "name": "Sazerac Rye",
+      "size": "750ml",
+      "price": "29.99",
+      "proof": "90",
+      "age": "NAS",
+      "categoryId": 4,
+      "distilleryId": 2
+    },
+    {
+      "id": 4,
+      "name": "Eagle Rare",
+      "size": "750ml",
+      "price": "31.99",
+      "proof": "90",
+      "age": "10 years",
+      "categoryId": 6,
+      "distilleryId": 2
+    },
+    {
+      "id": 5,
+      "name": "Elijah Craig Small Batch",
+      "size": "750ml",
+      "price": "24.99",
+      "proof": "94",
+      "age": "12 years",
+      "categoryId": 6,
+      "distilleryId": 3
+    },
+    {
+      "id": 6,
+      "name": "Old Weller Antique",
+      "size": "750ml",
+      "price": "29.99",
+      "proof": "107",
+      "age": "12 years",
+      "categoryId": 2,
+      "distilleryId": 2
+    },
+    {
+      "id": 7,
+      "name": "Heaven Hill Bottled in Bond",
+      "size": "750ml",
+      "price": "11.99",
+      "proof": "100",
+      "age": "6 years",
+      "categoryId": 6,
+      "distilleryId": 3
+    },
+    {
+      "id": 8,
+      "name": "Old Fitzgerald Bottled in Bond",
+      "size": "750ml",
+      "price": "17.99",
+      "proof": "100",
+      "age": "NAS",
+      "categoryId": 2,
+      "distilleryId": 3
+    },
+    {
+      "id": 9,
+      "name": "Rittenhouse Rye Bottled in Bond",
+      "size": "750ml",
+      "price": "28.99",
+      "proof": "100",
+      "age": "NAS",
+      "categoryId": 4,
+      "distilleryId": 3
+    },
+    {
+      "id": 10,
+      "name": "Old Grand-Dad Bottled in Bond",
+      "size": "750ml",
+      "price": "22.99",
+      "proof": "100",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 4
+    },
+    {
+      "id": 11,
+      "name": "Henry McKenna Single Barrel Bottled in Bond",
+      "size": "750ml",
+      "price": "29.99",
+      "proof": "100",
+      "age": "10 years",
+      "categoryId": 6,
+      "distilleryId": 3
+    },
+    {
+      "id": 12,
+      "name": "J.W. Dant Bottled in Bond",
+      "size": "750ml",
+      "price": "19.99",
+      "proof": "100",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 3
+    },
+    {
+      "id": 13,
+      "name": "George Dickel Cascade Hollow",
+      "size": "750ml",
+      "price": "24.99",
+      "proof": "80",
+      "age": "3 years",
+      "categoryId": 1,
+      "distilleryId": 5
+    },
+    {
+      "id": 14,
+      "name": "Early Times 354 Bourbon",
+      "size": "750ml",
+      "price": "17.99",
+      "proof": "80",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 6
+    },
+    {
+      "id": 15,
+      "name": "Old Charter 8",
+      "size": "1L",
+      "price": "21.99",
+      "proof": "80",
+      "age": "8 years",
+      "categoryId": 6,
+      "distilleryId": 2
+    },
+    {
+      "id": 16,
+      "name": "Old Grand-Dad 114",
+      "size": "750ml",
+      "price": "26.99",
+      "proof": "114",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 4
+    },
+    {
+      "id": 17,
+      "name": "Booker's 'Toogie's Invitation'",
+      "size": "750ml",
+      "price": "59.99",
+      "proof": "129",
+      "age": "6 years",
+      "categoryId": 6,
+      "distilleryId": 4
+    },
+    {
+      "id": 18,
+      "name": "Paddy",
+      "size": "750ml",
+      "price": "18.99",
+      "proof": "80",
+      "age": "NAS",
+      "categoryId": 7,
+      "distilleryId": 7
+    },
+    {
+      "id": 19,
+      "name": "Bushmills",
+      "size": "750ml",
+      "price": "21.99",
+      "proof": "80",
+      "age": "NAS",
+      "categoryId": 7,
+      "distilleryId": 8
+    },
+    {
+      "id": 20,
+      "name": "Jameson",
+      "size": "750ml",
+      "price": "19.99",
+      "proof": "80",
+      "age": "NAS",
+      "categoryId": 7,
+      "distilleryId": 7
+    },
+    {
+      "id": 21,
+      "name": "Redbreast 12",
+      "size": "750ml",
+      "price": "54.99",
+      "proof": "80",
+      "age": "12 years",
+      "categoryId": 7,
+      "distilleryId": 7
+    },
+    {
+      "id": 22,
+      "name": "Green Spot",
+      "size": "750ml",
+      "price": "54.99",
+      "proof": "80",
+      "age": "NAS",
+      "categoryId": 7,
+      "distilleryId": 7
+    },
+    {
+      "id": 23,
+      "name": "Bulleit Rye",
+      "size": "750ml",
+      "price": "24.99",
+      "proof": "90",
+      "age": "NAS",
+      "categoryId": 4,
+      "distilleryId": 9
+    },
+    {
+      "id": 24,
+      "name": "Dewar's White Label",
+      "size": "750ml",
+      "price": "24.99",
+      "proof": "80",
+      "age": "NAS",
+      "categoryId": 8,
+      "distilleryId": 10
+    },
+    {
+      "id": 25,
+      "name": "2 Gingers",
+      "size": "750ml",
+      "price": "21.99",
+      "proof": "80",
+      "age": "NAS",
+      "categoryId": 7,
+      "distilleryId": 11
+    },
+    {
+      "id": 26,
+      "name": "Maker's Mark",
+      "size": "750ml",
+      "price": "23.99",
+      "proof": "90",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 12
+    },
+    {
+      "id": 27,
+      "name": "Stagg Jr.",
+      "size": "750ml",
+      "price": "59.99",
+      "proof": "129.5",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 2
+    },
+    {
+      "id": 28,
+      "name": "Buffalo Trace",
+      "size": "750ml",
+      "price": "23.99",
+      "proof": "90",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 2
+    },
+    {
+      "id": 29,
+      "name": "Colonel E.H. Taylor Small Batch",
+      "size": "750ml",
+      "price": "39.99",
+      "proof": "100",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 2
+    },
+    {
+      "id": 30,
+      "name": "Benchmark 8",
+      "size": "750ml",
+      "price": "16.99",
+      "proof": "80",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 2
+    },
+    {
+      "id": 31,
+      "name": "Old Charter 8",
+      "size": "750ml",
+      "price": "19.99",
+      "proof": "80",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 2
+    },
+    {
+      "id": 32,
+      "name": "Ancient Age",
+      "size": "1.75L",
+      "price": "21.99",
+      "proof": "80",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 2
+    },
+    {
+      "id": 33,
+      "name": "Elmer T. Lee",
+      "size": "750ml",
+      "price": "42.99",
+      "proof": "90",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 2
+    },
+    {
+      "id": 34,
+      "name": "Blanton's",
+      "size": "750ml",
+      "price": "59.99",
+      "proof": "93",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 2
+    },
+    {
+      "id": 35,
+      "name": "Rock Hill Farms",
+      "size": "750ml",
+      "price": "59.99",
+      "proof": "100",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 2
+    },
+    {
+      "id": 36,
+      "name": "Iwai",
+      "size": "750ml",
+      "price": "34.99",
+      "proof": "80",
+      "age": "NAS",
+      "categoryId": 9,
+      "distilleryId": 13
+    },
+    {
+      "id": 37,
+      "name": "Hibiki Harmony",
+      "size": "750ml",
+      "price": "69.99",
+      "proof": "86",
+      "age": "NAS",
+      "categoryId": 9,
+      "distilleryId": 14
+    },
+    {
+      "id": 38,
+      "name": "Nikka Coffey Grain",
+      "size": "750ml",
+      "price": "59.99",
+      "proof": "90",
+      "age": "NAS",
+      "categoryId": 9,
+      "distilleryId": 15
+    },
+    {
+      "id": 39,
+      "name": "Yamazaki 12",
+      "size": "750ml",
+      "price": "89.99",
+      "proof": "86",
+      "age": "12 years",
+      "categoryId": 9,
+      "distilleryId": 16
+    },
+    {
+      "id": 40,
+      "name": "1792 225th Anniversary",
+      "size": "750ml",
+      "price": "42.99",
+      "proof": "92.15",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 17
+    },
+    {
+      "id": 41,
+      "name": "1792 Small Batch",
+      "size": "750ml",
+      "price": "26.99",
+      "proof": "93.7",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 17
+    },
+    {
+      "id": 42,
+      "name": "1792 Single Barrel",
+      "size": "750ml",
+      "price": "37.99",
+      "proof": "98.6",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 17
+    },
+    {
+      "id": 43,
+      "name": "1792 Bottled in Bond",
+      "size": "750ml",
+      "price": "42.99",
+      "proof": "100",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 17
+    },
+    {
+      "id": 44,
+      "name": "1792 Full Proof",
+      "size": "750ml",
+      "price": "59.99",
+      "proof": "125",
+      "age": "NAS",
+      "categoryId": 6,
+      "distilleryId": 17
+    },
+    {
+      "id": 45,
+      "name": "Jameson Caskmates IPA Edition",
+      "size": "750ml",
+      "price": "26.99",
+      "proof": "80",
+      "age": "NAS",
+      "categoryId": 7,
+      "distilleryId": 7
+    },
+    {
+      "id": 46,
+      "name": "Monkey Shoulder",
+      "size": "750ml",
+      "price": "32.99",
+      "proof": "80",
+      "age": "NAS",
+      "categoryId": 8,
+      "distilleryId": 18
+    },
+    {
+      "id": 47,
+      "name": "Bernheim Original",
+      "size": "750ml",
+      "price": "26.99",
+      "proof": "90",
+      "age": "7 years",
+      "categoryId": 10,
+      "distilleryId": 3
+    },
+    {
+      "id": 48,
+      "name": "Canadian Club Small Batch Classic 12",
+      "size": "750ml",
+      "price": "26.99",
+      "proof": "80",
+      "age": "12 years",
+      "categoryId": 11,
+      "distilleryId": 19
+    },
+    {
+      "id": 49,
+      "name": "Michter's Single Barrel Straight Rye",
+      "size": "750ml",
+      "price": "39.99",
+      "proof": "84.8",
+      "age": "NAS",
+      "categoryId": 4,
+      "distilleryId": 20
+    },
+    {
+      "id": 50,
+      "name": "Old Forrester Straight Rye",
+      "size": "750ml",
+      "price": "21.99",
+      "proof": "100",
+      "age": "NAS",
+      "categoryId": 4,
+      "distilleryId": 21
+    },
+    {
+      "id": 51,
+      "name": "Knob Creek Twice Barreled Rye",
+      "size": "750ml",
+      "price": "54.99",
+      "proof": "100",
+      "age": "NAS",
+      "categoryId": 4,
+      "distilleryId": 4
+    },
+    {
+      "id": 52,
+      "name": "Willett Straight Rye",
+      "size": "750ml",
+      "price": "49.99",
+      "proof": "109",
+      "age": "3 years",
+      "categoryId": 4,
+      "distilleryId": 22
+    },
+    {
+      "id": 53,
+      "name": "Russels's Reserve Straight Rye",
+      "size": "750ml",
+      "price": "39.99",
+      "proof": "90",
+      "age": "6 years",
+      "categoryId": 4,
+      "distilleryId": 23
+    },
+    {
+      "id": 54,
+      "name": "Jack Daniel's Green Label",
+      "size": "750ml",
+      "price": "18.99",
+      "proof": "80",
+      "age": "NAS",
+      "categoryId": 1,
+      "distilleryId": 1
+    },
+    {
+      "id": 55,
+      "name": "Taketsuru Pure Malt",
+      "size": "750ml",
+      "price": "66.99",
+      "proof": "86",
+      "age": "NAS",
+      "categoryId": 9,
+      "distilleryId": 15
+    },
+    {
+      "id": 56,
+      "name": "WhistlePig PiggyBack",
+      "size": "750ml",
+      "price": "44.99",
+      "proof": "96.56",
+      "age": "6 years",
+      "categoryId": 4,
+      "distilleryId": 24
+    },
+    {
+      "id": 57,
+      "name": "Elijah Craig Barrel Proof Batch C917",
+      "size": "750ml",
+      "price": "69.99",
+      "proof": "131",
+      "age": "6 years",
+      "categoryId": 6,
+      "distilleryId": 25
+    }
+  ],
+  "tastings": [
+    {
+      "id": 1,
+      "theme": "Value Whiskies",
+      "date": "2016-10-12",
+      "time": "7pm",
+      "address": "2700 Windermere Dr",
+      "active": false,
+      "isComplete": true
+    },
+    {
+      "id": 2,
+      "theme": "Bottled in Bond",
+      "date": "2016-12-03",
+      "time": "7pm",
+      "address": "2700 Windermere Dr",
+      "active": false,
+      "isComplete": true
+    },
+    {
+      "id": 3,
+      "theme": "Controversial Whiskies",
+      "date": "2017-01-14",
+      "time": "7pm",
+      "address": "2700 Windermere Dr",
+      "active": false,
+      "isComplete": true
+    },
+    {
+      "id": 4,
+      "theme": "Irish Whiskey",
+      "date": "2017-02-25",
+      "time": "7pm",
+      "address": "2700 Windermere Dr",
+      "active": false,
+      "isComplete": true
+    },
+    {
+      "id": 5,
+      "theme": "Guess the category",
+      "date": "2017-04-08",
+      "time": "7pm",
+      "address": "2700 Windermere Dr",
+      "active": false,
+      "isComplete": true
+    },
+    {
+      "id": 7,
+      "theme": "Buffalo Trace Mashbill #1",
+      "date": "2017-07-22",
+      "time": "7pm",
+      "address": "",
+      "active": false,
+      "isComplete": true
+    },
+    {
+      "id": 8,
+      "theme": "Buffalo Trace Mashbill #2",
+      "date": "2017-09-09",
+      "time": "7pm",
+      "address": "2700 Windermere Dr",
+      "active": false,
+      "isComplete": true
+    },
+    {
+      "id": 9,
+      "theme": "Japanese Whisky",
+      "date": "2017-12-02",
+      "time": "7pm",
+      "address": "1334 Springfield Hwy",
+      "active": false,
+      "isComplete": true
+    },
+    {
+      "id": 10,
+      "theme": "1792 Horizontal",
+      "date": "2018-01-27",
+      "time": "7pm",
+      "address": "2700 Windermere Dr",
+      "active": false,
+      "isComplete": true
+    },
+    {
+      "id": 11,
+      "theme": "Guess the Category #2",
+      "date": "2018-03-10",
+      "time": "7pm",
+      "address": "2700 Windermere Dr",
+      "active": false,
+      "isComplete": true
+    },
+    {
+      "id": 13,
+      "theme": "Straight Rye",
+      "date": "2019-03-23",
+      "time": "8pm",
+      "address": "2700 Windermere Dr",
+      "active": false,
+      "isComplete": true
+    },
+    {
+      "id": 14,
+      "theme": "Some of Billy's Favorites",
+      "date": "2019-05-11",
+      "time": "5:30pm",
+      "address": "2700 Windermere Dr",
+      "active": false,
+      "isComplete": true
+    },
+    {
+      "id": 15,
+      "theme": "Demo Day Presentation",
+      "date": "2019-06-15",
+      "time": "9am",
+      "address": "500 Interstate Blvd",
+      "active": false,
+      "isComplete": false
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Tennessee Whiskey",
+      "requirements": "Produced in Tennessee; Mash bill of at least 51% corn; aged in new, charred oak barrels; filtered through maple charcoal prio to aging."
+    },
+    {
+      "id": 2,
+      "name": "Wheated Bourbon",
+      "requirements": "Produced anywhere in the USA; Mash bill of at least 51% corn; Second ingredient wheat; Aged in new, charred oak barrels."
+    },
+    {
+      "id": 3,
+      "name": "Rye Whiskey",
+      "requirements": "Mash bill of at least 51% rye; aged in new, charred oak barrels."
+    },
+    {
+      "id": 4,
+      "name": "Straight Rye Whiskey",
+      "requirements": "Mash bill of at least 51% rye; aged in new, charred oak barrels; Aged at least 2 years."
+    },
+    {
+      "id": 5,
+      "name": "Bourbon",
+      "requirements": "Produced anywhere in the USA; Mash bill of at least 51% corn; Aged in new, charred oak barrels."
+    },
+    {
+      "id": 6,
+      "name": "Straight Bourbon Whiskey",
+      "requirements": "Produced anywhere in the USA; Mash bill of at least 51% corn; Aged in new, charred oak barrels; Aged at least 2 years."
+    },
+    {
+      "id": 7,
+      "name": "Irish Whiskey",
+      "requirements": "Distilled in Ireland."
+    },
+    {
+      "id": 8,
+      "name": "Blended Scotch Whisky",
+      "requirements": "Produced in Scotland; Blend of one or more single malt Scotch whiskies with one or more single grain Scotch whiskies.."
+    },
+    {
+      "id": 9,
+      "name": "Japanese Whisky",
+      "requirements": "Produced in Japan"
+    },
+    {
+      "id": 10,
+      "name": "Wheat Whiskey",
+      "requirements": "Produced anywhere in the USA; Mash bill of at least 51% wheat; Aged in new, charred oak barrels; Aged at least 2 years."
+    },
+    {
+      "id": 11,
+      "name": "Blended Canadian Whiskey",
+      "requirements": "Produced in Canada."
+    }
+  ],
+  "distilleries": [
+    {
+      "id": 1,
+      "name": "Jack Daniel's",
+      "region": "Tennessee"
+    },
+    {
+      "id": 2,
+      "name": "Buffalo Trace",
+      "region": "Kentucky"
+    },
+    {
+      "id": 3,
+      "name": "Heaven Hill",
+      "region": "Kentucky"
+    },
+    {
+      "id": 4,
+      "name": "Jim Beam",
+      "region": "Kentucky"
+    },
+    {
+      "id": 5,
+      "name": "George Dickel",
+      "region": "Tennessee"
+    },
+    {
+      "id": 6,
+      "name": "Early Times",
+      "region": "Kentucky"
+    },
+    {
+      "id": 7,
+      "name": "Irish Distillers",
+      "region": "Ireland"
+    },
+    {
+      "id": 8,
+      "name": "Old Bushmills Distilery",
+      "region": "Ireland"
+    },
+    {
+      "id": 9,
+      "name": "Four Roses",
+      "region": "Kentucky"
+    },
+    {
+      "id": 10,
+      "name": "Bacardi",
+      "region": "Scotland"
+    },
+    {
+      "id": 11,
+      "name": "Kilbeggan Co. Distillery",
+      "region": "Scotland"
+    },
+    {
+      "id": 12,
+      "name": "Marker's Mark Distillery",
+      "region": "Kentucky"
+    },
+    {
+      "id": 13,
+      "name": "Mars Shinshu",
+      "region": "Japan"
+    },
+    {
+      "id": 14,
+      "name": "Hibiki",
+      "region": "Japan"
+    },
+    {
+      "id": 15,
+      "name": "Nikka Whisky Distilling Co",
+      "region": "Japan"
+    },
+    {
+      "id": 16,
+      "name": "Yamazaki Distilling",
+      "region": "Japan"
+    },
+    {
+      "id": 17,
+      "name": "Barton 1792 Distillery",
+      "region": "Kentucky"
+    },
+    {
+      "id": 18,
+      "name": "William Grant and Sons",
+      "region": "Scotland"
+    },
+    {
+      "id": 19,
+      "name": "Canadian Club",
+      "region": "Canada"
+    },
+    {
+      "id": 20,
+      "name": "Michters Distillery",
+      "region": "Kentucky"
+    },
+    {
+      "id": 21,
+      "name": "Old Forester Bourbon DIstilling Co",
+      "region": "Kentucky"
+    },
+    {
+      "id": 22,
+      "name": "The Willett Distillery",
+      "region": "Kentucky"
+    },
+    {
+      "id": 23,
+      "name": "Wild Turkey",
+      "region": "Kentucky"
+    },
+    {
+      "id": 24,
+      "name": "WhistlePig",
+      "region": "Vermont"
+    },
+    {
+      "id": 25,
+      "name": "Elijah Craig Distillery",
+      "region": "Kentucky"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "userId": 1,
+      "tastingSelectionId": 23,
+      "date": "04/08/2017",
+      "review": "Amazing Tennesee whiskey."
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "tastingSelectionId": 23,
+      "date": "04/08/2017",
+      "review": "meh."
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "tastingSelectionId": 22,
+      "date": "04/08/2017",
+      "review": "Ok"
+    }
+  ],
+  "ratings": [
+    {
+      "userId": 1,
+      "whiskeyId": 1,
+      "rating": 5,
+      "id": 1
+    }
+  ],
+  "favorites": [
+    {
+      "userId": 1,
+      "whiskeyId": 1,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "whiskeyId": 21,
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "whiskeyId": 38,
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "whiskeyId": 53,
+      "id": 4
+    },
+    {
+      "userId": 2,
+      "whiskeyId": 4,
+      "id": 5
+    },
+    {
+      "userId": 2,
+      "whiskeyId": 18,
+      "id": 6
+    },
+    {
+      "userId": 2,
+      "whiskeyId": 21,
+      "id": 7
+    },
+    {
+      "userId": 2,
+      "whiskeyId": 32,
+      "id": 8
+    },
+    {
+      "userId": 2,
+      "whiskeyId": 34,
+      "id": 9
+    },
+    {
+      "userId": 2,
+      "whiskeyId": 35,
+      "id": 10
+    },
+    {
+      "userId": 2,
+      "whiskeyId": 38,
+      "id": 11
+    }
+  ],
+  "userType": [
+    {
+      "id": 1,
+      "name": "admin"
+    },
+    {
+      "id": 2,
+      "name": "user"
+    },
+    {
+      "id": 3,
+      "name": "guest"
+    }
+  ],
+  "tastingAttendance": [
+    {
+      "id": 1,
+      "tastingId": 1,
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "tastingId": 2,
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "tastingId": 3,
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "tastingId": 4,
+      "userId": 1
+    },
+    {
+      "id": 5,
+      "tastingId": 5,
+      "userId": 1
+    },
+    {
+      "id": 6,
+      "tastingId": 7,
+      "userId": 1
+    },
+    {
+      "id": 7,
+      "tastingId": 8,
+      "userId": 1
+    },
+    {
+      "id": 8,
+      "tastingId": 9,
+      "userId": 1
+    },
+    {
+      "id": 9,
+      "tastingId": 10,
+      "userId": 1
+    },
+    {
+      "id": 10,
+      "tastingId": 11,
+      "userId": 1
+    },
+    {
+      "id": 11,
+      "tastingId": 13,
+      "userId": 1
+    },
+    {
+      "id": 12,
+      "tastingId": 1,
+      "userId": 2
+    },
+    {
+      "id": 13,
+      "tastingId": 2,
+      "userId": 2
+    },
+    {
+      "id": 14,
+      "tastingId": 3,
+      "userId": 2
+    },
+    {
+      "id": 15,
+      "tastingId": 4,
+      "userId": 2
+    },
+    {
+      "id": 16,
+      "tastingId": 5,
+      "userId": 2
+    },
+    {
+      "id": 17,
+      "tastingId": 7,
+      "userId": 2
+    },
+    {
+      "id": 18,
+      "tastingId": 8,
+      "userId": 2
+    },
+    {
+      "id": 19,
+      "tastingId": 9,
+      "userId": 2
+    },
+    {
+      "id": 20,
+      "tastingId": 10,
+      "userId": 2
+    },
+    {
+      "id": 21,
+      "tastingId": 11,
+      "userId": 2
+    },
+    {
+      "id": 22,
+      "tastingId": 13,
+      "userId": 2
+    },
+    {
+      "id": 23,
+      "tastingId": 2,
+      "userId": 6
+    },
+    {
+      "id": 24,
+      "tastingId": 4,
+      "userId": 6
+    },
+    {
+      "id": 25,
+      "tastingId": 9,
+      "userId": 6
+    },
+    {
+      "id": 26,
+      "tastingId": 11,
+      "userId": 6
+    },
+    {
+      "id": 27,
+      "tastingId": 13,
+      "userId": 6
+    },
+    {
+      "id": 28,
+      "tastingId": 1,
+      "userId": 4
+    },
+    {
+      "id": 29,
+      "tastingId": 2,
+      "userId": 4
+    },
+    {
+      "id": 30,
+      "tastingId": 3,
+      "userId": 4
+    },
+    {
+      "id": 31,
+      "tastingId": 4,
+      "userId": 4
+    },
+    {
+      "id": 32,
+      "tastingId": 5,
+      "userId": 4
+    },
+    {
+      "id": 33,
+      "tastingId": 8,
+      "userId": 4
+    },
+    {
+      "id": 34,
+      "tastingId": 9,
+      "userId": 4
+    },
+    {
+      "id": 35,
+      "tastingId": 10,
+      "userId": 4
+    },
+    {
+      "id": 36,
+      "tastingId": 13,
+      "userId": 4
+    },
+    {
+      "id": 37,
+      "tastingId": 10,
+      "userId": 10
+    },
+    {
+      "id": 38,
+      "tastingId": 13,
+      "userId": 10
+    },
+    {
+      "id": 39,
+      "tastingId": 1,
+      "userId": 3
+    },
+    {
+      "id": 40,
+      "tastingId": 2,
+      "userId": 3
+    },
+    {
+      "id": 41,
+      "tastingId": 3,
+      "userId": 3
+    },
+    {
+      "id": 42,
+      "tastingId": 4,
+      "userId": 3
+    },
+    {
+      "id": 43,
+      "tastingId": 5,
+      "userId": 3
+    },
+    {
+      "id": 44,
+      "tastingId": 8,
+      "userId": 3
+    },
+    {
+      "id": 45,
+      "tastingId": 10,
+      "userId": 3
+    },
+    {
+      "id": 46,
+      "tastingId": 11,
+      "userId": 3
+    },
+    {
+      "id": 47,
+      "tastingId": 13,
+      "userId": 3
+    }
+  ],
+  "tastingSelections": [
+    {
+      "id": 1,
+      "whiskeyId": 2,
+      "tastingId": 1,
+      "isWinner": false
+    },
+    {
+      "id": 2,
+      "whiskeyId": 3,
+      "tastingId": 1,
+      "isWinner": false
+    },
+    {
+      "id": 3,
+      "whiskeyId": 4,
+      "tastingId": 1,
+      "isWinner": true
+    },
+    {
+      "id": 4,
+      "whiskeyId": 5,
+      "tastingId": 1,
+      "isWinner": false
+    },
+    {
+      "id": 5,
+      "whiskeyId": 6,
+      "tastingId": 1,
+      "isWinner": false
+    },
+    {
+      "id": 6,
+      "whiskeyId": 7,
+      "tastingId": 2,
+      "isWinner": false
+    },
+    {
+      "id": 7,
+      "whiskeyId": 8,
+      "tastingId": 2,
+      "isWinner": false
+    },
+    {
+      "id": 8,
+      "whiskeyId": 9,
+      "tastingId": 2,
+      "isWinner": false
+    },
+    {
+      "id": 9,
+      "whiskeyId": 10,
+      "tastingId": 2,
+      "isWinner": false
+    },
+    {
+      "id": 10,
+      "whiskeyId": 11,
+      "tastingId": 2,
+      "isWinner": false
+    },
+    {
+      "id": 11,
+      "whiskeyId": 12,
+      "tastingId": 2,
+      "isWinner": false
+    },
+    {
+      "id": 12,
+      "whiskeyId": 13,
+      "tastingId": 3,
+      "isWinner": false
+    },
+    {
+      "id": 13,
+      "whiskeyId": 14,
+      "tastingId": 3,
+      "isWinner": false
+    },
+    {
+      "id": 14,
+      "whiskeyId": 15,
+      "tastingId": 3,
+      "isWinner": false
+    },
+    {
+      "id": 15,
+      "whiskeyId": 16,
+      "tastingId": 3,
+      "isWinner": false
+    },
+    {
+      "id": 16,
+      "whiskeyId": 17,
+      "tastingId": 3,
+      "isWinner": false
+    },
+    {
+      "id": 17,
+      "whiskeyId": 18,
+      "tastingId": 4,
+      "isWinner": false
+    },
+    {
+      "id": 18,
+      "whiskeyId": 19,
+      "tastingId": 4,
+      "isWinner": false
+    },
+    {
+      "id": 19,
+      "whiskeyId": 20,
+      "tastingId": 4,
+      "isWinner": false
+    },
+    {
+      "id": 20,
+      "whiskeyId": 21,
+      "tastingId": 4,
+      "isWinner": false
+    },
+    {
+      "id": 21,
+      "whiskeyId": 22,
+      "tastingId": 4,
+      "isWinner": false
+    },
+    {
+      "id": 22,
+      "whiskeyId": 23,
+      "tastingId": 5,
+      "isWinner": false
+    },
+    {
+      "id": 23,
+      "whiskeyId": 1,
+      "tastingId": 5,
+      "isWinner": false
+    },
+    {
+      "id": 24,
+      "whiskeyId": 24,
+      "tastingId": 5,
+      "isWinner": false
+    },
+    {
+      "id": 25,
+      "whiskeyId": 25,
+      "tastingId": 5,
+      "isWinner": false
+    },
+    {
+      "id": 26,
+      "whiskeyId": 26,
+      "tastingId": 5,
+      "isWinner": false
+    },
+    {
+      "id": 27,
+      "whiskeyId": 27,
+      "tastingId": 7,
+      "isWinner": false
+    },
+    {
+      "id": 28,
+      "whiskeyId": 28,
+      "tastingId": 7,
+      "isWinner": false
+    },
+    {
+      "id": 29,
+      "whiskeyId": 29,
+      "tastingId": 7,
+      "isWinner": false
+    },
+    {
+      "id": 30,
+      "whiskeyId": 30,
+      "tastingId": 7,
+      "isWinner": false
+    },
+    {
+      "id": 31,
+      "whiskeyId": 31,
+      "tastingId": 7,
+      "isWinner": false
+    },
+    {
+      "id": 32,
+      "whiskeyId": 32,
+      "tastingId": 8,
+      "isWinner": false
+    },
+    {
+      "id": 33,
+      "whiskeyId": 33,
+      "tastingId": 8,
+      "isWinner": false
+    },
+    {
+      "id": 34,
+      "whiskeyId": 34,
+      "tastingId": 8,
+      "isWinner": false
+    },
+    {
+      "id": 35,
+      "whiskeyId": 35,
+      "tastingId": 8,
+      "isWinner": false
+    },
+    {
+      "id": 36,
+      "whiskeyId": 36,
+      "tastingId": 9,
+      "isWinner": false
+    },
+    {
+      "id": 37,
+      "whiskeyId": 37,
+      "tastingId": 9,
+      "isWinner": false
+    },
+    {
+      "id": 38,
+      "whiskeyId": 38,
+      "tastingId": 9,
+      "isWinner": false
+    },
+    {
+      "id": 39,
+      "whiskeyId": 39,
+      "tastingId": 9,
+      "isWinner": false
+    },
+    {
+      "id": 40,
+      "whiskeyId": 40,
+      "tastingId": 10,
+      "isWinner": false
+    },
+    {
+      "id": 41,
+      "whiskeyId": 41,
+      "tastingId": 10,
+      "isWinner": false
+    },
+    {
+      "id": 42,
+      "whiskeyId": 42,
+      "tastingId": 10,
+      "isWinner": false
+    },
+    {
+      "id": 43,
+      "whiskeyId": 43,
+      "tastingId": 10,
+      "isWinner": false
+    },
+    {
+      "id": 44,
+      "whiskeyId": 44,
+      "tastingId": 10,
+      "isWinner": false
+    },
+    {
+      "id": 45,
+      "whiskeyId": 45,
+      "tastingId": 11,
+      "isWinner": false
+    },
+    {
+      "id": 46,
+      "whiskeyId": 46,
+      "tastingId": 11,
+      "isWinner": false
+    },
+    {
+      "id": 47,
+      "whiskeyId": 47,
+      "tastingId": 11,
+      "isWinner": false
+    },
+    {
+      "id": 48,
+      "whiskeyId": 4,
+      "tastingId": 11,
+      "isWinner": false
+    },
+    {
+      "id": 49,
+      "whiskeyId": 48,
+      "tastingId": 11,
+      "isWinner": false
+    },
+    {
+      "id": 50,
+      "whiskeyId": 49,
+      "tastingId": 13,
+      "isWinner": false
+    },
+    {
+      "id": 51,
+      "whiskeyId": 50,
+      "tastingId": 13,
+      "isWinner": false
+    },
+    {
+      "id": 52,
+      "whiskeyId": 51,
+      "tastingId": 13,
+      "isWinner": false
+    },
+    {
+      "id": 53,
+      "whiskeyId": 52,
+      "tastingId": 13,
+      "isWinner": false
+    },
+    {
+      "id": 54,
+      "whiskeyId": 53,
+      "tastingId": 13,
+      "isWinner": false
+    },
+    {
+      "id": 55,
+      "whiskeyId": 54,
+      "tastingId": 14,
+      "isWinner": false
+    },
+    {
+      "id": 56,
+      "whiskeyId": 55,
+      "tastingId": 14,
+      "isWinner": false
+    },
+    {
+      "id": 57,
+      "whiskeyId": 56,
+      "tastingId": 14,
+      "isWinner": false
+    },
+    {
+      "id": 58,
+      "whiskeyId": 57,
+      "tastingId": 14,
+      "isWinner": false
+    }
+  ]
+}

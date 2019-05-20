@@ -35,8 +35,11 @@ export default class SearchByDateForm extends Component {
                                 </DropdownToggle>
                                     <DropdownMenu>
                                         {this.props.tastings.map(tasting => {
+                                            let dateArray = tasting.date.split('-')
+                                            dateArray.push(dateArray.shift())
+                                            let date = dateArray.join('/')
                                             if (tasting.isComplete) {
-                                                return <DropdownItem key={tasting.id} onClick={() => this.props.handleSearchByDate(tasting.date)}>{tasting.date}</DropdownItem>
+                                                return <DropdownItem key={tasting.id} onClick={() => this.props.handleSearchByDate(tasting.date)}>{date}</DropdownItem>
                                             } else {
                                                 return null
                                             }

@@ -28,15 +28,19 @@ export default class UpcomingTastingCard extends Component {
                         <CardHeader>Upcoming Tastings</CardHeader>
                         <CardBody
                             className="hl-scroll-body">
-                            {this.state.upcomingTastings.map(tasting =>
-                                <Card key={tasting.id}
+                            {this.state.upcomingTastings.map(tasting => {
+                                let dateArray = tasting.date.split('-')
+                                dateArray.push(dateArray.shift())
+                                let date = dateArray.join('/')
+                                return <Card key={tasting.id}
                                     className="hl-scroll-card card-extra-opacity">
                                     <CardBody>
-                                        <CardText>Date: {tasting.date}</CardText>
+                                        <CardText>Date: {date}</CardText>
                                         <CardText>Time: {tasting.time}</CardText>
                                         <CardText>Address: {tasting.address}</CardText>
                                     </CardBody>
                                 </Card>
+                            }
                             )}
                         </CardBody>
                     </Card>

@@ -14,11 +14,11 @@
     height: 33px;
 }
 
-.navbar-light .navbar-nav .nav-link {
+.navbar-dark .navbar-nav .nav-link {
     color: rgba(220, 220, 220);
 }
 
-.navbar-light .navbar-toggler {
+.navbar-dark .navbar-toggler {
     border-color: gainsboro;
 }
 

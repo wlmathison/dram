@@ -22,18 +22,30 @@ export default class ReviewIndividualCard extends Component {
     }
 
     render() {
+
+        let notGuest = false;
+        if (parseInt(sessionStorage.getItem("userTypeId")) === 1 || parseInt(sessionStorage.getItem("userTypeId")) === 2) {
+            notGuest = true
+        }
+
         function getSum(total, num) {
             return total + num
         }
 
         let rating = 0;
+        let totalRatings = 0;
         if (this.state.ratings.length > 0) {
-            rating = this.state.ratings.reduce(getSum) / this.state.ratings.length
+            totalRatings = this.state.ratings.length
+            rating = this.state.ratings.reduce(getSum) / totalRatings
         }
 
         let id = this.props.review.tastingSelectionId - 1
 
         let isMyFavorite = this.props.myFavorites.some(favorite => favorite.whiskey.id === this.props.tastingSelections[id].whiskey.id)
+
+        let dateArray = this.props.review.date.split('-')
+        dateArray.push(dateArray.shift())
+        let date = dateArray.join('/')
 
         let favoriteId;
 
@@ -50,34 +62,41 @@ export default class ReviewIndividualCard extends Component {
                             <Card
                                 className="card-extra-opacity">
                                 <CardBody>
-                                    <CardTitle>Whiskey: {this.props.tastingSelections[id].whiskey.name} {" "}
+                                    <CardTitle
+                                        tag={"h5"}
+                                        className="favorites">Whiskey: {this.props.tastingSelections[id].whiskey.name}
                                         {/* Conditionally rendering depending on whether the whiskey has been saved as a favorite or not */}
-                                        {isMyFavorite &&
+                                        {isMyFavorite && notGuest &&
                                             <IoIosHeart
                                                 id={favoriteId}
                                                 color="red"
                                                 onClick={() => this.props.handleDeleteFavorite(favoriteId)}
                                             ></IoIosHeart>}
-                                        {!isMyFavorite &&
+                                        {!isMyFavorite && notGuest &&
                                             <IoIosHeartEmpty
                                                 id={this.props.tastingSelections[id].whiskey.id}
                                                 onClick={() => this.props.handleAddFavorite(this.props.tastingSelections[id].whiskey.id)}
                                             ></IoIosHeartEmpty>}
                                     </CardTitle>
                                     <div>
-                                        <CardText>Average Rating: </CardText>
-                                        <StarRatingComponent
-                                            name={"name"}
-                                            starCount={5}
-                                            value={rating}
-                                        />
+                                        <CardText
+                                            className="rating-text"
+                                        >Average Rating: </CardText>
+                                        <div
+                                            className="ratings-div"
+                                        >{rating.toFixed(2)}                                        <StarRatingComponent
+                                                name={"name"}
+                                                starCount={5}
+                                                value={rating}
+                                            />
+                                            {`(${totalRatings})`}</div>
                                     </div>
                                     <CardText>Reviewed by: {this.props.review.user.userName}</CardText>
                                     <CardText>At Tasting: {this.props.tastingSelections[id].tasting.theme}</CardText>
-                                    <CardText>Date: {this.props.review.date}</CardText>
+                                    <CardText>Date: {date}</CardText>
                                     <CardText>Review: {this.props.review.review}</CardText>
                                     <Button
-                                    color="info"
+                                        color="info"
                                         id={`edit-${this.props.review.id}`}
                                         onClick={this.props.handleEdit}
                                     >Edit</Button> {" "}
@@ -102,31 +121,38 @@ export default class ReviewIndividualCard extends Component {
                             <Card
                                 className="card-extra-opacity">
                                 <CardBody>
-                                    <CardTitle>Whiskey: {this.props.tastingSelections[id].whiskey.name} {" "}
+                                    <CardTitle
+                                        tag={"h5"}
+                                        className="favorites">Whiskey: {this.props.tastingSelections[id].whiskey.name}
                                         {/* Conditionally rendering depending on whether the whiskey has been saved as a favorite or not */}
-                                        {isMyFavorite &&
+                                        {isMyFavorite && notGuest &&
                                             <IoIosHeart
                                                 id={favoriteId}
                                                 color="red"
                                                 onClick={() => this.props.handleDeleteFavorite(favoriteId)}
                                             ></IoIosHeart>}
-                                        {!isMyFavorite &&
+                                        {!isMyFavorite && notGuest &&
                                             <IoIosHeartEmpty
                                                 id={this.props.tastingSelections[id].whiskey.id}
                                                 onClick={() => this.props.handleAddFavorite(this.props.tastingSelections[id].whiskey.id)}
                                             ></IoIosHeartEmpty>}
                                     </CardTitle>
                                     <div>
-                                        <CardText>Average Rating: </CardText>
-                                        <StarRatingComponent
-                                            name={"name"}
-                                            starCount={5}
-                                            value={rating}
-                                        />
+                                        <CardText
+                                            className="rating-text"
+                                        >Average Rating: </CardText>
+                                        <div
+                                            className="ratings-div"
+                                        >{rating.toFixed(2)}                                        <StarRatingComponent
+                                                name={"name"}
+                                                starCount={5}
+                                                value={rating}
+                                            />
+                                            {`(${totalRatings})`}</div>
                                     </div>
                                     <CardText>Reviewed by: {this.props.review.user.userName}</CardText>
                                     <CardText>At Tasting: {this.props.tastingSelections[id].tasting.theme}</CardText>
-                                    <CardText>Date: {this.props.review.date}</CardText>
+                                    <CardText>Date: {date}</CardText>
                                     <CardText>Review: {this.props.review.review}</CardText>
                                 </CardBody>
                             </Card>
@@ -136,7 +162,5 @@ export default class ReviewIndividualCard extends Component {
                 </React.Fragment>
             )
         }
-
-
     }
 }

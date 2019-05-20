@@ -23,13 +23,21 @@ export default class WhiskeyIndividualCard extends Component {
     }
 
     render() {
+
+        let notGuest = false;
+        if (parseInt(sessionStorage.getItem("userTypeId")) === 1 || parseInt(sessionStorage.getItem("userTypeId")) === 2) {
+            notGuest = true
+        }
+
         function getSum(total, num) {
             return total + num
         }
 
         let rating = 0;
+        let totalRatings = 0;
         if (this.state.ratings.length > 0) {
-            rating = this.state.ratings.reduce(getSum) / this.state.ratings.length
+            totalRatings = this.state.ratings.length
+            rating = this.state.ratings.reduce(getSum) / totalRatings
         }
 
         if (this.props.myFavorites.some(favorite => favorite.whiskey.id === this.props.whiskey.id)) {
@@ -42,11 +50,16 @@ export default class WhiskeyIndividualCard extends Component {
                             <Card
                                 className="card-extra-opacity">
                                 <CardBody>
-                                    <CardTitle>{this.props.whiskey.name}                            <IoIosHeart
-                                        id={favoriteId}
-                                        color="red"
-                                        onClick={() => this.props.handleDeleteFavorite(favoriteId)}
-                                    ></IoIosHeart>
+                                    <CardTitle
+                                        tag={"h5"}
+                                        className="favorites"
+                                    >{this.props.whiskey.name}
+                                        {notGuest && <IoIosHeart
+                                            id={favoriteId}
+                                            color="red"
+                                            onClick={() => this.props.handleDeleteFavorite(favoriteId)}
+                                        ></IoIosHeart>
+                                        }
                                     </CardTitle>
                                     <CardText>Size: {this.props.whiskey.size}</CardText>
                                     <CardText>Price: ${this.props.whiskey.price}</CardText>
@@ -55,12 +68,18 @@ export default class WhiskeyIndividualCard extends Component {
                                     <CardText>Category: {this.props.whiskey.category.name}</CardText>
                                     <CardText>Distillery: {this.props.whiskey.distillery.name}</CardText>
                                     <div>
-                                        <CardText>Average Rating: </CardText>
-                                        <StarRatingComponent
-                                            name={"name"}
-                                            starCount={5}
-                                            value={rating}
-                                        />
+                                        <CardText
+                                            className="rating-text"
+                                        >Average Rating: </CardText>
+                                        <div
+                                            className="ratings-div"
+                                        >{rating.toFixed(2)}                                        <StarRatingComponent
+                                                name={"name"}
+                                                starCount={5}
+                                                value={rating}
+                                            />
+                                            {`(${totalRatings})`}</div>
+
                                     </div>
                                 </CardBody>
                             </Card>
@@ -78,10 +97,15 @@ export default class WhiskeyIndividualCard extends Component {
                             <Card
                                 className="card-extra-opacity">
                                 <CardBody>
-                                    <CardTitle>{this.props.whiskey.name}                            <IoIosHeartEmpty
-                                        id={this.props.whiskey.id}
-                                        onClick={() => this.props.handleAddFavorite(this.props.whiskey.id)}
-                                    ></IoIosHeartEmpty>
+                                    <CardTitle
+                                        tag={"h5"}
+                                        className="favorites"
+                                    >{this.props.whiskey.name}
+                                        {notGuest && <IoIosHeartEmpty
+                                            id={this.props.whiskey.id}
+                                            onClick={() => this.props.handleAddFavorite(this.props.whiskey.id)}
+                                        ></IoIosHeartEmpty>
+                                        }
                                     </CardTitle>
                                     <CardText>Size: {this.props.whiskey.size}</CardText>
                                     <CardText>Price: ${this.props.whiskey.price}</CardText>
@@ -90,12 +114,17 @@ export default class WhiskeyIndividualCard extends Component {
                                     <CardText>Category: {this.props.whiskey.category.name}</CardText>
                                     <CardText>Distillery: {this.props.whiskey.distillery.name}</CardText>
                                     <div>
-                                        <CardText>Average Rating: </CardText>
-                                        <StarRatingComponent
-                                            name={"name"}
-                                            starCount={5}
-                                            value={rating}
-                                        />
+                                        <CardText
+                                            className="rating-text"
+                                        >Average Rating: </CardText>
+                                        <div
+                                            className="ratings-div"
+                                        >{rating.toFixed(2)}                                      <StarRatingComponent
+                                                name={"name"}
+                                                starCount={5}
+                                                value={rating}
+                                            />
+                                            {`(${totalRatings})`}</div>
                                     </div>
                                 </CardBody>
                             </Card>
