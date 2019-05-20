@@ -3,7 +3,6 @@
 import React, { Component } from "react"
 import CreateNewResource from "./CreateNewResource"
 import EditResource from "./EditResource"
-import DeleteResource from "./DeleteResource"
 import ActivateDeactivateUser from "./ActivateDeactivateUser"
 import ActivateUser from "./ActivateUser"
 import DeactivateUser from "./DeactivateUser"
@@ -12,11 +11,6 @@ import CreateNewDistillery from "./CreateNewDistillery"
 import CreateNewTasting from "./CreateNewTasting"
 import CreateNewTastingSelection from "./CreateNewTastingSelection"
 import CreateNewWhiskey from "./CreateNewWhiskey"
-import DeleteCategory from "./DeleteCategory"
-import DeleteDistillery from "./DeleteDistillery"
-import DeleteTasting from "./DeleteTasting"
-import DeleteTastingSelection from "./DeleteTastingSelection"
-import DeleteWhiskey from "./DeleteWhiskey"
 import EditDeleteCategory from "./EditDeleteCategory"
 import EditDeleteDistillery from "./EditDeleteDistillery"
 import EditDeleteTasting from "./EditDeleteTasting"
@@ -46,17 +40,11 @@ export default class Admin extends Component {
         showDeactivate: false,
         showCreate: true,
         showEdit: true,
-        showDelete: true,
         showCreateCategory: false,
         showCreateDistillery: false,
         showCreateTasting: false,
         showCreateTastingSelection: false,
         showCreateWhiskey: false,
-        showDeleteCategory: false,
-        showDeleteDistillery: false,
-        showDeleteTasting: false,
-        showDeleteTastingSelection: false,
-        showDeleteWhiskey: false,
         showEditDeleteCategory: false,
         showEditDeleteDistillery: false,
         showEditDeleteTasting: false,
@@ -102,17 +90,11 @@ export default class Admin extends Component {
             showDeactivate: false,
             showCreate: true,
             showEdit: true,
-            showDelete: true,
             showCreateCategory: false,
             showCreateDistillery: false,
             showCreateTasting: false,
             showCreateTastingSelection: false,
             showCreateWhiskey: false,
-            showDeleteCategory: false,
-            showDeleteDistillery: false,
-            showDeleteTasting: false,
-            showDeleteTastingSelection: false,
-            showDeleteWhiskey: false,
             showEditDeleteCategory: false,
             showEditDeleteDistillery: false,
             showEditDeleteTasting: false,
@@ -129,17 +111,11 @@ export default class Admin extends Component {
             showDeactivate: false,
             showCreate: true,
             showEdit: true,
-            showDelete: true,
             showCreateCategory: false,
             showCreateDistillery: false,
             showCreateTasting: false,
             showCreateTastingSelection: false,
             showCreateWhiskey: false,
-            showDeleteCategory: false,
-            showDeleteDistillery: false,
-            showDeleteTasting: false,
-            showDeleteTastingSelection: false,
-            showDeleteWhiskey: false,
             showEditDeleteCategory: false,
             showEditDeleteDistillery: false,
             showEditDeleteTasting: false,
@@ -156,8 +132,7 @@ export default class Admin extends Component {
             showActivate: true,
             showCreate: false,
             showActivateDeactivate: false,
-            showEdit: false,
-            showDelete: false,
+            showEdit: false
         })
     }
 
@@ -168,8 +143,7 @@ export default class Admin extends Component {
             showDeactivate: true,
             showCreate: false,
             showActivateDeactivate: false,
-            showEdit: false,
-            showDelete: false,
+            showEdit: false
         })
     }
 
@@ -180,7 +154,6 @@ export default class Admin extends Component {
             showActivateDeactivate: true,
             showCreate: true,
             showEdit: true,
-            showDelete: true,
             showActivate: false
         }
         UserManager.patch(event.target.id, {
@@ -197,7 +170,6 @@ export default class Admin extends Component {
             showActivateDeactivate: true,
             showCreate: true,
             showEdit: true,
-            showDelete: true,
             showDeactivate: false
         }
         UserManager.patch(event.target.id, {
@@ -214,8 +186,7 @@ export default class Admin extends Component {
             showCreateCategory: true,
             showCreate: false,
             showActivateDeactivate: false,
-            showEdit: false,
-            showDelete: false,
+            showEdit: false
         })
     }
 
@@ -226,8 +197,7 @@ export default class Admin extends Component {
             showCreateDistillery: true,
             showCreate: false,
             showActivateDeactivate: false,
-            showEdit: false,
-            showDelete: false,
+            showEdit: false
         })
     }
 
@@ -238,8 +208,7 @@ export default class Admin extends Component {
             showCreateTasting: true,
             showCreate: false,
             showActivateDeactivate: false,
-            showEdit: false,
-            showDelete: false,
+            showEdit: false
         })
     }
 
@@ -250,8 +219,7 @@ export default class Admin extends Component {
             showCreateTastingSelection: true,
             showCreate: false,
             showActivateDeactivate: false,
-            showEdit: false,
-            showDelete: false,
+            showEdit: false
         })
     }
 
@@ -262,68 +230,7 @@ export default class Admin extends Component {
             showCreateWhiskey: true,
             showCreate: false,
             showActivateDeactivate: false,
-            showEdit: false,
-            showDelete: false,
-        })
-    }
-
-    // Function to handle user clicking Delete Category and display delete category form
-    handleDeleteCategory = event => {
-        event.preventDefault()
-        this.setState({
-            showDeleteCategory: true,
-            showCreate: false,
-            showActivateDeactivate: false,
-            showEdit: false,
-            showDelete: false,
-        })
-    }
-
-    // Function to handle user clicking Delete Distillery and display delete distillery form
-    handleDeleteDistillery = event => {
-        event.preventDefault()
-        this.setState({
-            showDeleteDistillery: true,
-            showCreate: false,
-            showActivateDeactivate: false,
-            showEdit: false,
-            showDelete: false,
-        })
-    }
-
-    // Function to handle user clicking Delete Tasting and display delete tasting form
-    handleDeleteTasting = event => {
-        event.preventDefault()
-        this.setState({
-            showDeleteTasting: true,
-            showCreate: false,
-            showActivateDeactivate: false,
-            showEdit: false,
-            showDelete: false,
-        })
-    }
-
-    // Function to handle user clicking Delete Tasting Selection and display delete tasting selection form
-    handleDeleteTastingSelection = event => {
-        event.preventDefault()
-        this.setState({
-            showDeleteTastingSelection: true,
-            showCreate: false,
-            showActivateDeactivate: false,
-            showEdit: false,
-            showDelete: false,
-        })
-    }
-
-    // Function to handle user clicking Delete Whiskey and display delete whiskey form
-    handleDeleteWhiskey = event => {
-        event.preventDefault()
-        this.setState({
-            showDeleteWhiskey: true,
-            showCreate: false,
-            showActivateDeactivate: false,
-            showEdit: false,
-            showDelete: false,
+            showEdit: false
         })
     }
 
@@ -334,8 +241,7 @@ export default class Admin extends Component {
             showEditDeleteCategory: true,
             showCreate: false,
             showActivateDeactivate: false,
-            showEdit: false,
-            showDelete: false,
+            showEdit: false
         })
     }
 
@@ -346,8 +252,7 @@ export default class Admin extends Component {
             showEditDeleteDistillery: true,
             showCreate: false,
             showActivateDeactivate: false,
-            showEdit: false,
-            showDelete: false,
+            showEdit: false
         })
     }
 
@@ -358,8 +263,7 @@ export default class Admin extends Component {
             showEditDeleteTasting: true,
             showCreate: false,
             showActivateDeactivate: false,
-            showEdit: false,
-            showDelete: false,
+            showEdit: false
         })
     }
 
@@ -370,8 +274,7 @@ export default class Admin extends Component {
             showEditDeleteTastingSelection: true,
             showCreate: false,
             showActivateDeactivate: false,
-            showEdit: false,
-            showDelete: false,
+            showEdit: false
         })
     }
 
@@ -382,8 +285,7 @@ export default class Admin extends Component {
             showEditDeleteWhiskey: true,
             showCreate: false,
             showActivateDeactivate: false,
-            showEdit: false,
-            showDelete: false,
+            showEdit: false
         })
     }
 
@@ -420,18 +322,6 @@ export default class Admin extends Component {
                 {this.state.showEditDeleteTastingSelection && <EditDeleteTastingSelection handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} tastingSelections={this.state.tastingSelections} tastings={this.state.tastings} whiskies={this.state.whiskies} />
                 }
                 {this.state.showEditDeleteWhiskey && <EditDeleteWhiskey handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} whiskies={this.state.whiskies} categories={this.state.categories} distilleries={this.state.distilleries} />
-                }
-                {this.state.showDelete && <DeleteResource handleDeleteCategory={this.handleDeleteCategory} handleDeleteDistillery={this.handleDeleteDistillery} handleDeleteTasting={this.handleDeleteTasting} handleDeleteTastingSelection={this.handleDeleteTastingSelection} handleDeleteWhiskey={this.handleDeleteWhiskey} />
-                }
-                {this.state.showDeleteCategory && <DeleteCategory handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} categories={this.state.categories} />
-                }
-                {this.state.showDeleteDistillery && <DeleteDistillery handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} distilleries={this.state.distilleries} />
-                }
-                {this.state.showDeleteTasting && <DeleteTasting handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} tastings={this.state.tastings} />
-                }
-                {this.state.showDeleteTastingSelection && <DeleteTastingSelection handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} tastingSelections={this.state.tastingSelections} tastings={this.state.tastings} whiskies={this.state.whiskies} />
-                }
-                {this.state.showDeleteWhiskey && <DeleteWhiskey handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} whiskies={this.state.whiskies} />
                 }
             </React.Fragment>
         )
