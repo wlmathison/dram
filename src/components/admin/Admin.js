@@ -20,6 +20,8 @@ import DeleteWhiskey from "./DeleteWhiskey"
 import EditDeleteCategory from "./EditDeleteCategory"
 import EditDeleteDistillery from "./EditDeleteDistillery"
 import EditDeleteTasting from "./EditDeleteTasting"
+import EditDeleteTastingSelection from "./EditDeleteTastingSelection"
+import EditDeleteWhiskey from "./EditDeleteWhiskey"
 import UserManager from "./../../modules/UserManager"
 import TastingManager from "./../../modules/TastingManager"
 import WhiskeyManager from "./../../modules/WhiskeyManager"
@@ -57,7 +59,9 @@ export default class Admin extends Component {
         showDeleteWhiskey: false,
         showEditDeleteCategory: false,
         showEditDeleteDistillery: false,
-        showEditDeleteTasting: false
+        showEditDeleteTasting: false,
+        showEditDeleteTastingSelection: false,
+        showEditDeleteWhiskey: false
     }
 
     componentDidMount() {
@@ -111,7 +115,9 @@ export default class Admin extends Component {
             showDeleteWhiskey: false,
             showEditDeleteCategory: false,
             showEditDeleteDistillery: false,
-            showEditDeleteTasting: false
+            showEditDeleteTasting: false,
+            showEditDeleteTastingSelection: false,
+            showEditDeleteWhiskey: false
         })
     }
 
@@ -136,7 +142,9 @@ export default class Admin extends Component {
             showDeleteWhiskey: false,
             showEditDeleteCategory: false,
             showEditDeleteDistillery: false,
-            showEditDeleteTasting: false
+            showEditDeleteTasting: false,
+            showEditDeleteTastingSelection: false,
+            showEditDeleteWhiskey: false
         })
         this.handleUpdateState()
     }
@@ -355,6 +363,30 @@ export default class Admin extends Component {
         })
     }
 
+    // Function to handle user clicking Edit/Delete Tasting Selection and display edit/delete tasting selection form
+    handleEditDeleteTastingSelection = event => {
+        event.preventDefault()
+        this.setState({
+            showEditDeleteTastingSelection: true,
+            showCreate: false,
+            showActivateDeactivate: false,
+            showEdit: false,
+            showDelete: false,
+        })
+    }
+
+    // Function to handle user clicking Edit/Delete Whiskey and display edit/delete whiskey form
+    handleEditDeleteWhiskey = event => {
+        event.preventDefault()
+        this.setState({
+            showEditDeleteWhiskey: true,
+            showCreate: false,
+            showActivateDeactivate: false,
+            showEdit: false,
+            showDelete: false,
+        })
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -377,13 +409,17 @@ export default class Admin extends Component {
                 }
                 {this.state.showCreateWhiskey && <CreateNewWhiskey handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} whiskies={this.state.whiskies} categories={this.state.categories} distilleries={this.state.distilleries} />
                 }
-                {this.state.showEdit && <EditResource handleEditDeleteCategory={this.handleEditDeleteCategory} handleEditDeleteDistillery={this.handleEditDeleteDistillery} handleEditDeleteTasting={this.handleEditDeleteTasting} />
+                {this.state.showEdit && <EditResource handleEditDeleteCategory={this.handleEditDeleteCategory} handleEditDeleteDistillery={this.handleEditDeleteDistillery} handleEditDeleteTasting={this.handleEditDeleteTasting} handleEditDeleteTastingSelection={this.handleEditDeleteTastingSelection} handleEditDeleteWhiskey={this.handleEditDeleteWhiskey} />
                 }
                 {this.state.showEditDeleteCategory && <EditDeleteCategory handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} categories={this.state.categories} />
                 }
                 {this.state.showEditDeleteDistillery && <EditDeleteDistillery handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} distilleries={this.state.distilleries} />
                 }
                 {this.state.showEditDeleteTasting && <EditDeleteTasting handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} tastings={this.state.tastings} />
+                }
+                {this.state.showEditDeleteTastingSelection && <EditDeleteTastingSelection handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} tastingSelections={this.state.tastingSelections} tastings={this.state.tastings} whiskies={this.state.whiskies} />
+                }
+                {this.state.showEditDeleteWhiskey && <EditDeleteWhiskey handleCancel={this.handleCancel} handleRefresh={this.handleRefresh} whiskies={this.state.whiskies} categories={this.state.categories} distilleries={this.state.distilleries} />
                 }
                 {this.state.showDelete && <DeleteResource handleDeleteCategory={this.handleDeleteCategory} handleDeleteDistillery={this.handleDeleteDistillery} handleDeleteTasting={this.handleDeleteTasting} handleDeleteTastingSelection={this.handleDeleteTastingSelection} handleDeleteWhiskey={this.handleDeleteWhiskey} />
                 }

@@ -40,13 +40,13 @@ export default class EditResource extends Component {
                                             className="search-buttons"
                                             color="info"
                                             type="radio"
-                                            onClick={this.props.handleSearchWhiskiesByDistillery}
+                                            onClick={this.props.handleEditDeleteTastingSelection}
                                         >Tasting Selection</Button>
                                         <Button
                                             className="search-buttons"
                                             color="info"
                                             type="radio"
-                                            onClick={this.props.handleSearchAllWhiskies}
+                                            onClick={this.props.handleEditDeleteWhiskey}
                                         >Whiskey</Button>
                                     </Form>
                                 </CardBody>

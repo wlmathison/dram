@@ -17,7 +17,7 @@ export default class CreateNewWhiskey extends Component {
         categoryId: 0,
         categoryName: "Select a category",
         distilleryId: 0,
-        distilleryName: "Select a distillery",
+        distilleryName: "Select a distillery"
     }
 
     // Function to change state when input field changes
