@@ -175,11 +175,23 @@ export default class ReviewList extends Component {
         event.preventDefault()
         if (window.confirm("Are you sure you want to delete this review?")) {
             let reviewId = parseInt(event.target.id.split("-")[1])
-            const newState = {}
+            const newState = {
+                isSearching: false,
+                isEditing: false,
+                viewSearchButton: true,
+                seeAllReviews: true,
+                seeReviewsBySelectedWhiskey: false,
+                seeReviewsBySelectedUser: false,
+                seeReviewsBySelectedTasting: false,
+                isSearchingByTasting: false,
+                isSearchingByWhiskey: false,
+                isSearchingByUser: false
+            }
             ReviewManager.delete(reviewId)
                 .then(() => ReviewManager.getExpand())
                 .then(reviews => (newState.reviews = reviews))
                 .then(() => this.setState(newState))
+            window.scrollTo(0, 0);
         }
     }
 
