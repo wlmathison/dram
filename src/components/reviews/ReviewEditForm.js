@@ -5,7 +5,8 @@ import { Card, CardBody, CardText, Input, Button, CardTitle, CardHeader } from "
 
 export default class ReviewEditForm extends Component {
     render() {
-        let id = this.props.review.tastingSelectionId - 1
+        let matchingTastingSelection = this.props.tastingSelections.find(tastingSelection => tastingSelection.id === this.props.review.tastingSelectionId)
+
         return (
             <React.Fragment>
                 <Card
@@ -14,9 +15,9 @@ export default class ReviewEditForm extends Component {
                         <Card
                             className="card-extra-opacity">
                             <CardBody>
-                                <CardTitle>Whiskey: {this.props.tastingSelections[id].whiskey.name}</CardTitle>
+                                <CardTitle>Whiskey: {matchingTastingSelection.whiskey.name}</CardTitle>
                                 <CardText>Reviewed by: {this.props.review.user.userName}</CardText>
-                                <CardText>At Tasting: {this.props.tastingSelections[id].tasting.theme}</CardText>
+                                <CardText>At Tasting: {matchingTastingSelection.tasting.theme}</CardText>
                                 <CardText>Date: {this.props.review.date}</CardText>
                                 <CardText>Review:
                                 <Input
