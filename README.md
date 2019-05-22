@@ -1,5 +1,5 @@
 # Dram
-Dram is an application designed to enhance whiskey tastings by allowing users to view and share reviews instantly while also providing searchable historical data from previous tastings.
+Dram is an application designed to enhance whiskey tastings by allowing users to participate in live whiskey tastings, view and share their reviews instantly, and provide searchable historical data. Once a user submits their blind tasting ratings and reviews, they are then shown the results of the tasting including the overall average rating of each whiskey along with detailed information about each whiskey they tasted. Users are able to search previous tastings, previous whiskies tasted, and reviews. Users can save their favorite whiskies to view on their home page. The application allows for three types of users - guests, users, and admin users.
 
 ![](dram.gif)
 
@@ -11,6 +11,9 @@ Dram is an application designed to enhance whiskey tastings by allowing users to
 1. Run `npm start` in root directory to start react server
 
 ### Technologies
-Project created using
-*[React](https://reactjs.org/)
-*[reactstrap](https://reactstrap.github.io/)
+Project created using </br>
+[React](https://reactjs.org/) </br>
+[reactstrap](https://reactstrap.github.io/) </br>
+
+### Author
+Billy Mathison
